@@ -1,0 +1,19 @@
+.hod_profile{
+    width: 100%;
+    background-color: rgb(230, 159, 159);
+    min-height: 200px;
+    box-shadow: 0px 0px 10px 10px whitesmoke;
+    padding: 30px;
+    margin:10% auto;
+    border-radius: 10px;
+}
+.icon{
+    float: right !important;
+}
+.hod_profile_inner{
+    width: 80%;
+    box-shadow: 0px 0px 10px 2px rgb(163, 161, 161);  
+    min-height: 250px;
+    margin:10% auto;
+    border-radius: 10px;
+}

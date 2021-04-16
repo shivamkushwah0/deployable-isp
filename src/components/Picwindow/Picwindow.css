@@ -1,0 +1,63 @@
+
+  button.pic_btn{
+      padding: 10px 20px !important;
+      width: 150px !important;
+      margin: 0px 10px !important;
+      background-color: white !important;
+      outline: none;
+      border: 2px solid blue !important;
+      color: blue !important;   
+  }
+
+  button.pic_btn:hover{
+      background-color: blue !important;
+      color: white !important;
+      outline: none;
+  }
+  button.pic_btn:active{
+    background-color: blue !important;
+    color: white !important;
+    outline: none;
+    border: 2px solid blue !important;
+
+  }
+
+  button.pic_btn:focus{
+    background-color: blue !important;
+    color: white !important;
+    outline: none;
+    border: 2px solid blue !important;
+
+  }
+  tr{
+    text-align: left;
+  }
+  .margintop{
+      display: block !important;
+      margin-top: 60px !important;
+  }
+  .modal_stu{
+    width: 40% !important;
+    background-color: whitesmoke;
+    padding: 60px;
+    box-shadow: 25px 25px 50px rgb(216 214 214) !important;
+    z-index: 2000 !important;
+    min-height: 300px;
+    position: absolute;
+    top: 0%;
+    left: 50%;
+    display: flex;
+    transform: translate(-50% , 50%);
+    border-radius: 10px;
+    flex-direction: column;
+    align-items: center;
+    outline: none;
+}
+.textfield{
+  margin: 10px auto !important;
+  width: 85%;
+  text-align: center !important;
+}
+.row{
+  width:100%
+}

@@ -1,0 +1,117 @@
+.Body>.container{
+    position: relative;
+}
+.LoginFormDiv{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50% , 20%);
+   
+   border-radius: 20px;
+   overflow: hidden;
+}
+.logo_form{
+width: 150px;
+height: 150px;
+
+}
+.back_form{
+    background-image: linear-gradient(to right, #bdf2ed, #bbf2ed, #b8f2ee, #b6f2ee, #b3f2ef);
+    height: 100%;
+    
+}
+.LoginFormCard{
+    height: 500px;
+    padding: 40px;
+}
+.LoginForm{
+    height: 450px;
+    
+}
+.padding_0{
+    padding: 0 !important;
+}
+.loginsignup{
+    width: 100%;
+    min-height: 500px;
+    background-color: white;
+    padding: 40px;
+}
+@media only screen and (max-width:800px){
+    .loginsignup{
+        display: none !important;
+    }
+}
+.StudentOrEmployerTogggle{
+    background-color: white !important;
+    border-radius: 30px !important;
+    
+    
+}
+.form_login{
+    width: 100%;
+    margin: 0px auto;
+}
+.login_margin{
+    margin: 40px auto !important;
+}
+.form_label{
+    text-align: left;
+}
+.activeClass{
+    background-color: rgb(27, 63, 92) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    padding: 8px;
+}
+.normalClass{
+    background-color: white !important;
+    padding: 8px;
+    color: black !important;
+}
+.form_icons{
+    align-items: center;
+    margin: 10px 0px 0px 0px !important;
+    display: inline-flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 0% 30%;
+}
+.newuser{
+    margin-left: 10px;
+}
+.form_icons>i{
+    font-size: 16px!important;
+    padding: 10px;
+}
+.input_field{
+    border-radius: 15px ;
+    overflow: hidden;
+    background-color: rgb(181, 239, 247) !important;
+}
+.Body{
+    bottom:0;
+    min-height:88.7vh;
+    background-image: linear-gradient(to right, #13e1ab, #00e4ba, #00e7c9, #00e9d6, #12ebe2);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+}
+.button_loginsignup{
+    color: white !important;
+    background-color: rgb(19, 92, 151)!important;
+}
+@media(max-width:540px){
+.Body{
+    height: 190vh;
+}
+}
+@media(min-width:750px) and (max-width:990px){
+    .loginsignup {
+        width: 100%;
+        height: 500px;
+        background-color: white;
+        padding: 15px !important;
+    }
+}

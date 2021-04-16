@@ -1,0 +1,117 @@
+.Body>.container{
+    position: relative;
+}
+.Body{
+    height:100vh;
+}
+.LoginFormDiv{
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50% , 20%);
+   
+   border-radius: 20px;
+   overflow: hidden;
+}
+.logo_form{
+width: 150px;
+height: 150px;
+
+}
+.back_form{
+    background-image: linear-gradient(to right, #bdf2ed, #bbf2ed, #b8f2ee, #b6f2ee, #b3f2ef);
+    height: 100%;
+    
+}
+.signup_form{
+    padding: 30px !important;
+}
+.LoginFormCard{
+    height: 500px;
+    padding: 40px;
+}
+.LoginForm{
+    height: 450px;
+    
+}
+.loginsignup{
+    width: 100%;
+    min-height: 500px;
+    background-color: white;
+    padding: 40px;
+}
+@media only screen and (max-width:800px){
+    .loginsignup{
+        display: none !important;
+    }
+}
+.StudentOrEmployerTogggle{
+    background-color: white !important;
+    border-radius: 30px !important;
+    
+    
+}
+.padding_0{
+    padding: 0 !important;
+}
+.form_login{
+    width: 100%;
+    margin: 0px auto;
+}
+.form_label{
+    text-align: left;
+}
+.activeClass{
+    background-color: rgb(27, 63, 92) !important;
+    border-radius: 12px !important;
+    color: white !important;
+    padding: 8px;
+}
+.normalClass{
+    background-color: white !important;
+    padding: 8px;
+    color: black !important;
+}
+
+.input_field{
+    border-radius: 15px ;
+    overflow: hidden;
+    background-color: rgb(181, 239, 247) !important;
+}
+
+.Body{
+    bottom:0;
+    min-height: 88.7vh;
+    background-image: linear-gradient(to right, #13e1ab, #00e4ba, #00e7c9, #00e9d6, #12ebe2);
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+@media(max-width:1200px) and (min-width:1000px){
+    .LoginFormDiv{
+        transform: translate(-50%,50%);
+    }
+    .Body{
+        height: 100vh;
+    }
+}
+@media(max-width:540px){
+    .Body{
+        height: 100vh;
+    }
+    }
+@media(min-width:750px) and (max-width:800px){
+    .loginsignup {
+        width: 100%;
+        height: 500px;
+        background-color: white;
+        padding: 15px !important;
+    }
+    .col-md-4 p-0{
+        height: 300px !important;
+    }
+    .Body{
+        height:100vh;
+    }
+
+}
