@@ -1,4 +1,4 @@
-import React ,{useState} from 'react'
+import React ,{useState , useEffect} from 'react'
 import {Container, Row, Col ,Button} from  'react-bootstrap';
 import Hodforward from './Hodforward';
 import Hodregis from './Hodregis';
@@ -11,6 +11,25 @@ export default function Picwindow(props) {
     const [govtApplications , setGovtApplications] = useState(false);
     const [iscancelled,setiscancelled]=useState(false);
     const [isforwarded,setisforwarded]=useState(false);
+    const [user, setUser] = useState({});
+    useEffect(()=>{
+        const address = 'http://localhost:5000/backend/admin/departments/';
+        fetch(address , {
+            method : 'get'
+        })
+        .then(res => {
+            if(res.ok)
+            return res.json();
+        })
+        .then(data => {
+            console.log(data)
+            const id = props.match?props.match.params.id : props.id; 
+            const users =  data.departments.filter((hod)=>hod._id === id)[0];
+            setUser(users);
+            console.log(user);
+        })
+        .catch(err=>console.log(err))
+    },[])
 
     const funcRegistered = () => {
         setisregistered(true);
@@ -84,12 +103,12 @@ export default function Picwindow(props) {
                 )  
                 :isregistered === false && iscancelled===false && isforwarded===false && govtApplications ?
                 (   <>
-                    <GovtApplications />
+                    <GovtApplications hid={user.departmentId}/>
                     </>
                 )  
                 :null
             }
-            <button onClick={()=>{window.location.href="http://localhost:3000/hodmyprofile/"+props.match.params.id}} className="active tab_btn pic_btn">My Profile</button>
+            <button className="m-5" onClick={()=>{window.location.href="http://localhost:3000/hodmyprofile/"+props.match.params.id}} className="active tab_btn pic_btn">My Profile</button>
             </div>
             </>
            

@@ -31,7 +31,7 @@ export default function Picwindow(props) {
     setNewRole('');
     }
 
-    useState(()=>{
+    useEffect(()=>{
         const address = "http://localhost:5000/backend/allDetails";
         fetch(address,
             {

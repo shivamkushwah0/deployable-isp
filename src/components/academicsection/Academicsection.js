@@ -44,7 +44,7 @@ export default class Forwarded extends Component {
             <div>
                  <div className="container margintop">
                     <h1>Academic section window</h1>
-                    <Row>
+                    <Row className="margintop">
                         <Col md={3}>
                         <button onClick={this.OpenHomeWindow} className="pic_btn">Home</button>
                         </Col>
