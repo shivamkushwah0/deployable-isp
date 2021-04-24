@@ -165,7 +165,7 @@ export default function Studentinformation(props) {
         .then(res => {
             console.log(res)
             const setback = () => {
-                window.location.href="http://localhost:3000/stumyprofile/"+props.match.params.id;
+                window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+props.match.params.id;
                 alert("Your form has been submitted, Please keep logging to know the status of the form, Thankyou");
             }
 
@@ -343,7 +343,7 @@ export default function Studentinformation(props) {
             <div className="row">
                 {inputFields.map((inputField,index)=>(
                     <div className="p-5 si_div" key={index}>
-                        <button className="pic_btn" onClick={()=>{window.location.href="http://localhost:3000/stumyprofile/"+props.match.params.id;}}>Go back Home</button>
+                        <button className="pic_btn" onClick={()=>{window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+props.match.params.id;}}>Go back Home</button>
                         <h1 className="text-center si_subhead">Student Information</h1>
                         <div><b><i>Fields marked with <span className="text-red">*</span> are required</i></b></div><br /><br/>
                         <div className="row">

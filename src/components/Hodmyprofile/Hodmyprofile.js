@@ -70,7 +70,7 @@ export default function Picwindow(props) {
                  :null
             }
             <div className="margintop">
-            <button onClick={()=>{window.location.href='http://localhost:3000/hodwindow/'+props.match.params.id}} className="active tab_btn pic_btn" >HOD window</button>
+            <button onClick={()=>{window.location.href='https://iitp-isa.netlify.app/hodwindow/'+props.match.params.id}} className="active tab_btn pic_btn" >HOD window</button>
             </div>
             </div>
             

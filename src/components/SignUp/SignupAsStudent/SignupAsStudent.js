@@ -60,7 +60,7 @@ const SignupAsStudent = (props) => {
             })
         }).then(res => res.json())
         .then(data => { console.log(data) 
-            window.location.href="http://localhost:3000/login" })
+            window.location.href="https://iitp-isa.netlify.app/login" })
         .catch(error => console.log(error))
     }
 

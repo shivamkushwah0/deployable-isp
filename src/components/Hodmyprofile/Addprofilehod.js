@@ -86,7 +86,7 @@ export default function Addprofilehod(props) {
                         </div>
                     </div>
                     <div className="text-center">
-                    <button className="pic_btn" onClick={()=>{window.location.href="http://localhost:3000/picmyprofile/"+props.match.params.id}}>Back</button>
+                    <button className="pic_btn" onClick={()=>{window.location.href="https://iitp-isa.netlify.app/picmyprofile/"+props.match.params.id}}>Back</button>
                     </div>
                 </div>  
             </div>

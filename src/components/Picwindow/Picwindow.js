@@ -240,7 +240,7 @@ export default function Picwindow(props) {
                     <button className="pic_btn" onClick={()=>{setPlatModal(true);}}>Add/Remove Platforms</button>
                     </div>
                     <div  className="margintop text-center"> 
-                    <button onClick={()=> {window.location.href='http://localhost:3000/picmyprofile/'+props.match.params.id}} type='btn' className="active tab_btn pic_btn">My Profile</button>
+                    <button onClick={()=> {window.location.href='https://iitp-isa.netlify.app/picmyprofile/'+props.match.params.id}} type='btn' className="active tab_btn pic_btn">My Profile</button>
 
                     </div>
             </div>

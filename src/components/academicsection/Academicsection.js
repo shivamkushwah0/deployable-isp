@@ -55,7 +55,7 @@ export default class Forwarded extends Component {
                         <button onClick={this.OpenFinalizedWindow} className="pic_btn">Finalized Applicants</button>
                         </Col>
                         <Col>
-                        <button onClick={()=>{window.location.href="http://localhost:3000/login"}} className="pic_btn">Logout</button>
+                        <button onClick={()=>{window.location.href="https://iitp-isa.netlify.app/login"}} className="pic_btn">Logout</button>
                         </Col>
                     </Row>
                     
