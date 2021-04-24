@@ -10,7 +10,7 @@ export default function Picreset() {
     const handleSubmit = (e) => {
         if(newPassword === cnfNewPassword)
         {
-        const address = 'http://localhost:5000/backend/admin/reset-password';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/reset-password';
         fetch (address,{
             headers : {
                 "Content-Type" : "application/json"

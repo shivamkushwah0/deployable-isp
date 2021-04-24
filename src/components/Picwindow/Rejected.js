@@ -9,7 +9,7 @@ export default class Rejected extends Component {
         }
     }
     componentDidMount() {
-        const address = 'http://localhost:5000/backend/admin/cancelled';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/cancelled';
             fetch(address,{
                 method:'get'
             })

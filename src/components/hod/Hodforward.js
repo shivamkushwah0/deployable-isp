@@ -15,7 +15,7 @@ export default class Forwarded extends Component {
         this.props.history.push("/hodstuprofile")
     }
     componentDidMount() {
-        const address = "http://localhost:5000/backend/department/accepted/" + this.props.hid;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/accepted/" + this.props.hid;
         fetch(address , {
             method:'get',
         })

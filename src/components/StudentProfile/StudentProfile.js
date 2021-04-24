@@ -14,7 +14,7 @@ export default function StudentProfile(props) {
         setModalIsOpen(false);
         
         const id = props.match.params.id;
-        const address = 'http://localhost:5000/backend/applicant/profile/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
         fetch(address , {
             method : "get"
         })
@@ -32,7 +32,7 @@ export default function StudentProfile(props) {
 
     },[])
     const handleForward =() => {
-        const address = 'http://localhost:5000/backend/admin/forwardApplication/'+props.match.params.id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/forwardApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
             headers : {
@@ -52,7 +52,7 @@ export default function StudentProfile(props) {
         
     }
     const handleReturn =() => {
-        const address = 'http://localhost:5000/backend/admin/returnApplication/'+props.match.params.id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/returnApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
             headers : {
@@ -70,7 +70,7 @@ export default function StudentProfile(props) {
         .catch (err => console.log(err))
     }
     const handleReject = () => {
-        const address = 'http://localhost:5000/backend/admin/cancelApplication/'+props.match.params.id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/cancelApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
             headers : {

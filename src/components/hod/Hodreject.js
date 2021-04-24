@@ -15,7 +15,7 @@ export default class Rejected extends Component {
         this.props.history.push("/hodstuprofile")
     }
     componentDidMount() {
-        const address = "http://localhost:5000/backend/department/rejected/" + this.props.hid;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/rejected/" + this.props.hid;
         fetch(address , {
             method:'get',
         })

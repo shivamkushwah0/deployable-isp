@@ -43,7 +43,7 @@ const App =() => {
             <Route exact path="/edithodprofile/:id" component={Edithodprofile}/>
             <Route exact path="/picmyprofile/:id" component={Picmyprofile}/>
             <Route exact path="/piceditprofile/:id" component={Piceditprofile}/>
-            <Route exact path="/addprofilehod" component={Addprofilehod}/>
+            <Route exact path="/addprofilehod/:id" component={Addprofilehod}/>
             <Route exact path="/seehodprofile/:id" component={Hodhome}/>
           </Switch>
         </div>

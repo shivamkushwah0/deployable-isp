@@ -32,7 +32,7 @@ export default function Picwindow(props) {
     }
 
     useEffect(()=>{
-        const address = "http://localhost:5000/backend/allDetails";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
         fetch(address,
             {
                 method:"get"
@@ -76,7 +76,7 @@ export default function Picwindow(props) {
        console.log(role);
        console.log(department);
        console.log(file);
-       const address = "http://localhost:5000/backend/admin/govtApplications/addApplications";
+       const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/govtApplications/addApplications";
        if(file == null || file.type !=="application/x-zip-compressed")
        {
            alert("Please insert a zip file to proceed");
@@ -120,7 +120,7 @@ export default function Picwindow(props) {
            alert("Please fill the required field");
            return ;
        }
-       const address = "http://localhost:5000/backend/admin/platForms";
+       const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/platForms";
 
        adminVar.platForms.push(newRole);
 
@@ -154,7 +154,7 @@ export default function Picwindow(props) {
         alert("Please fill the required field");
         return ;
     }
-    const address = "http://localhost:5000/backend/admin/platForms";
+    const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/platForms";
 
     const platforms = adminVar.platForms.filter((platform)=>platform!==newRole)
     console.log(platforms);
@@ -239,7 +239,10 @@ export default function Picwindow(props) {
                     <button className="pic_btn" onClick={()=>{setModalOpen(true);}}>Government Application</button>
                     <button className="pic_btn" onClick={()=>{setPlatModal(true);}}>Add/Remove Platforms</button>
                     </div>
-            <button onClick={()=> {window.location.href='http://localhost:3000/picmyprofile/'+props.match.params.id}} type='btn' className="active tab_btn pic_btn">My Profile</button>
+                    <div  className="margintop text-center"> 
+                    <button onClick={()=> {window.location.href='http://localhost:3000/picmyprofile/'+props.match.params.id}} type='btn' className="active tab_btn pic_btn">My Profile</button>
+
+                    </div>
             </div>
             <Modal isOpen={isModalOpen} className="modal_stu container">                
                     <div className ="row">
@@ -321,7 +324,7 @@ export default function Picwindow(props) {
         </TabPane >
         <TabPane style={{width:"100%"}} tabId="2">
         <div className="row"><br />
-        <div className="col-sm-3">New Platform<span style={{color:"red" , fontWeight:"bolder"}}>*</span></div>
+        <div className="col-sm-3">Platform to be Removed<span style={{color:"red" , fontWeight:"bolder"}}>*</span></div>
                     <div className="col-sm-9">
                     <TextField variant="filled" className="textfield" select name="platform" value={newRole} onChange = {(e)=>{setNewRole(e.target.value); console.log(newRole)}}>
                     {

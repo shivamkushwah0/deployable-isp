@@ -28,7 +28,7 @@ const LoginAsHOD = () => {
     function OnSubmit(){ 
         console.log(emailID,password)
 
-        fetch('http://localhost:5000/backend/department/login', {
+        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/department/login', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

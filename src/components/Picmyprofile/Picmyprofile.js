@@ -13,7 +13,7 @@ export default function Picmyprofile(props) {
     const [managehod,setmanagehod]=useState(false);
 
     useEffect(()=>{
-        const address = 'http://localhost:5000/backend/admin/'
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/'
     },[])
 
     const funchome = () => {
@@ -90,13 +90,16 @@ export default function Picmyprofile(props) {
                 )
                 :home === false && log===false && pass===false && managehod ?
                 (   <>
-                    <Picmanagehod/>
+                    <Picmanagehod id = {props.match.params.id}/>
                     
                     </>
                 )
                  :null
             }
+            <div className="margintop text-center">
             <button onClick={()=>{window.location.href="http://localhost:3000/picwindow/"+props.match.params.id}} type='btn' className="active tab_btn pic_btn">Admin Window</button>
+
+            </div>
             </div>
             </>
            

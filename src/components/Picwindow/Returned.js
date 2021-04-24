@@ -9,7 +9,7 @@ export default class Returned extends Component {
         }
     }
     componentDidMount() {
-        const address = 'http://localhost:5000/backend/admin/returned';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/returned';
             fetch(address,{
                 method:'get'
             })

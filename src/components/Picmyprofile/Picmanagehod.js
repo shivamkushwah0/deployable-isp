@@ -11,7 +11,7 @@ export default class Picmanagehod extends Component {
         this.clicking=this.clicking.bind(this)
     }
     componentDidMount = () => {
-        const address = "http://localhost:5000/backend/admin/departments"
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments"
         fetch(address , {
             method : 'get'
         })
@@ -62,7 +62,7 @@ export default class Picmanagehod extends Component {
                <table className="table table-striped">
                <thead>
                <tr>
-                       <th>Applicant Name</th>
+                       <th>Department Head Name</th>
                        <th>Department</th>
                        <th>Email</th>
                       
@@ -72,7 +72,7 @@ export default class Picmanagehod extends Component {
                    <RenderHODs />
                    </tbody>
                </table>
-               <button onClick={()=>{window.location.href='http://localhost:3000/addprofilehod'}}  type='btn' className="active tab_btn pic_btn">Add HOD </button>
+               <button onClick={()=>{window.location.href='http://localhost:3000/addprofilehod/'+this.props.id}}  type='btn' className="active tab_btn pic_btn">Add HOD </button>
                </div>
                
     

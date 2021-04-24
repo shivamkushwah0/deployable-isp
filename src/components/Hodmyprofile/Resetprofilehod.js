@@ -8,7 +8,7 @@ export default function ChangePassword(props) {
     const [CnfPass , setCnfPass] = useState('');
     const [user , setUser] = useState({}); 
     useEffect(()=>{
-        const address = 'http://localhost:5000/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get'
         })
@@ -32,7 +32,7 @@ export default function ChangePassword(props) {
             console.log("New Password and confirm password are not matching");    
             return ;
         }
-        const address = "http://localhost:5000/backend/department/reset-password/"+user._id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/reset-password/"+user._id;
         fetch(address,{
             headers: {
                 'Accept': 'application/json',

@@ -6,7 +6,7 @@ export default function GovtApplicants (props) {
 
     
     useEffect(()=>{
-        const  address = 'http://localhost:5000/backend/department/govtApplications/forwardedApplicants/'+props.hid;
+        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applicants/'+props.hid;
         console.log(address);
         fetch(address , {
             method : 'get'
@@ -30,7 +30,7 @@ export default function GovtApplicants (props) {
             setNotesheet(null);
             return ;
         }
-        const address = "http://localhost:5000/backend/department/govtApplications/uploadNotesheet/"+aid;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/uploadNotesheet/"+aid;
         const file = new FormData();
         file.append("noteSheet",notesheet);
         fetch(address , {
@@ -46,7 +46,7 @@ export default function GovtApplicants (props) {
             console.log(data);
             if(data.message)
             {
-                const acceptAddress = "http://localhost:5000/backend/department/govtApplications/acceptApplicant/"+aid;
+                const acceptAddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/acceptApplicant/"+aid;
                 fetch(acceptAddress , {
                     method : "PATCH"
                 })

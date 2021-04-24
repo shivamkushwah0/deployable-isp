@@ -9,7 +9,7 @@ export default function Piceditprofile(props) {
     const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
     const handleSubmit = (e) => {
-        const address = "http://localhost:5000/backend/admin/edit-profile";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/edit-profile";
         fetch(address , {
             headers : {
                 "Content-Type" : "application/json"

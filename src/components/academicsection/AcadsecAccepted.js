@@ -7,7 +7,7 @@ export default function AcadsecAccepted(props){
     const [OfferLetter, setOfferLetter] = useState(null);
     const [govtApplicants , setGovtApplicants] = useState([]);
     useEffect(()=>{
-        const addresss = "http://localhost:5000/backend/acadsec/accepted"
+        const addresss = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/accepted"
         fetch(addresss , {
             method : 'get'
         })
@@ -24,7 +24,7 @@ export default function AcadsecAccepted(props){
             console.log(err);
         })
 
-        const gApplicants = "http://localhost:5000/backend/acadSec/govtApplications/govtApplicants";
+        const gApplicants = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/govtApplications/applicants";
         fetch(gApplicants , {
             method : "get"
         })
@@ -53,7 +53,7 @@ export default function AcadsecAccepted(props){
             file,
             "SignedNoteSheet+"+id+".pdf"
         )
-        const address = 'http://localhost:5000/backend/acadsec/signedNoteSheetsUpload/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/signedNoteSheetsUpload/'+id;
         fetch(address , {
             method:"PATCH",
             body : formdata
@@ -74,7 +74,7 @@ export default function AcadsecAccepted(props){
                     file,
                     "OfferLetter+"+id+".pdf"
                 )
-                const address = "http://localhost:5000/backend/acadsec/offerLetterUpload/"+id;
+                const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/offerLetterUpload/"+id;
                 fetch(address , {
                     method:"PATCH",
                     body : offerletter
@@ -88,7 +88,7 @@ export default function AcadsecAccepted(props){
                     console.log(data)
                     if(data.message === "OfferLetter Uploaded")
                     {
-                        const address = "http://localhost:5000/backend/acadsec/confirmAcceptance/"+id
+                        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/confirmAcceptance/"+id
                         fetch(address, {
                             method : 'PATCH'
                         }) 
@@ -134,7 +134,7 @@ export default function AcadsecAccepted(props){
             file,
             "SignedNoteSheet+"+id+".pdf"
         )
-        const address = 'http://localhost:5000/backend/acadsec/govtApplications/signedNoteSheetsUpload/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/signedNoteSheetsUpload/'+id;
         fetch(address , {
             method:"PATCH",
             body : formdata
@@ -155,7 +155,7 @@ export default function AcadsecAccepted(props){
                     file,
                     "OfferLetter+"+id+".pdf"
                 )
-                const address = "http://localhost:5000/backend/acadsec/govtApplications/offerLetterUpload/"+id;
+                const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/offerLetterUpload/"+id;
                 fetch(address , {
                     method:"PATCH",
                     body : offerletter
@@ -169,7 +169,7 @@ export default function AcadsecAccepted(props){
                     console.log(data)
                     if(data.message === "OfferLetter Uploaded")
                     {
-                        const address = "http://localhost:5000/backend/acadsec/govtApplications/confirmAcceptance/"+id
+                        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/confirmAcceptance/"+id
                         fetch(address, {
                             method : 'PATCH'
                         }) 

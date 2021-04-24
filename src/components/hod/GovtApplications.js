@@ -12,7 +12,7 @@ export default function GovtApplications (props) {
     const [downApp , ShowDownApp] = useState(false);
 
     useEffect(()=>{
-        const address = "http://localhost:5000/backend/department/govtApplications/applications/"+props.hid;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applications/"+props.hid;
         fetch(address , {
             method : "get"
         })
@@ -46,7 +46,7 @@ export default function GovtApplications (props) {
         setShowAdd(true);
     }
     const handleRemove = (id) => {
-        const address = "http://localhost:5000/backend/department/govtApplications/removeApplication/"+id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/removeApplication/"+id;
         fetch(address , {
             method : "PATCH"
         })
@@ -69,9 +69,9 @@ export default function GovtApplications (props) {
             if(application.department === props.hid)
             return (
                 <tr>
-                        <td  className="text-center">{application.platform}</td>
-                        <td  className="text-center"> <a href={application.application} target="blank"><i className="fa fa-download" /></a></td>
-                        <td  className="text-center"><button onClick={()=>{handleRemove(application._id)}}>Remove</button></td>
+                        <td>{application.platform}</td>
+                        <td> <a href={application.application} target="blank"><i className="fa fa-download" /></a></td>
+                        <td><button onClick={()=>{handleRemove(application._id)}}>Remove</button></td>
                         
                 </tr>
             )
@@ -109,9 +109,9 @@ export default function GovtApplications (props) {
             <table className="table table-striped">
                     <thead>
                         <tr>
-                            <th width="40%" className="text-center">Platform</th>
-                            <th  className="text-center">Download Applications</th>
-                            <th  className="text-center">Action</th>
+                            <th width="40%">Platform</th>
+                            <th>Download Applications</th>
+                            <th >Action</th>
                            
                         </tr>
                     </thead>

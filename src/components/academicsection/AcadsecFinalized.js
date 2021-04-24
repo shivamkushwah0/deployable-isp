@@ -5,7 +5,7 @@ export default function AcadsecAccepted(props){
     const [accepted , setAccepted] =  useState([]);
     const [govtApplicants , setGovtApplicants] = useState([]);
     useEffect(()=>{
-        const addresss = "http://localhost:5000/backend/acadsec/finalized"
+        const addresss = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/finalized"
         fetch(addresss , {
             method : 'get'
         })
@@ -22,7 +22,7 @@ export default function AcadsecAccepted(props){
             console.log(err)
         })
 
-        const gApplicants = "http://localhost:5000/backend/acadSec/govtApplications/finalizedGovtApplicants";
+        const gApplicants = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/govtApplications/finalizedApplicants";
         fetch(gApplicants , {
             method : "get"
         })

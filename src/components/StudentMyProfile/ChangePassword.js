@@ -12,7 +12,7 @@ export default function ChangePassword(props) {
             console.log("New Password and confirm password are not matching");    
             return ;
         }
-        const address = "http://localhost:5000/backend/applicant/reset-password/"+props.data._id
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/reset-password/"+props.data._id
         fetch(address,{
             headers: {
                 'Accept': 'application/json',

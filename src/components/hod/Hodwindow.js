@@ -13,7 +13,7 @@ export default function Picwindow(props) {
     const [isforwarded,setisforwarded]=useState(false);
     const [user, setUser] = useState({});
     useEffect(()=>{
-        const address = 'http://localhost:5000/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get'
         })
@@ -108,7 +108,9 @@ export default function Picwindow(props) {
                 )  
                 :null
             }
-            <button className="m-5" onClick={()=>{window.location.href="http://localhost:3000/hodmyprofile/"+props.match.params.id}} className="active tab_btn pic_btn">My Profile</button>
+            <div className="margintop">
+            <button onClick={()=>{window.location.href="http://localhost:3000/hodmyprofile/"+props.match.params.id}} className="active tab_btn pic_btn">My Profile</button>
+            </div>
             </div>
             </>
            

@@ -21,7 +21,7 @@ export default class Registered extends Component {
     }
     
     componentDidMount() {
-        const address = 'http://localhost:5000/backend/admin/registered';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/registered';
             fetch(address,{
                 method:'get'
             })

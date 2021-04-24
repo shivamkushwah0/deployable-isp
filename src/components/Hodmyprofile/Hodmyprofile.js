@@ -30,7 +30,7 @@ export default function Picwindow(props) {
     <div className="container text-center margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
-                    <Col md={3}>
+                    <Col md={4}>
                          {
                               home ? 
                               <button onClick={funchome} type='btn' className="active tab_btn pic_btn">Home</button> : 
@@ -69,7 +69,9 @@ export default function Picwindow(props) {
                 )
                  :null
             }
+            <div className="margintop">
             <button onClick={()=>{window.location.href='http://localhost:3000/hodwindow/'+props.match.params.id}} className="active tab_btn pic_btn" >HOD window</button>
+            </div>
             </div>
             
             </>

@@ -12,7 +12,7 @@ export default function Edithodprofile(props) {
     const [user, setUser] = useState({});
 
     const handleSubmit =() => {
-        const address = "http://localhost:5000/backend/admin/updateDeptHead/"+props.match.params.id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/updateDeptHead/"+props.match.params.id;
         fetch(address , {
             method:'PATCH',
             headers : {
@@ -44,7 +44,7 @@ export default function Edithodprofile(props) {
     }
 
     useEffect(()=>{
-        const address = 'http://localhost:5000/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get'
         })

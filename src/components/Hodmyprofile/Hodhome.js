@@ -6,7 +6,7 @@ import {Link} from 'react-router-dom'
 export default function Hodhome(props) {
     const [user, setUser] = useState({});
     useEffect(()=>{
-        const address = 'http://localhost:5000/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get'
         })

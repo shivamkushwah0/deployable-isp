@@ -17,7 +17,7 @@ export default class Registered extends Component {
         this.props.history.push("/hodstuprofile")
     }
     componentDidMount() {
-        const address = "http://localhost:5000/backend/department/forwarded/" + this.props.hid;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/forwarded/" + this.props.hid;
         fetch(address , {
             method:'get',
         })

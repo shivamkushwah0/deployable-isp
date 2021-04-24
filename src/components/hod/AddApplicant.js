@@ -20,7 +20,7 @@ export default function AddApplicant (props) {
           return (validEmailRegex.test(email))    
       }
     useEffect(()=>{
-        const address = "http://localhost:5000/backend/allDetails";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
         fetch(address,
             {
                 method:"get"
@@ -54,7 +54,7 @@ export default function AddApplicant (props) {
         formdata.append("name",name);
         formdata.append("email",email);
         formdata.append("platform",platform);
-        const address = "http://localhost:5000/backend/department/govtApplications/addApplicant";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/addApplicant";
         fetch(address , {
             method : "post",
             body : formdata

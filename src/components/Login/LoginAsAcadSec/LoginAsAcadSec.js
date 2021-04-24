@@ -28,7 +28,7 @@ const LoginAsAcadSec = () => {
     function OnSubmit(){ 
         console.log(emailID,password)
 
-        fetch('http://localhost:5000/backend/acadsec/login', {
+        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/login', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",

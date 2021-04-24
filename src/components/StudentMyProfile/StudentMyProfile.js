@@ -19,7 +19,7 @@ export default function StudentMyProfile(props) {
 setaid(props.match.params.id);
 console.log(aid);
 const id = props.match.params.id;
-const address = "http://localhost:5000/backend/admin/applicant/"+id;
+const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/applicant/"+id;
 console.log(address);
 fetch(address , {
     method : 'get'

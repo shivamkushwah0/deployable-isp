@@ -10,7 +10,7 @@ export default class Forwarded extends Component {
         }
     }
     componentDidMount() {
-        const address = 'http://localhost:5000/backend/admin/forwarded';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/forwarded';
             fetch(address,{
                 method:'get'
             })

@@ -157,7 +157,7 @@ export default function Studentinformation(props) {
     const [responseMess , setResponseMess] = useState('');
     // function for applying for admission 
     const Apply = () => {
-        const applyaddress = 'http://localhost:5000/backend/applicant/apply/'+props.match.params.id;
+        const applyaddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/apply/'+props.match.params.id;
         fetch (applyaddress , {
             method : 'PATCH'
         }).
@@ -213,7 +213,7 @@ export default function Studentinformation(props) {
         console.log(professionalExp);
         console.log(refreeFields);
         console.log(files);
-        const address = "http://localhost:5000/backend/applicant/saveDetails/"+props.match.params.id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/saveDetails/"+props.match.params.id;
         fetch(address,{
             method:"post",
             headers:{
@@ -282,7 +282,7 @@ export default function Studentinformation(props) {
             console.log(res)
             setResponseMess(res.message);
             console.log(responseMess)
-            const uploadaddress = "http://localhost:5000/backend/applicant/documentsUpload/"+props.match.params.id;
+            const uploadaddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/documentsUpload/"+props.match.params.id;
         const formdata = new FormData();
         formdata.append(
             "documentFiles",

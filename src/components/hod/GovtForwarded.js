@@ -3,7 +3,7 @@ import React , {useState , useEffect} from 'react';
 export default function GovtForwarded (props) {
     const [applicants, setApplicants] = useState([]);     
     useEffect(()=>{
-        const  address = 'http://localhost:5000/backend/department/govtApplications/applicants/'+props.hid;
+        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/forwardedApplicants/'+props.hid;
         console.log(address);
         fetch(address , {
             method : 'get'
@@ -33,6 +33,7 @@ export default function GovtForwarded (props) {
                         <td><a href={applicant.application} target="blank"><i className="fa fa-download"></i></a></td>
                         {/* <td><input type="file" placeholder="Upload notesheet pdf format" onChange={(e)=>{setNotesheet(e.target.files[0]); console.log(notesheet)}}></input></td> */}
                         {/* <td><button onClick={() => {handleForward(applicant._id)}}>Forward</button></td> */}
+                        <td>{applicant.applicationStatus}</td>
                 </tr>
                 
             )
@@ -51,6 +52,7 @@ export default function GovtForwarded (props) {
                         <th>Download Files</th>
                         {/* <th>Upload Notesheet</th> */}
                         {/* <th>Action</th> */}
+                        <th>Status</th>
                            
                         </tr>
                     </thead>
