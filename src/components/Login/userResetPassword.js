@@ -78,6 +78,8 @@ export default class userResetPassword extends React.Component {
                     <option value=''>Select</option>
                     <option value="Admin">Admin</option>
                     <option value="Applicant">Student</option>
+                    <option value="DeptHead">Hod</option>
+                    <option value="AcadSec">Academic Section</option>
                   </select>
               </div>
               <div className="form-group">
