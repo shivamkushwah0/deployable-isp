@@ -19,6 +19,10 @@ import Picmyprofile from './components/Picmyprofile/Picmyprofile';
 import Piceditprofile from './components/Picmyprofile/Piceditprofile';
 import Addprofilehod from './components/Hodmyprofile/Addprofilehod';
 import Hodhome from './components/Hodmyprofile/Hodhome';
+import userResetPassword from './components/Login/userResetPassword'
+import resetPassword from './components/Login/resetPassword'
+import ConfirmEmail from './components/SignUp/SignupAsStudent/ConfirmEmail'
+
 import 'bootstrap/dist/css/bootstrap.min.css'
 const App =() => {
   return (
@@ -45,6 +49,9 @@ const App =() => {
             <Route exact path="/piceditprofile/:id" component={Piceditprofile}/>
             <Route exact path="/addprofilehod/:id" component={Addprofilehod}/>
             <Route exact path="/seehodprofile/:id" component={Hodhome}/>
+            <Route path="/user-reset-password" component = {userResetPassword} />
+            <Route path="/resetPassword/:token" component = {resetPassword} />
+            <Route path="/emailConfirm/:token" component = {ConfirmEmail} />
           </Switch>
         </div>
       </BrowserRouter>

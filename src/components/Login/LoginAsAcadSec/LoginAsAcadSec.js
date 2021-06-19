@@ -108,7 +108,7 @@ const LoginAsAcadSec = () => {
             <i className="fa fa-linkedin"></i>
             <i className="fa fa-github"></i>
             </div>
-                <Link style={{fontSize:'12px'}}>Forgot Password?</Link>
+                <Link style={{fontSize:'12px'}} to="/user-reset-password">Forgot Password?</Link>
             </div>
         )
     
