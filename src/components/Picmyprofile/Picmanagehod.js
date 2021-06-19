@@ -72,7 +72,7 @@ export default class Picmanagehod extends Component {
                    <RenderHODs />
                    </tbody>
                </table>
-               <button onClick={()=>{window.location.href='https://iitp-isa.netlify.app/addprofilehod/'+this.props.id}}  type='btn' className="active tab_btn pic_btn">Add HOD </button>
+               <button onClick={()=>{window.location.href='http://localhost:3000/addprofilehod/'+this.props.id}}  type='btn' className="active tab_btn pic_btn">Add HOD </button>
                </div>
                
     

@@ -97,7 +97,7 @@ export default function Picmyprofile(props) {
                  :null
             }
             <div className="margintop text-center">
-            <button onClick={()=>{window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.id}} type='btn' className="active tab_btn pic_btn">Admin Window</button>
+            <button onClick={()=>{window.location.href="http://localhost:3000/picwindow/"+props.match.params.id}} type='btn' className="active tab_btn pic_btn">Admin Window</button>
 
             </div>
             </div>

@@ -9,6 +9,7 @@ const genderOptions = [
   { key: 'o', text: 'Other', value: 'other' },
 ]
 
+
 const SignupAsStudent = (props) => {
     const history = useHistory();
 
@@ -17,6 +18,7 @@ const SignupAsStudent = (props) => {
     const [emailID,setEmailID] = React.useState('');
     const [password,setPassword] = React.useState('');
     const [phone, setPhone] = React.useState('');
+    const [check , setCheck] = React.useState(false);
     const [stumessage, setStuMessage] = React.useState('');
     const [signupStuSuccess, setSignupStuSuccess] = React.useState(false)
     function firstNameChange(e){
@@ -46,6 +48,16 @@ const SignupAsStudent = (props) => {
         console.log(emailID)
         console.log(password)
         console.log(phone)
+        if(firstName.length==0 || lastName.length===0 || emailID.length===0 || password.length===0 || password.length<8 || phone.length===0 || phone.length!=10)
+        {
+            alert("Please enter all asterisk marked fields \n Please enter valid information \n Note: password contains 8 or more characters\n Phone number should contain 10 numbers");
+            return ;
+        }
+        if(check == false)
+        {
+            alert("Please tick the checkbox");
+            return ;
+        }
         fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/registration', {
             method: "post",
             headers: {
@@ -60,11 +72,17 @@ const SignupAsStudent = (props) => {
             })
         }).then(res => res.json())
         .then(data => { console.log(data) 
-            window.location.href="https://iitp-isa.netlify.app/login" })
-        .catch(error => console.log(error))
+            if(data.message)
+            {
+                alert(data.message);
+                window.location.href="http://localhost:3000/login" 
+                return ;
+            }
+            alert("A confirmation mail has been sent to your registered email\n Please activate your account before proceeding to next steps");
+            window.location.href="http://localhost:3000/login" })
+        .catch(error => {console.log(error); alert(error)})
     }
 
- 
     return(
         <div>
             <div className="text-center Body">
@@ -174,7 +192,7 @@ const SignupAsStudent = (props) => {
             </Input>
             </Form.Field>
         </Form.Group>
-        <Form.Checkbox label='I agree to the Terms and Conditions' />
+        <Form.Checkbox onClick={()=>{setCheck(!check)}} required label='I agree to the Terms and Conditions' />
         <div>
         <Form.Field as={Button}
             

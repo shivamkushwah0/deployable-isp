@@ -29,6 +29,8 @@ export default function ChangePassword(props) {
         }).then(data => {
             console.log(data);
             console.log("Password is reset")
+            alert("Password was resetted successfully");
+            props.toHome();
         }).catch(err=>{
             console.log(err)
         })

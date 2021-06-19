@@ -30,7 +30,7 @@ export default function Piceditprofile(props) {
             if(data.message==="Profile Updated")
             {
                 alert("profile Updated");
-            window.location.href="https://iitp-isa.netlify.app/picmyprofile/"+props.match.params.id;
+            window.location.href="http://localhost:3000/picmyprofile/"+props.match.params.id;
             }
             else alert("Something Went Wrong");
         })

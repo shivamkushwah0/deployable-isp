@@ -46,7 +46,7 @@ export default function StudentProfile(props) {
         .then(data => {
              console.log(data)
              console.log("the application is forwarded");
-             window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+             window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
         .catch(err => console.log(err))
         
@@ -65,7 +65,7 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+            window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
@@ -83,14 +83,14 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+            window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
     return (
         <div>
             <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
-                <button className="pic_btn" onClick={()=>{window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid}}>Home</button>
+                <button className="pic_btn" onClick={()=>{window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid}}>Home</button>
             </div>
            {user.applicationStatus != undefined && user.applicationStatus =="Submitted" ? ( <div className="row" style={{float:"right",marginTop:"20px",marginRight:"10px"}}>
                 <button onClick={handleForward} className="pic_btn">Forward</button>

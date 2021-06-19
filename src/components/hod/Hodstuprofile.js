@@ -116,7 +116,7 @@ export default function StudentProfile(props) {
     return (
         <div>
              <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
-                <button className="pic_btn" onClick={()=>{window.location.href="https://iitp-isa.netlify.app/hodwindow/"+props.match.params.hid}}>Home</button>
+                <button className="pic_btn" onClick={()=>{window.location.href="http://localhost:3000/hodwindow/"+props.match.params.hid}}>Home</button>
             </div>
             { user.applicationStatus === "Forwarded" ? (
             <div className="row" style={{float:"right",marginTop:"20px",marginRight:"10px"}}>
