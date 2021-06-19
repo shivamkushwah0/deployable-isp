@@ -102,12 +102,7 @@ const LoginAsHOD = () => {
                     </Form.Field>
                     {/* <Link style={{fontSize:'12px'}} className="newuser" to='/signup'>New User ? SignUp</Link> */}
                 </div>
-                <div className="row form_icons">
-            <i class="fa fa-google"></i>
-            <i className="fa fa-facebook"></i>
-            <i className="fa fa-linkedin"></i>
-            <i className="fa fa-github"></i>
-            </div>
+                
                 <Link style={{fontSize:'12px'}} to="/user-reset-password">Forgot Password?</Link>
             </div>
         )

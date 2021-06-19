@@ -6,7 +6,6 @@ export default function Home(props) {
     console.log(props);
     return (
         <div>
-            <div className="container">
             <div className="home">
                 <div className="profile">
                     <div className="profile_inner">
@@ -14,8 +13,8 @@ export default function Home(props) {
                             <img src={logo} alt=""/>
                         </div>
                         <div className="name">
-                            <h1>Welcome ,{!props.data?null:props.data.name}</h1>
-                            <h3>Applicant Id: <span>{!props.data?null:props.data._id}</span></h3>
+                            <h1>Welcome , {!props.data?null:props.data.name} </h1>
+                            
                         </div>
                     </div>
                 </div>
@@ -24,14 +23,16 @@ export default function Home(props) {
                         <h4>Current Status</h4>
                         <div className="status_details">
                             <div className="det">
-                                <h4>{!props.data?null:props.data._id}</h4>
-                                <h4><Button onClick = {!props.data?null:props.toggleStatus} >Applicant Status</Button> </h4>
+                                <h4 style={{padding:"20px"}}>{!props.data?null:props.data.applicationStatus}</h4>
+                                { props.data && props.data.applicationStatus==="Returned"  ? <h4 style={{padding:"20px"}}>{props.data.statusComment}</h4> : null }
+                            </div>
+                            <div>
+                                
+                                {!props.data?null:props.data.applicationStatus==='Not Submitted' || props.data.applicationStatus==='Returned'  ? <Button onClick ={()=>{window.location.href = "https://iitp-isa.netlify.app/stuinfo/"+props.data._id}} >Submit Application</Button> : null }
                             </div>
                         </div>
                     </div>
-                    
-            </div>
-            </div>
+                </div>
             </div>
         </div>
     )
