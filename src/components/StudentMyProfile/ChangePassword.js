@@ -45,7 +45,7 @@ export default function ChangePassword(props) {
                         </div>
                         <div className="name">
                             <h1>Welcome , {props.data.name}</h1>
-                            <h3>Applicant Id: <span>{props.data._id}</span></h3>
+                            
                         </div>
                     </div>
                 </div>

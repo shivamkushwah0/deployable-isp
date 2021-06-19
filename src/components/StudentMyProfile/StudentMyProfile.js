@@ -63,7 +63,7 @@ fetch(address , {
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
-                    <Col md={3}>
+                    <Col md={4}>
                          {
                               home ? 
                               <button onClick={funchome} type='btn' className="active tab_btn pic_btn">Home</button> : 
@@ -71,13 +71,10 @@ fetch(address , {
                          }
                       
                     </Col>
-                    <Col md={3}>
-                    <button onClick={funcstatus} type='btn' className="pic_btn">Status</button>
-                    </Col>
-                    <Col md={3}>
+                    <Col md={4}>
                     <button onClick={funcpass} type='btn' className="pic_btn">Reset Password</button>
                     </Col>
-                    <Col md={3}>
+                    <Col md={4}>
                    <Link to="/login"> <button onClick={funclog} type='btn' className="pic_btn">Logout</button></Link>
                     </Col>
                   </Row>
@@ -87,12 +84,6 @@ fetch(address , {
                 (
                     <>
                     <Home data={data.applicantDetails} toggleStatus={funcstatus}/>
-                    
-                    </>
-                )
-                :home === false && status && pass === false && log === false ?
-                (<>
-                    <ApplicationStatus data={data.applicantDetails}/>
                     
                     </>
                 )
