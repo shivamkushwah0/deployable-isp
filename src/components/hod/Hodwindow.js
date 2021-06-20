@@ -4,7 +4,7 @@ import Hodforward from './Hodforward';
 import Hodregis from './Hodregis';
 import GovtApplications from './GovtApplications';
 import Hodreject from './Hodreject';
-
+import {Link} from 'react-router-dom'
 
 export default function Picwindow(props) {
     const [isregistered,setisregistered]=useState(true);
@@ -109,7 +109,8 @@ export default function Picwindow(props) {
                 :null
             }
             <div className="margintop">
-            <button onClick={()=>{window.location.href="http://localhost:3000/hodmyprofile/"+props.match.params.id}} className="active tab_btn pic_btn">My Profile</button>
+                <Link to={`/hodmyprofile/${props.match.params.id}`}><button className="active tab_btn pic_btn">My Profile</button></Link>
+            
             </div>
             </div>
             </>

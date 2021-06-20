@@ -1,10 +1,11 @@
+import Modal  from 'react-modal';
 import React,{useEffect , useState} from 'react';
 
 export default function GovtApplicants (props) {
     const [applicants, setApplicants] = useState([]); 
-    const [notesheet , setNotesheet] = useState(null);
-
-    
+    const [notesheet , setNotesheet] = useState([]);
+    const [isModalOpen , setModal] = useState(false);
+    const [note , setNote] = useState(0);
     useEffect(()=>{
         const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applicants/'+props.hid;
         console.log(address);
@@ -19,12 +20,16 @@ export default function GovtApplicants (props) {
         .then(data => {
             console.log(data);
             setApplicants(data.Applicants);
+            const a = data.Applicants.length;
+            var notes = [];
+            notes.length = a;
+            setNotesheet(notes);
         })
     },[])
 
-    const handleForward = (aid) => {
-        console.log(notesheet);
-        if(notesheet === null || notesheet.type !== "application/pdf")
+    const handleForward = (aid,index) => {
+        console.log(notesheet[index]);
+        if(notesheet[index] === undefined || notesheet[index].type !== "application/pdf")
         {
             alert("Please upload the notesheet and in pdf format");
             setNotesheet(null);
@@ -32,7 +37,7 @@ export default function GovtApplicants (props) {
         }
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/uploadNotesheet/"+aid;
         const file = new FormData();
-        file.append("noteSheet",notesheet);
+        file.append("noteSheet",notesheet[index]);
         fetch(address , {
             method : "PATCH",
             body:file
@@ -53,11 +58,15 @@ export default function GovtApplicants (props) {
                 .then(res=>{
                     if(res.ok)
                     return res.json();
-                    else throw new Error("Something went wrong, please try again later");
+                    else {
+                        alert("Something went wrong, please try again later");
+                        throw new Error("Something went wrong, please try again later");
+                    }
                 })
                 .then(data=>{
-                    alert(data);
-                    window.location.reload();
+                    console.log(data);
+                    alert(data.message);
+                    props.toHome();
                 })
             }
             else throw new Error("Something went wrong, try again later");
@@ -68,21 +77,24 @@ export default function GovtApplicants (props) {
         })
 
     }
-
+    const handleNotesheetchange = (e,index) => {
+        const a = [...notesheet];
+        a[index] = e.target.files[0];
+        setNotesheet(a);
+        console.log(a);
+    }
     const RenderApplicants = () => {
         console.log("helloooo")
-        const Applicants = applicants.map((applicant)=>{
-            // const link = '/hodstuprofile/'+this.props.hid+"/"+applicant._id;
-            // console.log(link);
+        const Applicants = applicants.map((applicant,index)=>{
             return(
-                
                 <tr>
                         <td>{applicant.name}</td>
                         <td>{applicant.platform}</td>
                         <td>{applicant.email}</td>
                         <td><a href={applicant.application} target="blank"><i className="fa fa-download"></i></a></td>
-                        <td><input key={applicant._id} type="file" placeholder="Upload notesheet pdf format" onChange={(e)=>{setNotesheet(e.target.files[0]); console.log(notesheet)}} /></td>
-                        <td><button onClick={() => {handleForward(applicant._id)}}>Forward</button></td>
+                        <td><button onClick={()=>{setModal(true); setNote(index)}}><i className="fa fa-upload"></i></button></td>
+                        <td>{notesheet[index]!=undefined ? notesheet[index].name : "No files added"}</td>
+                        <td><button onClick={() => {handleForward(applicant._id,index)}}>Forward</button></td>
                 </tr>
                 
             )
@@ -90,10 +102,9 @@ export default function GovtApplicants (props) {
         return Applicants;
     }
 
-    return (
-        
-        <div className="margintop">
-            <table className="table table-striped">
+    return (<>
+    <div className="margintop">
+            <table className="table table-striped text-center">
                     <thead>
                         <tr>
                             <th>Applicant Name</th>
@@ -101,6 +112,7 @@ export default function GovtApplicants (props) {
                             <th>Email</th>
                             <th>Download Files</th>
                             <th>Upload Notesheet</th>
+                            <th>File Name</th>
                             <th>Action</th>
                            
                         </tr>
@@ -110,5 +122,19 @@ export default function GovtApplicants (props) {
                         </tbody>
                     </table>
         </div>
+        <Modal isOpen={isModalOpen} className="modal_stu container">                
+                    <br />
+                    <div className="row">
+                        <div className="col-sm-8 offset-sm-4">
+                        <input onChange={(e)=>{handleNotesheetchange(e,note); }} type="file" placeholder="Please select a pdf file"></input>
+                        </div>
+                    </div>
+                    <br />
+                    <br/>
+                <div>
+                <button onClick={()=>{setModal(false)}} className ="pic_btn">Close</button>
+                </div>
+            </Modal>
+    </>
     )
 } 

@@ -1,6 +1,21 @@
-import React from "react";
+import React , {useState , useEffect} from "react";
 import logo from "../Login/logo.png";
 export default function AcadsecHome() {
+    const [user,setUser] = useState({});
+    useEffect(()=>{
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/profile"
+        fetch(address,{
+            method : "get"
+        })
+        .then(res => {
+            return res.json();
+        })
+        .then(data => {
+            console.log(data);
+            data = data.acadSec;
+            setUser(data)
+        })
+    },[]);
     return (
         <div className="container">
             <div className="home">
@@ -10,7 +25,7 @@ export default function AcadsecHome() {
                             <img src={logo} alt=""/>
                         </div>
                         <div className="name">
-                            <h1>WELCOME, Academic Section</h1>
+                            <h1>WELCOME, {user.name}</h1>
                             
                         </div>
                     </div>
@@ -21,9 +36,9 @@ export default function AcadsecHome() {
                         <div className="status_details">
                             <div className="det stu_password">
                                 <form action="">
-                                    <label htmlFor=""> Name : Acad123 </label>
-                                    <label htmlFor=""> Mobile : 9876543210</label>
-                                    <label htmlFor=""> Email Address : acadsec@gmail.com</label>
+                                    <label htmlFor=""> Name : {user.name} </label>
+                                    <label htmlFor=""> Mobile : {user.mobileNo}</label>
+                                    <label htmlFor=""> Email Address : {user.email}</label>
                                 </form>
                             </div>
                         </div>

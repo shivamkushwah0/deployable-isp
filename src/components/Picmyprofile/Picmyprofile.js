@@ -11,9 +11,20 @@ export default function Picmyprofile(props) {
     const [pass,setpass]=useState(false);
     const [log,setlog]=useState(false);
     const [managehod,setmanagehod]=useState(false);
-
+    const [user , setUser] = useState({});
     useEffect(()=>{
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/'
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/profile'
+        fetch(address , {
+            method:'get'
+        })
+        .then(res => res.json())
+        .then(data => {
+            console.log(data)
+            setUser(data.admin)
+        })
+        .catch(err => {
+            alert("Please check your internet connection and try again")
+        })
     },[])
 
     const funchome = () => {
@@ -72,7 +83,7 @@ export default function Picmyprofile(props) {
                 home && log === false && pass === false && managehod===false  ? 
                 (
                     <>
-                   <Pichome id={props.match.params.id}/>
+                   <Pichome user={user} id={props.match.params.id}/>
                     
                     </>
                 )
@@ -84,7 +95,7 @@ export default function Picmyprofile(props) {
                 )
                 :home === false && log===false && pass && managehod===false ?
                 (   <>
-                    <Picreset/>
+                    <Picreset toHome={funchome} user={user}/>
                     
                     </>
                 )
@@ -97,7 +108,7 @@ export default function Picmyprofile(props) {
                  :null
             }
             <div className="margintop text-center">
-            <button onClick={()=>{window.location.href="http://localhost:3000/picwindow/"+props.match.params.id}} type='btn' className="active tab_btn pic_btn">Admin Window</button>
+            <Link to={`/picwindow/${props.match.params.id}`}><button type='btn' className="active tab_btn pic_btn">Admin Window</button></Link>
 
             </div>
             </div>

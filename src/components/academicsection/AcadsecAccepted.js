@@ -1,11 +1,19 @@
 import React , {useEffect , useState} from "react";
+import Modal  from 'react-modal';
 import {Link} from 'react-router-dom'
+import Label from '@material-ui/core/InputLabel'
 import { Form } from "semantic-ui-react";
 export default function AcadsecAccepted(props){
-    const [file, setFile] = useState(null);
+    const [byOnlineFile, setByOnlineFile] = useState([]);
+    const [byGovtFile, setByGovtFile ] = useState([]);
     const [accepted , setAccepted] =  useState([]);
-    const [OfferLetter, setOfferLetter] = useState(null);
+    const [byOnlineOfferLetter, setByOnlineOfferLetter] = useState([]);
+    const [byGovtOfferLetter,setByGovtOfferLetter] = useState([]);
     const [govtApplicants , setGovtApplicants] = useState([]);
+    const [onlineIndex , setOnlineIndex] = useState(0);
+    const [govtIndex , setGovtIndex] = useState(0); 
+    const [mode , setMode] = useState('online');
+    const [isModalOpen , setModal ] = useState(false);
     useEffect(()=>{
         const addresss = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/accepted"
         fetch(addresss , {
@@ -19,6 +27,10 @@ export default function AcadsecAccepted(props){
         .then(data => {
             console.log(data)
             setAccepted(data.AcceptedApplicants.acceptedApplicants);
+            var b = [];
+            b.length = data.AcceptedApplicants.acceptedApplicants.length;
+            setByOnlineFile(b);
+            setByOnlineOfferLetter(b);
         })
         .catch(err => {
             console.log(err);
@@ -35,14 +47,47 @@ export default function AcadsecAccepted(props){
         })
         .then(data => {
             console.log(data)
-            setGovtApplicants(data.Applicants);            
+            setGovtApplicants(data.Applicants); 
+            var b = [];
+            b.length = data.Applicants.length;
+            setByGovtFile(b);  
+            setByGovtOfferLetter(b);         
         })
         .catch(err => {
             console.log(err);
         })
+
     },[])
-    const handleUpload = (id) => {
-        if(file===null || OfferLetter===null)
+
+    const handleChangeOfferLetter = (e,mode) => {
+        if(mode==="online")
+        {
+            var b = [...byOnlineOfferLetter];
+            b[onlineIndex] = e.target.files[0];
+            setByOnlineOfferLetter(b);
+        }
+        else {
+            var b = [...byGovtOfferLetter];
+            b[govtIndex] = e.target.files[0];
+            setByGovtOfferLetter(b);
+        }
+    }
+    const handleChangeNotesheet = (e,mode) => {
+        if(mode==="online")
+        {
+            var b = [...byOnlineFile];
+            b[onlineIndex] = e.target.files[0];
+            setByOnlineFile(b);
+        }
+        else {
+            var b = [...byGovtFile];
+            b[govtIndex] = e.target.files[0];
+            setByGovtFile(b);
+        }
+    }
+
+    const handleUpload = (id,index) => {
+        if(byOnlineFile[index]===undefined || byOnlineOfferLetter[index]===undefined)
         {
             alert("Please Select the documents");
             return ;
@@ -50,7 +95,7 @@ export default function AcadsecAccepted(props){
         const formdata = new FormData();
         formdata.append(
             "SignedNoteSheet",
-            file,
+            byOnlineFile[index],
             "SignedNoteSheet+"+id+".pdf"
         )
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/signedNoteSheetsUpload/'+id;
@@ -71,7 +116,7 @@ export default function AcadsecAccepted(props){
                 const offerletter = new FormData();
                 offerletter.append(
                     "offerLetter",
-                    file,
+                    byOnlineOfferLetter[index],
                     "OfferLetter+"+id+".pdf"
                 )
                 const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/offerLetterUpload/"+id;
@@ -105,6 +150,7 @@ export default function AcadsecAccepted(props){
                         })
                         .catch(err => {
                             console.log("Error Confirming Acceptance")
+                            alert("Error Confirming Acceptance") 
                             console.log(err)
                         })
                     }
@@ -112,6 +158,7 @@ export default function AcadsecAccepted(props){
                 })
                 .catch(err => {
                     console.log("Uploading Offer Letter Error")
+                    alert("Uploading Offer Letter Error")
                     console.log(err)
                 })
             }
@@ -119,11 +166,12 @@ export default function AcadsecAccepted(props){
         })
         .catch(err => {
             console.log("Uploading Signed Notesheet Error")
+            alert("Problem uploading signed notesheet, please try again later")
             console.log(err)
         })
     }
-    const handleGovtUpload = (id) => {
-        if(file===null || OfferLetter===null)
+    const handleGovtUpload = (id,index) => {
+        if(byGovtFile[index]===undefined || byGovtOfferLetter[index]===undefined )
         {
             alert("Please Select the documents");
             return ;
@@ -131,7 +179,7 @@ export default function AcadsecAccepted(props){
         const formdata = new FormData();
         formdata.append(
             "SignedNoteSheet",
-            file,
+            byGovtFile[index],
             "SignedNoteSheet+"+id+".pdf"
         )
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/signedNoteSheetsUpload/'+id;
@@ -152,7 +200,7 @@ export default function AcadsecAccepted(props){
                 const offerletter = new FormData();
                 offerletter.append(
                     "offerLetter",
-                    file,
+                    byGovtOfferLetter[index],
                     "OfferLetter+"+id+".pdf"
                 )
                 const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/offerLetterUpload/"+id;
@@ -186,12 +234,14 @@ export default function AcadsecAccepted(props){
                         })
                         .catch(err => {
                             console.log("Error Confirming Acceptance")
+                            alert("Error Conforming acceptance, please try again")
                             console.log(err)
                         })
                     }
                     else alert("Problem Uploading Offer Letter")
                 })
                 .catch(err => {
+                    alert("Problem Uploading Offer Letter")
                     console.log("Uploading Offer Letter Error")
                     console.log(err)
                 })
@@ -200,29 +250,30 @@ export default function AcadsecAccepted(props){
         })
         .catch(err => {
             console.log("Uploading Signed Notesheet Error")
+            alert("Problem uploading signed notesheet, please try again later")
             console.log(err)
         })
     }
     const RenderApplicants = () => {
-        return accepted.map(user => {
+        return accepted.map((user,index) => {
             const link =user.noteSheet;
             return(
                 <tr>
                 <td>{user.name}</td>
-                
                 <td>{user.contactDetails.email}</td>
                 <td>Online</td>
                 <td><a target="blank" href={link}><i className="fa fa-download"></i></a></td>
-                <td><input className="form-input" type="file" onChange={(e)=>{setFile(e.target.files[0]); console.log(file)}} placeholder="Signed Notesheet" /></td>
-                <td><input className="form-input" type = "file" onChange={(e)=>{setOfferLetter(e.target.files[0]); console.log(OfferLetter)}} placeholder="Offer Letter" /></td>
-                <td><button onClick = {()=>{handleUpload(user._id)}}>Upload</button></td>
+                <td><button onClick={()=>{setModal(true); setOnlineIndex(index); setMode('online')}}>Upload</button></td>
+                <td>{byOnlineFile[index]!==undefined ? byOnlineFile[index].name : "No file uploaded" }</td>
+                <td>{byOnlineOfferLetter[index]!==undefined ? byOnlineOfferLetter[index].name : "No file uploaded"}</td>
+                <td><button onClick = {()=>{handleUpload(user._id,index)}}>Confirm</button></td>
 
             </tr>
             )
         })
     }
     const RenderGovtApplicants = () => {
-        return govtApplicants.map(user => {
+        return govtApplicants.map((user,index) => {
             const link =user.noteSheet;
             return(
                 <tr>
@@ -230,15 +281,16 @@ export default function AcadsecAccepted(props){
                 <td>{user.email}</td>
                 <td>{user.platform}</td>
                 <td><a target="blank" href={link}><i className="fa fa-download"></i></a></td>
-                <td><input className="form-input" type="file" onChange={(e)=>{setFile(e.target.files[0]); console.log(file)}} placeholder="Signed Notesheet" /></td>
-                <td><input className="form-input" type = "file" onChange={(e)=>{setOfferLetter(e.target.files[0]); console.log(OfferLetter)}} placeholder="Offer Letter" /></td>
-                <td><button onClick = {()=>{handleGovtUpload(user._id)}}>Upload</button></td>
-
+                <td><button onClick={()=>{setModal(true); setGovtIndex(index); setMode('govt')}}>Upload</button></td>
+                <td>{byGovtFile[index]!==undefined ? byGovtFile[index].name : "No file uploaded" }</td>
+                <td>{byGovtOfferLetter[index]!==undefined ? byGovtOfferLetter[index].name : "No file uploaded"}</td>
+                <td><button onClick = {()=>{handleGovtUpload(user._id,index)}}>Confirm</button></td>
             </tr>
             )
         })
     }
     return (
+        <>
         <div className="margintop">
         <table className="table table-striped">
         <thead>
@@ -247,9 +299,10 @@ export default function AcadsecAccepted(props){
                 <th>Email</th>
                 <th>Platform</th>
                 <th>Notesheet Download</th>
+                <th>Upload Documents</th>
                 <th>Signed Notesheet</th>
                 <th>Offer Letter</th>
-                <th>Upload Documents</th>
+                <th>Confirm Acceptance</th>
                
             </tr>
         </thead>
@@ -262,5 +315,27 @@ export default function AcadsecAccepted(props){
             </tbody>
         </table>
         </div>
+        <Modal isOpen={isModalOpen} className="modal_stu container">                
+                    <br />
+                    <div className="row">
+                        <div className="col-sm-8 offset-sm-4">
+                        <Label>Upload Notesheet</Label>
+                        <input onChange={(e)=>{handleChangeNotesheet(e,mode); }} type="file" placeholder="Please select a pdf file"></input>
+                        </div>
+                    </div>
+                    <br />
+                    <div className="row">
+                        <div className="col-sm-8 offset-sm-4">
+                        <Label>Upload OfferLetter</Label>
+                        <input onChange={(e)=>{handleChangeOfferLetter(e,mode); }} type="file" placeholder="Please select a pdf file"></input>
+                        </div>
+                    </div>
+                    <br/>
+                <div>
+                <button onClick={()=>{setModal(false)}} className ="pic_btn">Close</button>
+                </div>
+            </Modal>
+        </>
+        
     )
 }

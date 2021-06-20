@@ -5,9 +5,9 @@ import GovtApplicants from './GovtApplicants'
 import AddApplicant from './AddApplicant';
 export default function GovtApplications (props) {
     
-    const [showApp, setShowApp] = useState(true);
+    const [showApp, setShowApp] = useState(false);
     const [showForwarded, setShowForwarded] = useState(false);
-    const [showadd , setShowAdd] = useState(false);
+    const [showadd , setShowAdd] = useState(true);
     const [applications , setApplications] = useState([]);
     const [downApp , ShowDownApp] = useState(false);
 
@@ -83,20 +83,20 @@ export default function GovtApplications (props) {
             <hr />
             <Row>
             <Col md={4}>
-                <button className="pic_btn" onClick={showapplicants}>Added Applicants</button>
+                <button className="pic_btn" onClick={showapplicants}>Added Government Applicants</button>
             </Col>
             <Col md={4}>
-            <button className="pic_btn" onClick={showforwarded}>Forwarded Applicants</button>
+            <button className="pic_btn" onClick={showforwarded}>Forwarded Government Applicants</button>
             </Col>
             <Col md={4}>
-            <button className="pic_btn" onClick={showaddapplicant}>Add Selected Applicant</button>
+            <button className="pic_btn" onClick={showaddapplicant}>Add Selected Government Applicant</button>
             </Col>
             </Row>
             <Row>
             <Col md={12}>
-            {showApp ? <GovtApplicants hid={props.hid}/> : null}
-            {showForwarded ? <GovtForwarded  hid={props.hid}/> : null}
-            {showadd ? <AddApplicant hid={props.hid}/> : null}
+            {showApp ? <GovtApplicants toHome={showapplicants} hid={props.hid}/> : null}
+            {showForwarded ? <GovtForwarded toHome={showapplicants}  hid={props.hid}/> : null}
+            {showadd ? <AddApplicant toHome={showapplicants} hid={props.hid}/> : null}
             </Col>
             </Row>
             <Row>

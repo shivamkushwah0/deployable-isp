@@ -50,6 +50,7 @@ export default function AcadsecAccepted(props){
                 <td>{user.contactDetails.email}</td>
                 <td><a target="blank" href={link}><i className="fa fa-download"></i></a></td>
                 <td>Online</td>
+                <td>{user.applicationStatus}</td>
             </tr>
             )
         })
@@ -64,6 +65,7 @@ export default function AcadsecAccepted(props){
                 <td>{user.email}</td>
                 <td><a target="blank" href={link}><i className="fa fa-download"></i></a></td>
                 <td>{user.platform}</td>
+                <td>{user.applicationStatus}</td>
             </tr>
             )
         })
@@ -77,7 +79,7 @@ export default function AcadsecAccepted(props){
                             <th>Email</th>
                             <th>Offer Letter Download</th>
                             <th>Platform</th>
-                           
+                            <th>Status</th>
                         </tr>
                     </thead>
                         <tbody>

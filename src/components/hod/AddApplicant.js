@@ -37,7 +37,7 @@ export default function AddApplicant (props) {
     },[])
     const handleAdd = () => {
         console.log(file);
-        if(file === null || file.type !=="application/x-zip-compressed")
+        if(file === null || ( file.type !=="application/x-zip-compressed" && file.type !=="application/zip"))
         {
             alert("Please select a valid file");
             setFile(null);
@@ -73,6 +73,7 @@ export default function AddApplicant (props) {
             setFile(null);
             setPlatform('');
             setBlurEmail(false);
+            props.toHome();
         })
         .catch(err => {
             console.log(err);

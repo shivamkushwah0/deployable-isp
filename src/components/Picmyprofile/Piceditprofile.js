@@ -5,6 +5,8 @@ import {Link} from 'react-router-dom'
 import { propTypes } from 'react-bootstrap/esm/Image';
 
 export default function Piceditprofile(props) {
+    console.log(props);
+    const pichome = "/picmyprofile/"+props.match.params.id;
     const [name, setName] = useState('');
     const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
@@ -38,7 +40,8 @@ export default function Piceditprofile(props) {
         e.preventDefault();
     }
     return (
-        <div className="container">
+        <div className="container pt-5">
+            <Link to = {pichome} ><button type='btn' className="active tab_btn pic_btn"> Admin Profile</button></Link> 
             <div className="home">
                 <div className="profile">
                     <div className="profile_inner">

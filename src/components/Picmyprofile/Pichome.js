@@ -14,7 +14,7 @@ export default function Pichome(props) {
                             <img src={logo} alt=""/>
                         </div>
                         <div className="name">
-                            <h1>Welcome</h1>
+                            <h1>Welcome , {props.user.name}</h1>
                             <h3>Admin Portal</h3>
                         </div>
                     </div>
@@ -25,9 +25,9 @@ export default function Pichome(props) {
                         <div className="status_details">
                             <div className="det stu_password">
                                 <form action="">
-                                    <label htmlFor=""> Name <p>Saransh Jain</p></label>
-                                    <label htmlFor=""> Mobile <p> 9795829350</p></label>
-                                    <label htmlFor=""> Email Address <p> Saranshj786@gmail.com</p></label>
+                                    <label htmlFor=""> Name <p>{props.user.name}</p></label>
+                                    <label htmlFor=""> Mobile <p> {props.user.mobileNo}</p></label>
+                                    <label htmlFor=""> Email Address <p> {props.user.email}</p></label>
                                 </form>
                             </div>
                         </div>

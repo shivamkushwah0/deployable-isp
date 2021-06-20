@@ -14,13 +14,14 @@ import MenuItem from '@material-ui/core/MenuItem';
 import { ThemeProvider } from 'react-bootstrap';
 import "./StudentApplication.css"
 import {Publications} from "./Publications"
+import {Link} from 'react-router-dom'
 export default function Studentinformation(props) {
     
     const [checkbox , setCheckbox] = useState("off");
     const [user, setUser] = useState({});
     const [error , setError] = useState(false);
     const [statement , setStatement] = useState('');
-    const [publications , setPublications] = useState([]); 
+    const [publications , setPublications] = useState(['']); 
     useEffect(()=>{
         const id = props.match.params.id;
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
@@ -104,6 +105,8 @@ export default function Studentinformation(props) {
                 
             }
             setRefreeFields(a);
+            setPublications(data.publications);
+            setStatement(data.statementOfPurpose);
         })
         .catch(err => console.log(err))
     
@@ -225,7 +228,22 @@ export default function Studentinformation(props) {
         setRefreeFields(values);
     }
     // ending of refree component functions
-    
+    const handleChangeInputPublication=(index,event)=>{
+        console.log(index +  event.target.value)
+        console.log(index,event.target.value)
+        const values = [...publications]
+        values[index]=event.target.value;
+        setPublications(values);
+        console.log(publications);
+    }
+    const handleAddFieldsPublication=()=>{
+        setPublications([...publications, ''])
+    }
+    const handleRemoveFieldsPublication=(index)=>{
+        const values=[...publications];
+        values.splice(index,1);
+        setPublications(values);
+    }
     // handling of the file upload system
     const [files,setFiles] = useState(
         {marksheets : null , GreAndToefl:null,fellowshipCertificate:null,profExpCertificate:null,passportImage:null}
@@ -297,6 +315,11 @@ export default function Studentinformation(props) {
                 alert("Please fill the required information before continuing")
                 return ;
             }
+        else if(statement.length===0)
+        {
+            alert("[ Statement of purpose ] section cannot be empty");
+            return ;
+        }
         else if(files.marksheets === null)
             {
                 alert("Marksheet is compulsory to add")
@@ -357,7 +380,7 @@ export default function Studentinformation(props) {
                     }
                     return obj;
                 }) ,
-                statementOfPurpose : "field still to be included in the form",
+                // statementOfPurpose : statement,
                 gender : inputFields[0].gender,
                 greScore : {
                     registrationNo : greScores[0].registerno ,
@@ -377,6 +400,8 @@ export default function Studentinformation(props) {
                     totalScore :  toeflScores[0].ts 
                 },
                 professionalExperience : professionalExp,
+                publications : publications,
+                statementOfPurpose : statement,
                 refereeDetails : refreeFields.map((field) => {
                     const obj = {
                         name : field.name,
@@ -387,7 +412,7 @@ export default function Studentinformation(props) {
                     }
                     return obj;
                 }),
-                publications : "Field not added in the form yet"
+                // publications : publications
             })
         }).then(res=>{
             return res.json() 
@@ -458,7 +483,7 @@ export default function Studentinformation(props) {
             <div className="row">
                 {inputFields.map((inputField,index)=>(
                     <div className="p-5 si_div" key={index}>
-                        <button className="pic_btn" onClick={()=>{window.location.href="http://localhost:3000/stumyprofile/"+props.match.params.id;}}>Go back Home</button>
+                        <Link to={`/stumyprofile/${props.match.params.id}`}><button className="pic_btn">Go back Home</button></Link>
                         <h1 className="text-center si_subhead">Student Information</h1>
                         <div><b><i>Fields marked with <span className="text-red">*</span> are required</i></b></div><br /><br/>
                         <div className="row">
@@ -556,11 +581,11 @@ export default function Studentinformation(props) {
                 </div>
             </div>
             <div className="row text-center">
-                <h1 className = "text-center my-5">Statement of Purpose</h1>
+                <h1 className = "text-center my-5">Statement of Purpose<span className="text-red">*</span></h1>
                 <div className="col-md-12">
                 <TextField fullWidth
                         multiline
-                        row={4}
+                        rows={4}
                         name="statement"
                         label="Statement of Purpose"
                         value={statement}
@@ -571,9 +596,11 @@ export default function Studentinformation(props) {
 
                 </div>
             </div>
+            <hr/>
             <div className="row text-center">
                 <div className="col-md-12 py-5">
-                    <Publications /> 
+                    <br/>
+                    <Publications setError={setError} handleChangeInput={handleChangeInputPublication} inputFields={publications} handleAddFields={handleAddFieldsPublication} handleRemoveFields={handleRemoveFieldsPublication} /> 
                 </div>
             </div>
             <hr/>

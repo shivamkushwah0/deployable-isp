@@ -50,7 +50,7 @@ export default class Registered extends Component {
                             <td>{applicant.name}</td>
                             <td>{applicant.department}</td>
                             <td>{applicant.userName}</td>
-                            <td><i className="fa fa-download"></i></td>
+                            <td>{applicant.applicationStatus}</td>
                             <td><Link to={`${link}`}><i className="fa fa-user"> view profile</i></Link></td>
                     </tr>
                     
@@ -69,6 +69,8 @@ export default class Registered extends Component {
                             <th>Applicant Name</th>
                             <th>Department</th>
                             <th>Email</th>
+                            <th>Status</th>
+                            <th>Profile</th>
                            
                         </tr>
                     </thead>

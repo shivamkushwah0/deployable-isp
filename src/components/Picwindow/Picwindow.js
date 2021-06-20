@@ -8,8 +8,9 @@ import './Picwindow.css';
 import Modal  from 'react-modal';
 import classnames from 'classnames';
 import { TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, CardText} from 'reactstrap';
-
+import {Link} from 'react-router-dom'
 import {InputLabel, TextField , MenuItem} from "@material-ui/core";
+import GovtApplicants from './GovtApplicants';
 // import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 // import {Modal , ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
 export default function Picwindow(props) {
@@ -25,7 +26,7 @@ export default function Picwindow(props) {
     const [newRole, setNewRole] = useState("");
     const [adminVar , setAdminVar] = useState({});
     const [activeTab, setActiveTab] = useState('1');
-
+    const [isGovtAppOpen , setGovtApp] = useState(false);
     const toggle = tab => {
     if(activeTab !== tab) setActiveTab(tab);
     setNewRole('');
@@ -47,30 +48,41 @@ export default function Picwindow(props) {
                 setAdminVar(data);
             })
     },[])
+    const funcGovtApplicants = () => {
+        setGovtApp(true);
+        setisregistered(false);
+        setisreturned(false);
+        setiscancelled(false);
+        setisforwarded(false)
+    }
 
     const funcRegistered = () => {
         setisregistered(true);
         setisreturned(false);
         setiscancelled(false);
-        setisforwarded(false)
+        setisforwarded(false);
+        setGovtApp(false);
    }
    const funcReturned = () => {
         setisregistered(false);
         setisreturned(true);
         setiscancelled(false);
         setisforwarded(false)
+        setGovtApp(false);
    }
    const funcCancelled = () => {
         setisregistered(false);
         setisreturned(false);
         setiscancelled(true);
         setisforwarded(false)
+        setGovtApp(false);
    }
    const funcForwarded = () => {
         setisregistered(false);
         setisreturned(false);
         setiscancelled(false);
         setisforwarded(true)
+        setGovtApp(false);
    }
    const handleSubmitApplication = () => {
        console.log(role);
@@ -188,7 +200,7 @@ export default function Picwindow(props) {
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
-                    <Col md={3}>
+                    <Col md={2}>
                          {
                               isregistered ? 
                               <button onClick={funcRegistered} type='btn' className="active tab_btn pic_btn">Registered Students</button> : 
@@ -202,34 +214,43 @@ export default function Picwindow(props) {
                     <Col md={3}>
                     <button onClick={funcCancelled} type='btn' className="pic_btn">Cancelled Students</button>
                     </Col>
-                    <Col md={3}>
+                    <Col md={2}>
                     <button onClick={funcForwarded} type='btn' className="pic_btn">Forwarded Students</button>
+                    </Col>
+                    <Col md={2}>
+                    <button onClick={funcGovtApplicants} type='btn' className="pic_btn">Selected Governent Applicants</button>
                     </Col>
                   </Row>
                 </div>
             {
-                isregistered && iscancelled === false && isreturned === false && isforwarded === false ? 
+                isregistered && iscancelled === false && isreturned === false && isforwarded === false && !isGovtAppOpen ? 
                 (
                     <>
                     <Registered aid={props.match.params.id}/>
                     
                     </>
                 )
-                :isregistered === false && iscancelled && isreturned === false && isforwarded === false ?
+                :isregistered === false && iscancelled && isreturned === false && isforwarded === false && !isGovtAppOpen ?
                 (<>
                     <Rejected aid={props.match.params.id}/>
                     
                     </>
                 )
-                :isregistered === false && iscancelled===false && isreturned && isforwarded === false ?
+                :isregistered === false && iscancelled===false && isreturned && isforwarded === false  && !isGovtAppOpen?
                 (   <>
                     <Returned aid={props.match.params.id}/>
                     
                     </>
                 )
-                :isregistered === false && iscancelled===false && isreturned===false && isforwarded ?
+                :isregistered === false && iscancelled===false && isreturned===false && isforwarded && !isGovtAppOpen?
                 (   <>
                     <Forwarded aid={props.match.params.id}/>
+                    
+                    </>
+                )  
+                :isregistered === false && iscancelled===false && isreturned===false && !isforwarded && isGovtAppOpen?
+                (   <>
+                    <GovtApplicants aid={props.match.params.id}/>
                     
                     </>
                 )  
@@ -240,7 +261,8 @@ export default function Picwindow(props) {
                     <button className="pic_btn" onClick={()=>{setPlatModal(true);}}>Add/Remove Platforms</button>
                     </div>
                     <div  className="margintop text-center"> 
-                    <button onClick={()=> {window.location.href='http://localhost:3000/picmyprofile/'+props.match.params.id}} type='btn' className="active tab_btn pic_btn">My Profile</button>
+                    <Link to={`/picmyprofile/${props.match.params.id}`}><button type='btn' className="active tab_btn pic_btn">My Profile</button></Link>
+                    
 
                     </div>
             </div>
