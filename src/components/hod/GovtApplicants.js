@@ -102,7 +102,7 @@ export default function GovtApplicants (props) {
         return Applicants;
     }
 
-    return (<>
+    return (<div>
     <div className="margintop">
             {applicants.length!==0 ?  <table className="table table-striped text-center">
                     <thead>
@@ -137,6 +137,6 @@ export default function GovtApplicants (props) {
                 <button onClick={()=>{setModal(false)}} className ="pic_btn">Close</button>
                 </div>
             </Modal>
-    </>
+    </div>
     )
 } 

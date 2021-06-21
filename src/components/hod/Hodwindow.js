@@ -56,7 +56,7 @@ export default function Picwindow(props) {
         setisforwarded(true)
    }
     return (
-        <>
+        <div>
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
@@ -83,28 +83,28 @@ export default function Picwindow(props) {
             {
                 isregistered && iscancelled === false  && isforwarded === false && govtApplications===false ? 
                 (
-                    <>
+                    <div>
                     <Hodregis hid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                 :isregistered === false && iscancelled  && isforwarded === false && govtApplications===false?
-                (<>
+                (<div>
                     <Hodreject hid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                
                 :isregistered === false && iscancelled===false && isforwarded && govtApplications===false?
-                (   <>
+                (   <div>
                     <Hodforward hid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )  
                 :isregistered === false && iscancelled===false && isforwarded===false && govtApplications ?
-                (   <>
+                (   <div>
                     <GovtApplications hid={user.departmentId}/>
-                    </>
+                    </div>
                 )  
                 :null
             }
@@ -113,7 +113,7 @@ export default function Picwindow(props) {
             
             </div>
             </div>
-            </>
+            </div>
            
     )
 }

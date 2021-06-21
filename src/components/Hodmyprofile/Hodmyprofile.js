@@ -26,7 +26,7 @@ export default function Picwindow(props) {
         
    }
      return (
-        <>
+        <div>
     <div className="container text-center margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
@@ -50,22 +50,22 @@ export default function Picwindow(props) {
             {
                 home && log === false && pass === false  ? 
                 (
-                    <>
+                    <div>
                     <Hodhome id={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                 :home === false && log && pass === false  ?
-                (<>
+                (<div>
                     sfdgfhv
                     
-                    </>
+                    </div>
                 )
                 :home === false && log===false && pass  ?
-                (   <>
+                (   <div>
                     <Resetprofilehod id={props.match.params.id} funchome={funchome}/>
                     
-                    </>
+                    </div>
                 )
                  :null
             }
@@ -75,7 +75,7 @@ export default function Picwindow(props) {
             </div>
             </div>
             
-            </>
+            </div>
            
     )
 }

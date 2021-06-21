@@ -197,7 +197,7 @@ export default function Picwindow(props) {
 }
 
     return (
-        <>
+        <div>
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
@@ -226,34 +226,34 @@ export default function Picwindow(props) {
             {
                 isregistered && iscancelled === false && isreturned === false && isforwarded === false && !isGovtAppOpen ? 
                 (
-                    <>
+                    <div>
                     <Registered aid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                 :isregistered === false && iscancelled && isreturned === false && isforwarded === false && !isGovtAppOpen ?
-                (<>
+                (<div>
                     <Rejected aid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                 :isregistered === false && iscancelled===false && isreturned && isforwarded === false  && !isGovtAppOpen?
-                (   <>
+                (   <div>
                     <Returned aid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                 :isregistered === false && iscancelled===false && isreturned===false && isforwarded && !isGovtAppOpen?
-                (   <>
+                (   <div>
                     <Forwarded aid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )  
                 :isregistered === false && iscancelled===false && isreturned===false && !isforwarded && isGovtAppOpen?
-                (   <>
+                (   <div>
                     <GovtApplicants aid={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )  
                 :null
             }
@@ -374,7 +374,7 @@ export default function Picwindow(props) {
                     <br />
             
             </Modal>
-            </>
+            </div>
            
     )
 }

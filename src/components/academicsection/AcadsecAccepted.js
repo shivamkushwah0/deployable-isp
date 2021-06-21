@@ -291,7 +291,7 @@ export default function AcadsecAccepted(props){
         })
     }
     return (
-        <>
+        <div>
         <div className="margintop">
         { (accepted.length || govtApplicants.length) ? <table className="table table-striped">
         <thead>
@@ -336,7 +336,7 @@ export default function AcadsecAccepted(props){
                 <button onClick={()=>{setModal(false)}} className ="pic_btn">Close</button>
                 </div>
             </Modal>
-        </>
+        </div>
         
     )
 }

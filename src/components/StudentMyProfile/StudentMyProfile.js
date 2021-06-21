@@ -59,7 +59,7 @@ fetch(address , {
          
     return (
  
-        <>
+        <div>
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
@@ -82,27 +82,27 @@ fetch(address , {
             {
                 home && status === false && pass === false && log === false ? 
                 (
-                    <>
+                    <div>
                     <Home data={data.applicantDetails} toggleStatus={funcstatus}/>
                     
-                    </>
+                    </div>
                 )
                 :home === false && status===false && pass && log === false ?
-                (   <>
+                (   <div>
                     <ChangePassword data={data.applicantDetails} toHome={funchome}/>
                     
-                    </>
+                    </div>
                 )
                 :home === false && status===false && pass===false && log ?
-                (   <>
+                (   <div>
                     
                     <h1>ghhab sjmdvfb</h1>
-                    </>
+                    </div>
                 )  
                 :null
             }
             </div>
-            </>
+            </div>
            
     )
 }

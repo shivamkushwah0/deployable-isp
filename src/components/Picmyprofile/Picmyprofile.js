@@ -140,7 +140,7 @@ export default function Picmyprofile(props) {
         setmanagehod(true);
     
     }
-     return ( <>
+     return ( <div>
     <div className="container text-center margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
@@ -167,28 +167,28 @@ export default function Picmyprofile(props) {
             {
                 home && log === false && pass === false && managehod===false  ? 
                 (
-                    <>
+                    <div>
                    <Pichome user={user} id={props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                 :home === false && log && pass === false && managehod===false  ?
-                (<>
+                (<div>
                     sfdgfhv
                     
-                    </>
+                    </div>
                 )
                 :home === false && log===false && pass && managehod===false ?
-                (   <>
+                (   <div>
                     <Picreset toHome={funchome} user={user}/>
                     
-                    </>
+                    </div>
                 )
                 :home === false && log===false && pass===false && managehod ?
-                (   <>
+                (   <div>
                     <Picmanagehod id = {props.match.params.id}/>
                     
-                    </>
+                    </div>
                 )
                  :null
             }
@@ -204,7 +204,7 @@ export default function Picmyprofile(props) {
             <Modal isOpen={isOpen} className="modal_stu container">
                 {
                     mode==='programme' ?  
-                    (<>
+                    (<div>
                     <TextField
                         fullWidth
                         name="programme"
@@ -215,10 +215,10 @@ export default function Picmyprofile(props) {
                         <br/>
                         <button type='btn' className="active tab_btn pic_btn" onClick={()=>{addProgramme()}}>Add Programme</button>
                         <br/>
-                        </>
+                        </div>
                         ) :
                     (
-                        <>
+                        <div>
                         <TextField
                         fullWidth
                         select
@@ -260,13 +260,13 @@ export default function Picmyprofile(props) {
                         </TextField>
                         <br/>
                         <button type='btn' className="active tab_btn pic_btn" onClick={addDepartment}>Add Department</button>
-                        </>
+                        </div>
                     ) 
                 }
                 <br />
                 <button onClick={()=>{setModal(false)}} type='btn' className="active tab_btn pic_btn float-right">Close</button>
             </Modal>
-            </>
+            </div>
            
     )
 }

@@ -337,7 +337,7 @@ export default function StudentProfile(props) {
              {user.academicQualification.map(quals => {
 
                 return (
-                    <>
+                    <div>
                     <form>
                        
                             <div>
@@ -354,7 +354,7 @@ export default function StudentProfile(props) {
                              </div>
                         </form>
                         <hr width="75%"/>
-                    </>
+                    </div>
                 
                 )
              })}
