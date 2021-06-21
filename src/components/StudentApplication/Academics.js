@@ -77,11 +77,11 @@ export default function Academics(props) {
                         </TextField>
                         
                                 {
-                                    isScore(inputField.year) || !blurNum.year ? null : (<> <br /> <span className="text-red">Please enter a valid year</span></>)
+                                    isScore(inputField.year) || !blurNum.year ? null : (<div> <br /> <span className="text-red">Please enter a valid year</span></div>)
                                 }
                                 
                                 {
-                                    isCGPA(inputField.percentage) || !blurNum.cgpa ? null : (<> <br /> <span className="text-red">Please enter a valid percentage or CGPA without sign</span></>)
+                                    isCGPA(inputField.percentage) || !blurNum.cgpa ? null : (<div> <br /> <span className="text-red">Please enter a valid percentage or CGPA without sign</span></div>)
                                 }
                         <br/>
                       { (index >0) &&
