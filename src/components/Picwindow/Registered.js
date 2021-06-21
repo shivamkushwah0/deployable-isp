@@ -3,7 +3,7 @@ import './Picwindow.css';
 import { useHistory } from 'react-router-dom';
 import {Link} from 'react-router-dom';
 import StudentProfile from '../StudentProfile/StudentProfile';
-
+import NothingHere from '../extras/nothingHere';
 
 
 export default class Registered extends Component {
@@ -63,9 +63,9 @@ export default class Registered extends Component {
             <div>
                 <div className="container margintop">
                     
-                    <table className="table table-striped">
+                { this.state.registered.length !== 0 ?  (<table className="table table-striped">
                     <thead>
-                        <tr>
+                    <tr>
                             <th>Applicant Name</th>
                             <th>Department</th>
                             <th>Email</th>
@@ -75,9 +75,12 @@ export default class Registered extends Component {
                         </tr>
                     </thead>
                         <tbody>
-                        <RenderApplicants />
+                        < RenderApplicants/>
                         </tbody>
-                    </table>
+                    </table>)
+                    : 
+                    <NothingHere />
+                    }
                     </div>
                    
                     

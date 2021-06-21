@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import {Button} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
 import './Picwindow.css'
+import NothingHere from '../extras/nothingHere';
 export default class Forwarded extends Component {
     constructor(props){
         super();
@@ -50,7 +51,7 @@ export default class Forwarded extends Component {
             <div>
                  <div className="container margintop">
                     
-                    <table className="table table-striped">
+                    { this.state.forwarded.length !== 0 ?  (<table className="table table-striped">
                     <thead>
                     <tr>
                             <th>Applicant Name</th>
@@ -64,7 +65,10 @@ export default class Forwarded extends Component {
                         <tbody>
                         < RenderApplicants/>
                         </tbody>
-                    </table>
+                    </table>)
+                    : 
+                    <NothingHere />
+                    }
                     </div>
                     
                     

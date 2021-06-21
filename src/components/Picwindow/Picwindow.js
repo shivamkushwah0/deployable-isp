@@ -11,6 +11,7 @@ import { TabContent, TabPane, Nav, NavItem, NavLink, Card, CardTitle, CardText} 
 import {Link} from 'react-router-dom'
 import {InputLabel, TextField , MenuItem} from "@material-ui/core";
 import GovtApplicants from './GovtApplicants';
+import nothingHere from '../extras/nothingHere';
 // import ModalHeader from 'react-bootstrap/esm/ModalHeader';
 // import {Modal , ModalHeader, ModalFooter, ModalBody} from 'reactstrap';
 export default function Picwindow(props) {
@@ -271,11 +272,13 @@ export default function Picwindow(props) {
                     <div className="col-sm-3">Branch<span style={{color:"red" , fontWeight:"bolder"}}>*</span></div>
                     <div className="col-sm-9">
                     <TextField variant="filled" className="textfield" select name="branch" value={department} onChange = {(e)=>{SetDepartment(e.target.value); console.log(department)}}>
-                    <MenuItem value="CSE">CSE</MenuItem>
-                    <MenuItem value="EE">EE</MenuItem>
-                    <MenuItem value="EEE">EEE</MenuItem>
-                    <MenuItem value="CCSE">CCSE</MenuItem>
-                    <MenuItem value="PPP">PPP</MenuItem>
+                    {adminVar.departments ?
+                    (
+                        adminVar.departments.map(department=> {
+                            return <MenuItem value={department}>{department}</MenuItem>
+                        })
+                    )
+                    : null}
                     </TextField>
                     </div>
                     </div>

@@ -26,6 +26,7 @@ export default function AcadsecHome() {
                         </div>
                         <div className="name">
                             <h1>WELCOME, {user.name}</h1>
+                            <h3>Academic Section Portal</h3>
                             
                         </div>
                     </div>

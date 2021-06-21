@@ -1,5 +1,5 @@
 import React , {useState , useEffect} from 'react';
-
+import NothingHere from '../extras/nothingHere'
 export default function GovtForwarded (props) {
     const [applicants, setApplicants] = useState([]);     
     useEffect(()=>{
@@ -31,8 +31,6 @@ export default function GovtForwarded (props) {
                         <td>{applicant.platform}</td>
                         <td>{applicant.email}</td>
                         <td><a href={applicant.application} target="blank"><i className="fa fa-download"></i></a></td>
-                        {/* <td><input type="file" placeholder="Upload notesheet pdf format" onChange={(e)=>{setNotesheet(e.target.files[0]); console.log(notesheet)}}></input></td> */}
-                        {/* <td><button onClick={() => {handleForward(applicant._id)}}>Forward</button></td> */}
                         <td>{applicant.applicationStatus}</td>
                 </tr>
                 
@@ -43,15 +41,13 @@ export default function GovtForwarded (props) {
 
     return (
         <div className="margintop">
-            <table className="table table-striped">
+            {applicants.length ?  <table className="table table-striped">
                     <thead>
                         <tr>
                         <th>Applicant Name</th>
                         <th>Platform</th>
                         <th>Email</th>
                         <th>Download Files</th>
-                        {/* <th>Upload Notesheet</th> */}
-                        {/* <th>Action</th> */}
                         <th>Status</th>
                            
                         </tr>
@@ -59,7 +55,7 @@ export default function GovtForwarded (props) {
                         <tbody>
                             <RenderApplicants />
                         </tbody>
-                    </table>
+                    </table> : <NothingHere />}
         </div>
     )
 } 

@@ -3,6 +3,7 @@ import Modal  from 'react-modal';
 import {Link} from 'react-router-dom'
 import Label from '@material-ui/core/InputLabel'
 import { Form } from "semantic-ui-react";
+import NothingHere from '../extras/nothingHere'
 export default function AcadsecAccepted(props){
     const [byOnlineFile, setByOnlineFile] = useState([]);
     const [byGovtFile, setByGovtFile ] = useState([]);
@@ -292,7 +293,7 @@ export default function AcadsecAccepted(props){
     return (
         <>
         <div className="margintop">
-        <table className="table table-striped">
+        { (accepted.length || govtApplicants.length) ? <table className="table table-striped">
         <thead>
         <tr>
                 <th>Applicant Name</th>
@@ -313,7 +314,7 @@ export default function AcadsecAccepted(props){
             
             <RenderGovtApplicants />
             </tbody>
-        </table>
+        </table> : <NothingHere /> }
         </div>
         <Modal isOpen={isModalOpen} className="modal_stu container">                
                     <br />

@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import {Link} from 'react-router-dom'
-
+import NothingHere from '../extras/nothingHere'
 export default class Rejected extends Component {
     constructor(props){
         super();
@@ -54,7 +54,7 @@ export default class Rejected extends Component {
             <div>
                  <div className="container margintop">
                     
-                    <table className="table table-striped">
+                 {this.state.rejected.length ?  <table className="table table-striped">
                     <thead>
                     <tr>
                             <th>Applicant Name</th>
@@ -68,7 +68,7 @@ export default class Rejected extends Component {
                         <tbody>
                         <RenderApplicants />
                         </tbody>
-                    </table>
+                    </table> : <NothingHere /> }
                     </div>
                     
                 </div>

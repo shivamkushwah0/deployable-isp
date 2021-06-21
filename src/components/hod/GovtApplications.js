@@ -3,6 +3,7 @@ import {Container, Row, Col ,Button} from  'react-bootstrap';
 import GovtForwarded from './GovtForwarded';
 import GovtApplicants from './GovtApplicants'
 import AddApplicant from './AddApplicant';
+import NothingHere from '../extras/nothingHere'
 export default function GovtApplications (props) {
     
     const [showApp, setShowApp] = useState(false);
@@ -106,7 +107,7 @@ export default function GovtApplications (props) {
             </button>
             </Col>
             {downApp ? (<Col className="margintop" md={12}>
-            <table className="table table-striped">
+            {applications.length ?  <table className="table table-striped">
                     <thead>
                         <tr>
                             <th width="40%">Platform</th>
@@ -118,7 +119,9 @@ export default function GovtApplications (props) {
                         <tbody>
                             <RenderApplications />
                         </tbody>
-                    </table>
+                    </table> : 
+                    <NothingHere />
+                    }
             </Col>) : null }
             </Row>
             

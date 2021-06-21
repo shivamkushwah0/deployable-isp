@@ -1,6 +1,6 @@
 import Modal  from 'react-modal';
 import React,{useEffect , useState} from 'react';
-
+import NothingHere from '../extras/nothingHere'
 export default function GovtApplicants (props) {
     const [applicants, setApplicants] = useState([]); 
     const [notesheet , setNotesheet] = useState([]);
@@ -104,7 +104,7 @@ export default function GovtApplicants (props) {
 
     return (<>
     <div className="margintop">
-            <table className="table table-striped text-center">
+            {applicants.length!==0 ?  <table className="table table-striped text-center">
                     <thead>
                         <tr>
                             <th>Applicant Name</th>
@@ -120,7 +120,9 @@ export default function GovtApplicants (props) {
                         <tbody>
                             <RenderApplicants />
                         </tbody>
-                    </table>
+                    </table> : 
+                    <NothingHere />
+                    }
         </div>
         <Modal isOpen={isModalOpen} className="modal_stu container">                
                     <br />

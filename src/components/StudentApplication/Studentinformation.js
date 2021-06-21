@@ -22,6 +22,7 @@ export default function Studentinformation(props) {
     const [error , setError] = useState(false);
     const [statement , setStatement] = useState('');
     const [publications , setPublications] = useState(['']); 
+    const [details , setDetail] = useState({});
     useEffect(()=>{
         const id = props.match.params.id;
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
@@ -109,6 +110,21 @@ export default function Studentinformation(props) {
             setStatement(data.statementOfPurpose);
         })
         .catch(err => console.log(err))
+
+        const detailAddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails';
+        fetch(detailAddress , {method : 'get'})
+        .then(res => {
+            if(res.ok)
+            return res.json();
+            else alert("Something went wrong please try again, make sure you are conected");
+        })
+        .then(data => {
+            console.log(data);
+            setDetail(data);
+        })
+        .catch(err => {
+            alert(err);
+        })
     
     },[]);
 
@@ -520,19 +536,23 @@ export default function Studentinformation(props) {
                         <div className="row mt-5">
                             
                             <div className="col-sm-6 text-center">
-                            <Label>Program (M-Tech/Ph.D.):<span className="text-red">*</span></Label>
-                                <TextField select className="textfield" name="program" value={inputField.program} variant="filled" onChange={event=>handleChangeInput(index,event)}>
-                                <MenuItem  value= "M.Tech">
-                                    M.Tech
+                            <Label>Program :<span className="text-red">*</span></Label>
+                                <TextField defaultValue={inputField.program} select className="textfield" name="program" value={inputField.program} variant="filled" onChange={event=>handleChangeInput(index,event)}>
+                                {
+                                details.programs!==undefined ? 
+                                details.programs.map(programme => {
+                                    return (
+                                        <MenuItem  value= {programme}>
+                                            {programme}
                                     </MenuItem>
-                                    <MenuItem  value= "Ph.D">
-                                    Ph.D
-                                    </MenuItem>
+                                    )
+                                }) : null
+                                }
                                 </TextField>
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>Category:(Self spons./Govt. Fellowship)<span className="text-red">*</span></Label>
-                                <TextField select className="textfield" name="category" value={inputField.category} variant="filled" onChange={event=>handleChangeInput(index,event)}>
+                                <TextField defaultValue={inputField.category} select className="textfield" name="category" value={inputField.category} variant="filled" onChange={event=>handleChangeInput(index,event)}>
                                 <MenuItem  value= "Self sponsored">
                                 Self sponsored
                                     </MenuItem>
@@ -543,11 +563,21 @@ export default function Studentinformation(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>Department<span className="text-red">*</span></Label>
-                                <TextField className="textfield" select name="department" value={inputField.department} variant="filled" onChange={event=>handleChangeInput(index,event)}>
-                                    <MenuItem value="CSE">CSE</MenuItem>
-                                    <MenuItem value="EE">EE</MenuItem>
-                                    <MenuItem value="EEE">EEE</MenuItem>
-                                    <MenuItem value="PPP">PPP</MenuItem>
+                                <TextField defaultValue={inputField.department} className="textfield" select name="department" value={inputField.department} variant="filled" onChange={event=>handleChangeInput(index,event)}>
+                                {
+                                (details.programAndDepartments!==undefined)?
+                                (details.programAndDepartments.map(programAndDepartments => {
+                                    if(programAndDepartments.program===inputField.program)
+                                    return (
+                                        programAndDepartments.course.map(department => {
+                                            return (
+                                                <MenuItem  value= {department}>
+                                                    {department}
+                                            </MenuItem>
+                                            )}
+                                        ))
+                                })): null
+                                }
                                 </TextField>
                             </div>
                         </div>

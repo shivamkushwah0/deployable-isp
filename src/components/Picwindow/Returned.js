@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import './Picwindow.css'
 import {Link} from 'react-router-dom'
+import NothingHere from '../extras/nothingHere';
 export default class Returned extends Component {
     constructor(props){
         super();
@@ -47,9 +48,9 @@ export default class Returned extends Component {
             <div>
                  <div className="container margintop">
                     
-                    <table className="table table-striped">
+                 { this.state.returned.length !== 0 ?  (<table className="table table-striped">
                     <thead>
-                        <tr>
+                    <tr>
                             <th>Applicant Name</th>
                             <th>Department</th>
                             <th>Email</th>
@@ -59,9 +60,12 @@ export default class Returned extends Component {
                         </tr>
                     </thead>
                         <tbody>
-                        <RenderApplicants />
+                        < RenderApplicants/>
                         </tbody>
-                    </table>
+                    </table>)
+                    : 
+                    (<NothingHere />)
+                    }
                     </div>
                     
                     
