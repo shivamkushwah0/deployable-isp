@@ -56,7 +56,7 @@ export default function Refree(props) {
                         onChange={event=>props.handleChangeInput(index,event)}>
 
                         </TextField>
-                        <TextField onBlur={()=>{setBlurEmail(true)}}
+                        <TextField onBlur={()=>{setBlurEmail(true); props.setError(!isEmail(inputField.email))}}
                         name="email"
                         label="Email Id"
                         value={inputField.email}

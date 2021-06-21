@@ -19,7 +19,7 @@ export default function Upload(props) {
     }
     return (
         <div>
-            <h1>Upload the following Documents</h1>
+            <h1>Upload the following Documents ( Note : Documents should be in zip format)</h1>
             <div className="row">
             <div className="col-md-4 p-5">
             <div className="row">

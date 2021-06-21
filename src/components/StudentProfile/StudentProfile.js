@@ -46,7 +46,7 @@ export default function StudentProfile(props) {
         .then(data => {
              console.log(data)
              console.log("the application is forwarded");
-             window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+             window.location.href="https://iitp-isa.netlify.app//picwindow/"+props.match.params.aid;
         })
         .catch(err => console.log(err))
         
@@ -65,7 +65,7 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+            window.location.href="https://iitp-isa.netlify.app//picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
@@ -83,14 +83,15 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+            window.location.href="https://iitp-isa.netlify.app//picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
     return (
         <div>
             <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
-                <button className="pic_btn" onClick={()=>{window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid}}>Home</button>
+                <Link to={`/picwindow/${props.match.params.aid}`}><button className="pic_btn"> Back</button></Link>
+                
             </div>
            {user.applicationStatus != undefined && user.applicationStatus =="Submitted" ? ( <div className="row" style={{float:"right",marginTop:"20px",marginRight:"10px"}}>
                 <button onClick={handleForward} className="pic_btn">Forward</button>
@@ -373,6 +374,37 @@ export default function StudentProfile(props) {
             
             }    
         </Container>) : null}
+        {
+            (user.statementOfPurpose!=undefined) ?
+            (
+                <Container>
+                    <h1 className="my-5">Statement of Purpose</h1>
+                    <form>
+                
+                    <div>
+                        <p className="para_profile" name="statement">{user.statementOfPurpose}</p>
+                        <br/>
+                    </div>
+                </form>
+                </Container>
+            ) : 
+            null }
+            {
+            (user.publications!=undefined) ?
+            (
+                <Container>
+                    <h1 className="my-5">Publications</h1>
+                    
+                    {user.publications.map((publication)=>(<form>
+                
+                    <div>
+                        <p className="para_profile" name="statement">{publication}</p>
+                        <br/>
+                    </div>
+                </form>))}
+                </Container>
+            ) : 
+            null }
         <Container>
             <h1>Uploaded Documents</h1>
             <div className="row">

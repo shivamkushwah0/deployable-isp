@@ -1,5 +1,6 @@
 import React , {useEffect , useState} from "react";
 import {Link} from 'react-router-dom'
+import NothingHere from '../extras/nothingHere'
 export default function AcadsecAccepted(props){
 
     const [accepted , setAccepted] =  useState([]);
@@ -50,6 +51,7 @@ export default function AcadsecAccepted(props){
                 <td>{user.contactDetails.email}</td>
                 <td><a target="blank" href={link}><i className="fa fa-download"></i></a></td>
                 <td>Online</td>
+                <td>{user.applicationStatus}</td>
             </tr>
             )
         })
@@ -64,20 +66,21 @@ export default function AcadsecAccepted(props){
                 <td>{user.email}</td>
                 <td><a target="blank" href={link}><i className="fa fa-download"></i></a></td>
                 <td>{user.platform}</td>
+                <td>{user.applicationStatus}</td>
             </tr>
             )
         })
     }
     return (
         <div className="margintop">
-            <table className="table table-striped">
+            { (accepted.length || govtApplicants.length) ? <table className="table table-striped">
                     <thead>
                     <tr>
                             <th>Applicant Name</th>
                             <th>Email</th>
                             <th>Offer Letter Download</th>
                             <th>Platform</th>
-                           
+                            <th>Status</th>
                         </tr>
                     </thead>
                         <tbody>
@@ -86,7 +89,7 @@ export default function AcadsecAccepted(props){
                         <br />
                         <RenderGovtApplicants />
                         </tbody>
-                    </table>
+                    </table> : <NothingHere /> }
         </div>
     )
 }

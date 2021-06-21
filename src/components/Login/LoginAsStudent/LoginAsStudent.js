@@ -46,7 +46,7 @@ const LoginAsStudent = () => {
             .then(data => {
                 console.log(data);
                 if(data._id!=undefined)
-                window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+data._id;
+                window.location.href="https://iitp-isa.netlify.app//stumyprofile/"+data._id;
                 else {alert("Invalid Credentials, please try again")
                 setPassword('');
                 }

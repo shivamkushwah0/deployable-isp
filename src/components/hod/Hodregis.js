@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import NothingHere from "../extras/nothingHere"
 
 import {Link} from 'react-router-dom';
 
@@ -46,7 +46,7 @@ export default class Registered extends Component {
                             <td>{applicant.name}</td>
                             <td>{applicant.department}</td>
                             <td>{applicant.userName}</td>
-                            <td><i className="fa fa-download"></i></td>
+                            <td>{applicant.applicationStatus}</td>
                             <td><Link to={`${link}`}><i className="fa fa-user"> view profile</i></Link></td>
                     </tr>
                     
@@ -59,19 +59,21 @@ export default class Registered extends Component {
             <div>
                 <div className="container margintop">
                     
-                    <table className="table table-striped">
+                {this.state.registered.length ?  <table className="table table-striped">
                     <thead>
-                        <tr>
+                    <tr>
                             <th>Applicant Name</th>
                             <th>Department</th>
                             <th>Email</th>
+                            <th>Status</th>
+                            <th>Action</th>
                            
                         </tr>
                     </thead>
                         <tbody>
                         <RenderApplicants />
                         </tbody>
-                    </table>
+                    </table> : <NothingHere /> }
                     </div>
                 </div> 
             

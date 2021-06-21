@@ -2,7 +2,7 @@ import React , {useState} from 'react'
 import logo from '../Login/logo.png'
 import '../StudentMyProfile/StudentMyProfile.css';
 import {Link} from 'react-router-dom'
-export default function Picreset() {
+export default function Picreset(props) {
 
     const [oldPassword , setOldPassword] = useState('');
     const [newPassword , setNewPassword] = useState('');
@@ -25,7 +25,7 @@ export default function Picreset() {
             if(res.ok)
             alert("Password Changed Successfully")
             return res.json()})
-        .then(data => console.log(data))
+        .then(data => {console.log(data); props.toHome() })
         .catch(err=>console.log(err))
         }
         else alert("Confirm Password and New Password should match")
@@ -41,8 +41,8 @@ export default function Picreset() {
                             <img src={logo} alt=""/>
                         </div>
                         <div className="name">
-                            <h1>Welcome , Saransh Jain</h1>
-                            <h3>Admin</h3>
+                            <h1>Welcome , {props.user.name}</h1>
+                            <h3>Admin Portal</h3>
                         </div>
                     </div>
                 </div>

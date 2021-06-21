@@ -23,7 +23,10 @@ export default function Academics(props) {
     const isScore = (score) => {
     const validScore = RegExp(/^[0-9]*$/i)
     return validScore.test(score)
-}
+    }
+    const isCGPA = (cgpa) => {
+        return (!isNaN(cgpa))
+    }
     return (
         <Container>
             <h1 className="my-5">Academic Qualifications</h1>
@@ -55,7 +58,7 @@ export default function Academics(props) {
 
                         </TextField>
 
-                        <TextField onBlur={()=>{setBlurNum({...blurNum , year:true })}}
+                        <TextField onBlur={()=>{setBlurNum({...blurNum , year:true }); props.setError(!isScore(inputField.year))}}
                         name="year"
                         label="year"
                         value={inputField.year}
@@ -64,7 +67,7 @@ export default function Academics(props) {
                         </TextField>
                        
                                
-                        <TextField onBlur={()=>{setBlurNum({...blurNum , cgpa:true })}}
+                        <TextField onBlur={()=>{setBlurNum({...blurNum , cgpa:true }); props.setError(!isCGPA(inputField.percentage)) }}
                         name="percentage"
                         label="Percentage/CGPA/CPI"
                         value={inputField.percentage}
@@ -78,7 +81,7 @@ export default function Academics(props) {
                                 }
                                 
                                 {
-                                    isScore(inputField.percentage) || !blurNum.cgpa ? null : (<> <br /> <span className="text-red">Please enter a valid percentage or CGPA without sign</span></>)
+                                    isCGPA(inputField.percentage) || !blurNum.cgpa ? null : (<> <br /> <span className="text-red">Please enter a valid percentage or CGPA without sign</span></>)
                                 }
                         <br/>
                       { (index >0) &&

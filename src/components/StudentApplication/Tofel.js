@@ -24,7 +24,7 @@ export default function Tofel(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>YEAR</Label> 
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , year:true })}} className="textfield" name="year" value={inputField.year} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , year:true }); props.setError(!isScore(inputField.year))}} className="textfield" name="year" value={inputField.year} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.year) || !blurScore.year ? null : (<span className="text-red">Please enter a valid year</span>)
@@ -39,7 +39,7 @@ export default function Tofel(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>LISTENING SCORE</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , lsScore:true })}} className="textfield" name="ls" value={inputField.ls} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , lsScore:true }); props.setError(!isScore(inputField.ls))}} className="textfield" name="ls" value={inputField.ls} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.ls) || !blurScore.lsScore ? null : (<span className="text-red">Please enter a valid score</span>)
@@ -50,7 +50,7 @@ export default function Tofel(props) {
                             
                             <div className="col-sm-6 text-center">
                             <Label>READING SCORE</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , rsScore:true })}} className="textfield" name="rs" value={inputField.rs} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , rsScore:true }); props.setError(!isScore(inputField.rs))}} className="textfield" name="rs" value={inputField.rs} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.rs) || !blurScore.rsScore ? null : (<span className="text-red">Please enter a valid score</span>)
@@ -58,7 +58,7 @@ export default function Tofel(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>SPEAKING SCORE</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , ssScore:true })}} className="textfield" name="ss" value={inputField.ss} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , ssScore:true }); props.setError(!isScore(inputField.ss))}} className="textfield" name="ss" value={inputField.ss} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.ss) || !blurScore.ssScore ? null : (<span className="text-red">Please enter a valid score</span>)
@@ -68,7 +68,7 @@ export default function Tofel(props) {
                 <div className="row">
                             <div className="col-sm-6 text-center">
                             <Label>Writing Score</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , wsScore:true })}} className="textfield" name="ws" value={inputField.ws} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , wsScore:true }); props.setError(!isScore(inputField.ws))}} className="textfield" name="ws" value={inputField.ws} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.ws) || !blurScore.wsScore ? null : (<span className="text-red">Please enter a valid score</span>)
@@ -76,7 +76,7 @@ export default function Tofel(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>Test Score</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , tsScore:true })}} className="textfield" name="ts" value={inputField.ts} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , tsScore:true }); props.setError(!isScore(inputField.ts))}} className="textfield" name="ts" value={inputField.ts} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.ts) || !blurScore.tsScore ? null : (<span className="text-red">Please enter a valid score</span>)

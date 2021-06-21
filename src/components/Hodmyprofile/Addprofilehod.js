@@ -1,6 +1,7 @@
 import React , {useState} from 'react'
 import logo from '../Login/logo.png'
 import '../StudentMyProfile/StudentMyProfile.css';
+import {Link} from 'react-router-dom';
 export default function Addprofilehod(props) {
     const [name, SetName] = useState('');
     const [email , SetEmail] = useState('');
@@ -41,7 +42,10 @@ export default function Addprofilehod(props) {
         .then(data => {
             console.log(data);
             if(data.details)
-            alert("The following department head has been added " + data );
+            {
+                alert("The following department head has been added " + data );
+                window.location.href="https://iitp-isa.netlify.app//picmyprofile/"+props.match.params.id;            
+            }
             else alert("Something went wrong, please try again");
         })
         .catch(err => {
@@ -86,7 +90,7 @@ export default function Addprofilehod(props) {
                         </div>
                     </div>
                     <div className="text-center">
-                    <button className="pic_btn" onClick={()=>{window.location.href="https://iitp-isa.netlify.app/picmyprofile/"+props.match.params.id}}>Back</button>
+                    <Link to={`/picmyprofile/${props.match.params.id}`} ><button className="pic_btn" >Back</button></Link>
                     </div>
                 </div>  
             </div>

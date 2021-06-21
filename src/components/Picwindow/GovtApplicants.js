@@ -1,9 +1,9 @@
-import React , {useState , useEffect} from 'react';
-import NothingHere from '../extras/nothingHere'
-export default function GovtForwarded (props) {
-    const [applicants, setApplicants] = useState([]);     
+import React,{useEffect , useState} from 'react';
+
+export default function GovtApplicants (props) {
+    const [applicants, setApplicants] = useState([]); 
     useEffect(()=>{
-        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/forwardedApplicants/'+props.hid;
+        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/govtApplications/applicants';
         console.log(address);
         fetch(address , {
             method : 'get'
@@ -16,6 +16,9 @@ export default function GovtForwarded (props) {
         .then(data => {
             console.log(data);
             setApplicants(data.Applicants);
+        })
+        .catch(err => {
+            alert("Someting went wrong, please try again later");
         })
     },[])
 
@@ -40,22 +43,22 @@ export default function GovtForwarded (props) {
     }
 
     return (
+        
         <div className="margintop">
-            {applicants.length ?  <table className="table table-striped">
+            <table className="table table-striped">
                     <thead>
                         <tr>
-                        <th>Applicant Name</th>
-                        <th>Platform</th>
-                        <th>Email</th>
-                        <th>Download Files</th>
-                        <th>Status</th>
-                           
+                            <th>Applicant Name</th>
+                            <th>Platform</th>
+                            <th>Email</th>
+                            <th>Download Files</th>
+                            <th>Status</th>
                         </tr>
                     </thead>
                         <tbody>
                             <RenderApplicants />
                         </tbody>
-                    </table> : <NothingHere />}
+                    </table>
         </div>
     )
-} 
+}

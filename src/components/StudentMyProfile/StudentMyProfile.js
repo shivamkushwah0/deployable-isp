@@ -89,7 +89,7 @@ fetch(address , {
                 )
                 :home === false && status===false && pass && log === false ?
                 (   <>
-                    <ChangePassword data={data.applicantDetails}/>
+                    <ChangePassword data={data.applicantDetails} toHome={funchome}/>
                     
                     </>
                 )

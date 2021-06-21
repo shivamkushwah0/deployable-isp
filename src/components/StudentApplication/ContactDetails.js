@@ -38,19 +38,19 @@ export default function ContactDetails(props) {
                         <div className="row">
                         <div className="col-sm-6 text-center">
                             <Label>Phone number<span className="text-red">*</span></Label>
-                                <TextField onBlur={()=>{setBlurNum(true)}} className="textfield" name="phonenum" value={inputField.phonenum} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurNum(true); props.setError(!isNum(inputField.phonenum))}} className="textfield" name="phonenum" value={inputField.phonenum} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     console.log(isNum(inputField.phonenum))
                                 }
                                 {
-                                    isNum(inputField.phonenum) || !blurNum ? null : (<span className="text-red">Please enter a valid phone number containing only 10 digits</span>)
+                                    isNum(inputField.phonenum) || !blurNum ? null : (<span className="text-red">Please enter a valid phone number containing only 10 digits</span>) 
                                 }
 
                             </div>
                             <div className="col-sm-6 text-center">
                             <Label>Email Id<span className="text-red">*</span></Label>
-                                <TextField onBlur={()=>{setBlurEmail(true)}} className="textfield" type="email" name="email" value={inputField.email} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurEmail(true); props.setError(!isEmail(inputField.email))}} className="textfield" type="email" name="email" value={inputField.email} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isEmail(inputField.email) || !blurEmail ? null : (<span className="text-red">Please enter a valid email id</span>)
