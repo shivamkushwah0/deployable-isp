@@ -140,8 +140,7 @@ export default function Picmyprofile(props) {
         setmanagehod(true);
     
     }
-     return (
-        <>
+     return ( <>
     <div className="container text-center margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
@@ -267,8 +266,6 @@ export default function Picmyprofile(props) {
                 <br />
                 <button onClick={()=>{setModal(false)}} type='btn' className="active tab_btn pic_btn float-right">Close</button>
             </Modal>
-
-            
             </>
            
     )
