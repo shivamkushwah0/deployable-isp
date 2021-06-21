@@ -46,6 +46,11 @@ const SignupAsStudent = (props) => {
         console.log(emailID)
         console.log(password)
         console.log(phone)
+        if(firstName.length===0 || lastName.length===0 || emailID.length===0 || password.length===0 || phone.length===0)
+        {
+            alert("Please fill the required fields");
+            return ;
+        }
         fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/registration', {
             method: "post",
             headers: {
