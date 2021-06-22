@@ -28,7 +28,7 @@ export default function Home(props) {
                             </div>
                             <div>
                                 
-                                {!props.data?null:props.data.applicationStatus==='Not Submitted' || props.data.applicationStatus==='Returned' || props.data.applicationStatus==='Submitted'  ? <Button onClick ={()=>{window.location.href = "https://iitp-isa.netlify.app//stuinfo/"+props.data._id}} >Submit or Edit Application</Button> : null }
+                                {!props.data?null:props.data.applicationStatus==='Not Submitted' || props.data.applicationStatus==='Returned' || props.data.applicationStatus==='Submitted'  ? <Button onClick ={()=>{window.location.href = "https://iitp-isa.netlify.app/stuinfo/"+props.data._id}} >Submit or Edit Application</Button> : null }
                             </div>
                         </div>
                     </div>

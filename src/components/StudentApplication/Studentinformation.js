@@ -295,7 +295,7 @@ export default function Studentinformation(props) {
         .then(res => {
             console.log(res)
             const setback = () => {
-                window.location.href="https://iitp-isa.netlify.app//stumyprofile/"+props.match.params.id;
+                window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+props.match.params.id;
                 alert("Your form has been submitted, Please keep logging to know the status of the form, Thankyou");
             }
 
