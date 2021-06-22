@@ -15,6 +15,7 @@
     "autoprefixer": "^10.2.6",
     "axios": "^0.21.1",
     "bootstrap": "^3.4.1",
+    "browserlist": "^1.0.1",
     "font-awesome": "^4.7.0",
     "react": "^17.0.1",
     "react-bootstrap": "^1.5.1",
