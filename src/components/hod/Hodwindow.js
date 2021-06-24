@@ -108,7 +108,7 @@ export default function Picwindow(props) {
                 )  
                 :null
             }
-            <div className="margintop">
+            <div className="margintop text-center">
                 <Link to={`/hodmyprofile/${props.match.params.id}`}><button className="active tab_btn pic_btn">My Profile</button></Link>
             
             </div>

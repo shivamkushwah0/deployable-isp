@@ -257,7 +257,7 @@ export default function Picwindow(props) {
                 )  
                 :null
             }
-            <div className="row text-center">
+            <div className="text-center">
                     <button className="pic_btn" onClick={()=>{setModalOpen(true);}}>Government Application</button>
                     <button className="pic_btn" onClick={()=>{setPlatModal(true);}}>Add/Remove Platforms</button>
                     </div>

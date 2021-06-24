@@ -82,7 +82,7 @@ export default function AddApplicant (props) {
     return(
         <Container className="margintop">
             <Row>
-                <Col md={12} className=" text-center offset-md-3">
+                <Col md={12} className=" text-center">
                 <h3>Enter Applicant Details</h3>
                 </Col>
                 <Col md={3} className="text-center mt-3">
