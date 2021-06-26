@@ -58,8 +58,7 @@ export default function Picmyprofile(props) {
         console.log([...details.programs , programme]);
         fetch(address , {
             method : 'PATCH',
-            headers: {                              
-                "Access-Control-Allow-Origin": "*",                             
+            headers: {                            
                 "Content-Type": "application/json"  
               } ,
             body : JSON.stringify({ programs : [...details.programs , programme] })
@@ -93,8 +92,7 @@ export default function Picmyprofile(props) {
          console.log(c);
         fetch(address , {
             method : "patch",
-            headers: { 
-                "Access-Control-Allow-Origin": "*",                             
+            headers: {                             
                 "Content-Type": "application/json" 
               } ,
               
