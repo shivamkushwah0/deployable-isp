@@ -204,7 +204,7 @@ export default function Picmyprofile(props) {
             <Modal isOpen={isOpen} className="modal_stu container">
                 {
                     mode==='programme' ?  
-                    (<div className="row">
+                    (<div className="row text-center">
                     <TextField
                         fullWidth
                         name="programme"
@@ -213,12 +213,12 @@ export default function Picmyprofile(props) {
                         variant="filled"
                         onChange={e=>{setProgramme(e.target.value)}} > </TextField>
                         <br/>
-                        <button type='btn' className="active tab_btn pic_btn" onClick={()=>{addProgramme()}}>Add Programme</button>
+                        <button type='btn' className="active tab_btn pic_btn mt-4" onClick={()=>{addProgramme()}}>Add Programme</button>
                         <br/>
                         </div>
                         ) :
                     (
-                        <div className="row">
+                        <div className="row text-center">
                         <TextField
                         fullWidth
                         select
@@ -259,7 +259,7 @@ export default function Picmyprofile(props) {
                             }
                         </TextField>
                         <br/>
-                        <button type='btn' className="active tab_btn pic_btn" onClick={addDepartment}>Add Department</button>
+                        <button type='btn' className="active tab_btn pic_btn mt-4" onClick={addDepartment}>Add Department</button>
                         </div>
                     ) 
                 }
