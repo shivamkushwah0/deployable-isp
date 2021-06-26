@@ -54,6 +54,12 @@ export default function Picmyprofile(props) {
 
     },[])
     const addProgramme = () => {
+
+        if(programme.length()===0)
+        {
+            alert("No fields can be empty, make sure to add the required fields");
+            return ;
+        }
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programs";
         console.log([...details.programs , programme]);
         fetch(address , {
@@ -77,20 +83,33 @@ export default function Picmyprofile(props) {
     }
 
     const addDepartment = () => {
+        if(!department.department.length() || !department.programme.length())
+        {
+            alert("Please enter the information first");
+            return ;
+        }
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programsAndDepartments";
          const b = details.programAndDepartments;
-         const c=b.map((element)=>{
-            if(element.program === department.programme)
-            {
+         var flag = false;
+         var newProgramme = b.map((element) => {
+             if(element.program === department.programme)
+             {
+                flag = true;
                 var a = [...element.courses , department.department]
                 a = a.filter(function(item, pos) {
                     return a.indexOf(item) == pos;
                 })
                 element = {...element , courses : a }
-            }
-            return element;
-         })
-         console.log(c);
+                
+             }
+             return element;
+         });
+         if(!flag)
+         newProgramme = [...details.programAndDepartments, [{
+             courses : [department.department],
+             program : department.programme 
+         }] ]
+         console.log(newProgramme);
         fetch(address , {
             method : "patch",
             headers: {                             
@@ -98,7 +117,7 @@ export default function Picmyprofile(props) {
               } ,
               
             body : JSON.stringify({
-                programsAndDepartments : c
+                programsAndDepartments : newProgramme
             })
         })
         .then(res => { if(res.ok)
