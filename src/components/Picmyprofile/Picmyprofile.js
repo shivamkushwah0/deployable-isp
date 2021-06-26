@@ -107,8 +107,9 @@ export default function Picmyprofile(props) {
                 return  c;
              }
          });
+
          if(!flag)
-         newProgramme = [...details.programAndDepartments, {
+         newProgramme = [...newProgramme, {
              courses : [department.department],
              program : department.programme 
          }] 
