@@ -204,7 +204,7 @@ export default function Picmyprofile(props) {
             <Modal isOpen={isOpen} className="modal_stu container">
                 {
                     mode==='programme' ?  
-                    (<div>
+                    (<div className="row">
                     <TextField
                         fullWidth
                         name="programme"
@@ -218,7 +218,7 @@ export default function Picmyprofile(props) {
                         </div>
                         ) :
                     (
-                        <div>
+                        <div className="row">
                         <TextField
                         fullWidth
                         select
