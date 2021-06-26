@@ -57,7 +57,7 @@ export default class ConfirmEmail extends React.Component {
     //   alert("Could not confirm Email.\n Consult Admin");
     // });
     fetch("https://iitp-isa-portal-backend.herokuapp.com/backend/confirmEmail",{
-      method : "PATCH",
+      method : "POST",
       headers : {
         "Content-Type": "application/json"
       },
