@@ -55,7 +55,7 @@ export default function Picmyprofile(props) {
     },[])
     const addProgramme = () => {
 
-        if(programme.length()===0)
+        if(programme.length===0)
         {
             alert("No fields can be empty, make sure to add the required fields");
             return ;
@@ -83,9 +83,9 @@ export default function Picmyprofile(props) {
     }
 
     const addDepartment = () => {
-        if(!department.department.length() || !department.programme.length())
+        if(department.department.length===0 || department.programme.length===0)
         {
-            alert("Please enter the information first");
+            alert("No fields can be empty, make sure to add the required fields");
             return ;
         }
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programsAndDepartments";
