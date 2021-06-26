@@ -99,12 +99,13 @@ export default function Picmyprofile(props) {
                 a = a.filter(function(item, pos) {
                     return a.indexOf(item) == pos;
                 })
-                element = {courses : a, program : element.program}
+                var c = {courses : a, program : element.program}; 
+                return c;
              }
              else {
-                 element = {courses : element.courses , program : element.program} 
+                 var c = {courses : element.courses , program : element.program}; 
+                return  c;
              }
-             return element;
          });
          if(!flag)
          newProgramme = [...details.programAndDepartments, {
