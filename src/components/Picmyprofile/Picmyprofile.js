@@ -78,16 +78,16 @@ export default function Picmyprofile(props) {
     }
 
     const addDepartment = () => {
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/setProgramsAndDepartments";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programsAndDepartments";
          const b = details.programAndDepartments;
          const c=b.map((element)=>{
             if(element.program === department.programme)
             {
-                var a = [...element.course , department.department]
+                var a = [...element.courses , department.department]
                 a = a.filter(function(item, pos) {
                     return a.indexOf(item) == pos;
                 })
-                element = {...element , course : a }
+                element = {...element , courses : a }
             }
             return element;
          })
