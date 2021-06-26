@@ -60,8 +60,7 @@ export default function Picmyprofile(props) {
             method : 'PATCH',
             headers: {                              
                 "Access-Control-Allow-Origin": "*",                             
-                "Content-Type": "application/json" ,
-                "mode" : "no-cors"  
+                "Content-Type": "application/json"  
               } ,
             body : JSON.stringify({ programs : [...details.programs , programme] })
         })
@@ -96,8 +95,7 @@ export default function Picmyprofile(props) {
             method : "patch",
             headers: { 
                 "Access-Control-Allow-Origin": "*",                             
-                "Content-Type": "application/json" ,
-                "mode" : "no-cors" 
+                "Content-Type": "application/json" 
               } ,
               
             body : JSON.stringify({
@@ -204,7 +202,7 @@ export default function Picmyprofile(props) {
             <Modal isOpen={isOpen} className="modal_stu container">
                 {
                     mode==='programme' ?  
-                    (<div className="text-center" style={{width:100}}>
+                    (<div className="text-center" style={{width:"100%"}}>
                     <TextField
                         fullWidth
                         name="programme"
@@ -218,7 +216,7 @@ export default function Picmyprofile(props) {
                         </div>
                         ) :
                     (
-                        <div className="text-center" style={{width:100}}>
+                        <div className="text-center" style={{width:"100%"}}>
                         <TextField
                         fullWidth
                         select
