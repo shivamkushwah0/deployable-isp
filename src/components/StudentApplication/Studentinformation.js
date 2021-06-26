@@ -569,7 +569,7 @@ export default function Studentinformation(props) {
                                 (details.programAndDepartments.map(programAndDepartments => {
                                     if(programAndDepartments.program===inputField.program)
                                     return (
-                                        programAndDepartments.course.map(department => {
+                                        programAndDepartments.courses.map(department => {
                                             return (
                                                 <MenuItem  value= {department}>
                                                     {department}
