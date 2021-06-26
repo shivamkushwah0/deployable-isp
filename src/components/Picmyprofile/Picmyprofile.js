@@ -105,10 +105,10 @@ export default function Picmyprofile(props) {
              return element;
          });
          if(!flag)
-         newProgramme = [...details.programAndDepartments, [{
+         newProgramme = [...details.programAndDepartments, {
              courses : [department.department],
              program : department.programme 
-         }] ]
+         }] 
          console.log(newProgramme);
         fetch(address , {
             method : "patch",
