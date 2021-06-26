@@ -99,7 +99,7 @@ export default function Picmyprofile(props) {
               } ,
               
             body : JSON.stringify({
-                programsWithDepartments : c
+                programsAndDepartments : c
             })
         })
         .then(res => { if(res.ok)
