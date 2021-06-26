@@ -71,6 +71,7 @@ export default function Picmyprofile(props) {
         .then(data => {
             console.log(data);
             setModal(false);
+            alert("Program "+ programme+" has been added, please refresh to see the changes");
         })
         .catch(err=>console.log(err))
     }
@@ -105,7 +106,8 @@ export default function Picmyprofile(props) {
             else alert("Please check your internet connection and try again")
         })
         .then(data => {console.log(data);
-        alert("Department " + department.department + " has been added in the "+department.programme+" programme");
+        if(data!==undefined)
+            alert("Department " + department.department + " has been added in the "+department.programme+" programme");
         setModal(false);
         })
     }
