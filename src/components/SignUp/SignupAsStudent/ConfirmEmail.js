@@ -62,7 +62,7 @@ export default class ConfirmEmail extends React.Component {
         "Content-Type": "application/json"
       },
       body : JSON.stringify({
-        token : payload
+        token : this.state.token
       })
     })
     .then((res)=> res.json())
