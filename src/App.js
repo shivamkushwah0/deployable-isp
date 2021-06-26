@@ -21,7 +21,7 @@ import Addprofilehod from './components/Hodmyprofile/Addprofilehod';
 import Hodhome from './components/Hodmyprofile/Hodhome';
 import userResetPassword from './components/Login/userResetPassword'
 import resetPassword from './components/Login/resetPassword'
-import ConfirmEmail from './components/SignUp/SignupAsStudent/ConfirmEmail/'
+import ConfirmEmail from './components/SignUp/SignupAsStudent/ConfirmEmail'
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 const App =() => {
