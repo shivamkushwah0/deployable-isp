@@ -57,7 +57,7 @@ export default class ConfirmEmail extends React.Component {
     //   alert("Could not confirm Email.\n Consult Admin");
     // });
     fetch("https://iitp-isa-portal-backend.herokuapp.com/backend/confirmEmail",{
-      method : "POST",
+      method : "post",
       headers : {
         "Content-Type": "application/json"
       },
@@ -65,13 +65,21 @@ export default class ConfirmEmail extends React.Component {
         token : this.state.token
       })
     })
-    .then((res)=> res.json())
+    .then((res)=>{
+      if(res.ok)
+     return  res.json()
+      else alert("Something went wrong, please try again");
+    }
+     )
     .then(data => {
       console.log(data);
       alert("Your account have been activated, login now to proceed with your application")
+      window.location.href = "https://iitp-isa.netlify.app/login"
     })
-    .catch(err=> alert(err));
-    window.location.href = "https://iitp-isa.netlify.app/login"
+    .catch(err=>{
+      console.log(err) 
+      alert(err)});
+    
   }
   render() {
 
