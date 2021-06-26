@@ -93,7 +93,7 @@ export default function StudentProfile(props) {
                 <Link to={`/picwindow/${props.match.params.aid}`}><button className="pic_btn"> Back</button></Link>
                 
             </div>
-           {user.applicationStatus != undefined && user.applicationStatus =="Submitted" ? ( <div className="row" style={{float:"right",marginTop:"20px",marginRight:"10px"}}>
+           {user.applicationStatus != undefined && user.applicationStatus =="Submitted" ? ( <div className="row" style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
                 <button onClick={handleForward} className="pic_btn">Forward</button>
                 <button onClick={()=>setReturnModal(true)} className="pic_btn">Return</button>
                 <button className="pic_btn" onClick={()=>setModalIsOpen(true)}>Reject</button>
