@@ -113,9 +113,10 @@ export default function Picmyprofile(props) {
              courses : [department.department],
              program : department.programme 
          }] 
+
          console.log(newProgramme);
         fetch(address , {
-            method : "patch",
+            method : "PATCH",
             headers: {                             
                 "Content-Type": "application/json" 
               } ,
