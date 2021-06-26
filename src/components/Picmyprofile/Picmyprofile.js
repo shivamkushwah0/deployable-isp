@@ -99,8 +99,10 @@ export default function Picmyprofile(props) {
                 a = a.filter(function(item, pos) {
                     return a.indexOf(item) == pos;
                 })
-                element = {...element , courses : a }
-                
+                element = {courses : a, program : element.program}
+             }
+             else {
+                 element = {courses : element.courses , program : element.program} 
              }
              return element;
          });
