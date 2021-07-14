@@ -74,7 +74,7 @@ export default class ConfirmEmail extends React.Component {
     .then(data => {
       console.log(data);
       alert("Your account have been activated, login now to proceed with your application")
-      window.location.href = "http://localhost:3000/login"
+      window.location.href = "https://iitp-isa.netlify.app/login"
     })
     .catch(err=>{
       console.log(err) 

@@ -44,7 +44,7 @@ export default function Addprofilehod(props) {
             if(data.details)
             {
                 alert("The following department head has been added " + data );
-                window.location.href="http://localhost:3000/picmyprofile/"+props.match.params.id;            
+                window.location.href="https://iitp-isa.netlify.app/picmyprofile/"+props.match.params.id;            
             }
             else alert("Something went wrong, please try again");
         })
