@@ -66,13 +66,13 @@ fetch(address , {
                     <Col md={4}>
                          {
                               home ? 
-                              <button onClick={funchome} type='btn' className="active tab_btn pic_btn">Home</button> : 
+                              <button onClick={funchome} type='btn' className="active tab_btn pic_btn_active">Home</button> : 
                               <button onClick={funchome} type='btn' className="pic_btn">Home</button>
                          }
                       
                     </Col>
                     <Col md={4}>
-                    <button onClick={funcpass} type='btn' className="pic_btn">Reset Password</button>
+                    <button onClick={funcpass} type='btn' className={pass ? "pic_btn_active" : "pic_btn" }>Reset Password</button>
                     </Col>
                     <Col md={4}>
                    <Link to="/login"> <button onClick={funclog} type='btn' className="pic_btn">Logout</button></Link>

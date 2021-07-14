@@ -2,6 +2,7 @@
   button.pic_btn{
       padding: 10px 20px !important;
       width: 150px !important;
+      height:65px !important;
       margin: 3px 10px !important;
       background-color: white !important;
       outline: none;
@@ -14,7 +15,11 @@
       color: white !important;
       outline: none;
   }
-  button.pic_btn:active{
+  button.pic_btn_active {
+    padding: 10px 20px !important;
+      width: 150px !important;
+      height:65px !important;
+      margin: 3px 10px !important;
     background-color: blue !important;
     color: white !important;
     outline: none;

@@ -1,9 +1,11 @@
-import React ,{useEffect,useState} from 'react'
+import React ,{useEffect,useState , useRef} from 'react'
 import './StudentProfile.css'
 import Container from '@material-ui/core/Container'
 import Label from '@material-ui/core/InputLabel'
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
+import PDF from "../PdfGenerate/PDF"
+import {useReactToPrint} from "react-to-print";
 export default function StudentProfile(props) {
     const [modalIsOpen,setModalIsOpen] =useState(false)
     const [user , setUser] = useState({});
@@ -46,7 +48,7 @@ export default function StudentProfile(props) {
         .then(data => {
              console.log(data)
              console.log("the application is forwarded");
-             window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+             window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
         .catch(err => console.log(err))
         
@@ -65,7 +67,7 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+            window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
@@ -83,21 +85,31 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
+            window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
+    const componentRef = useRef();
+    const handlePrint =  useReactToPrint({
+            content : () => componentRef.current,
+    });
     return (
         <div>
             <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
                 <Link to={`/picwindow/${props.match.params.aid}`}><button className="pic_btn"> Back</button></Link>
                 
             </div>
+            <div className = "d-none">
+                { user.name ?  <PDF details = {user}  ref = {componentRef} /> : null} 
+            </div>
            {user.applicationStatus != undefined && user.applicationStatus =="Submitted" ? ( <div className="row" style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
                 <button onClick={handleForward} className="pic_btn">Forward</button>
                 <button onClick={()=>setReturnModal(true)} className="pic_btn">Return</button>
-                <button className="pic_btn" onClick={()=>setModalIsOpen(true)}>Reject</button>
             </div>):null}
+            <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
+            <button onClick={handlePrint} className="pic pic_btn">Download application <span className = "fa fa-download"></span></button>
+            </div>
+            
             <Modal isOpen={modalIsOpen} className="modal_stu" toggle={()=>{setModalIsOpen(false)}}>
             <p  className="modal_para"><strong className="mt-5 modal_text">want to reject student ?</strong></p>
             <textarea value={rejectMess} className="modal_textarea" placeholder="justify why you want to reject" onChange={(e)=>{setRejectMess(e.target.value); console.log(rejectMess)}}/>
@@ -315,6 +327,8 @@ export default function StudentProfile(props) {
                                 <p className="para_profile">{quals.year}</p>
                                 <Label>Percentage/CGPA/CPI</Label>
                                 <p className="para_profile">{quals.percentageOrCgpa}</p><br/>
+                                <Label>Out Of</Label>
+                                <p className="para_profile">{quals.outOf}</p><br/>
                              </div>
                         </form>
                         <hr width="75%"/>

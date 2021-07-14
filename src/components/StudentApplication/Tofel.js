@@ -16,7 +16,7 @@ export default function Tofel(props) {
         <div>
              {props.inputFields.map((inputField,index)=>(
             <div className="p-5 si_div">
-                <h1 className="text-center si_subhead">Tofel</h1>
+                <h1 className="text-center si_subhead">TOEFL (Test of English as a Foreign Language)</h1>
                 <div className="row">
                             <div className="col-sm-6 text-center">
                                 <Label>REGISTERATION NO</Label>

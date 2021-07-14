@@ -36,7 +36,7 @@ export default function Edithodprofile(props) {
             if(data.status)
             {
                 alert("the given HOD profile is updated");
-                window.location.href = 'https://iitp-isa.netlify.app/seehodprofile/'+props.match.params.id
+                window.location.href = 'http://localhost:3000/seehodprofile/'+props.match.params.id
             }
         })
         .catch(err => console.log(err))

@@ -18,7 +18,7 @@ export default function Academics(props) {
     const classes=useStyles();
    //number validation
    const [blurNum , setBlurNum] = useState({
-    year : false, cgpa : false
+    year : false, cgpa : false, outof: false
     })
     const isScore = (score) => {
     const validScore = RegExp(/^[0-9]*$/i)
@@ -73,15 +73,20 @@ export default function Academics(props) {
                         value={inputField.percentage}
                         variant="filled"
                         onChange={event=>props.handleChangeInput(index,event)}>
-
                         </TextField>
-                        
+
+                        <TextField onBlur={()=>{setBlurNum({...blurNum , outof:true }); props.setError(!isCGPA(inputField.outof)) }}
+                        name="outof"
+                        label="Out Of"
+                        value={inputField.outof}
+                        variant="filled"
+                        onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 {
                                     isScore(inputField.year) || !blurNum.year ? null : (<div> <br /> <span className="text-red">Please enter a valid year</span></div>)
                                 }
                                 
                                 {
-                                    isCGPA(inputField.percentage) || !blurNum.cgpa ? null : (<div> <br /> <span className="text-red">Please enter a valid percentage or CGPA without sign</span></div>)
+                                    isCGPA(inputField.percentage) || !blurNum.cgpa ? null : (<div> <br /> <span className="text-red">Please enter a valid percentage or CGPA</span></div>)
                                 }
                         <br/>
                       { (index >0) &&

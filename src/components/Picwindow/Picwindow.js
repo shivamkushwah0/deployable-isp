@@ -201,25 +201,40 @@ export default function Picwindow(props) {
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
-                    <Col md={2}>
+                    <Col md={3}>
                          {
                               isregistered ? 
-                              <button onClick={funcRegistered} type='btn' className="active tab_btn pic_btn">Registered Students</button> : 
+                              <button onClick={funcRegistered} type='btn' className="tab_btn pic_btn_active">Registered Students</button> : 
                               <button onClick={funcRegistered} type='btn' className="pic_btn">Registered Students</button>
                          }
                       
                     </Col>
                     <Col md={3}>
-                    <button onClick={funcReturned} type='btn' className="pic_btn">Returned Students</button>
+                        {
+                            isreturned ? 
+                            <button onClick={funcReturned} type='btn' className="pic_btn_active">Returned Students</button>: 
+                            <button onClick={funcReturned} type='btn' className="pic_btn">Returned Students</button>
+                        }
+                    
+                    </Col>
+                    {/* <Col md={3}>
+                    <button onClick={funcCancelled} type='btn' className="pic_btn">Cancelled Students</button>
+                    </Col> */}
+                    <Col md={3}>
+                        {
+                            isforwarded ? 
+                            <button onClick={funcForwarded} type='btn' className="pic_btn_active">Forwarded Students</button>:
+                            <button onClick={funcForwarded} type='btn' className="pic_btn">Forwarded Students</button>
+                        }
+                    
                     </Col>
                     <Col md={3}>
-                    <button onClick={funcCancelled} type='btn' className="pic_btn">Cancelled Students</button>
-                    </Col>
-                    <Col md={2}>
-                    <button onClick={funcForwarded} type='btn' className="pic_btn">Forwarded Students</button>
-                    </Col>
-                    <Col md={2}>
-                    <button onClick={funcGovtApplicants} type='btn' className="pic_btn">Selected Governent Applicants</button>
+                        {
+                            isGovtAppOpen ?
+                            <button onClick={funcGovtApplicants} type='btn' className="pic_btn_active">Selected Governent Applicants</button>:
+                            <button onClick={funcGovtApplicants} type='btn' className="pic_btn">Selected Governent Applicants</button>
+                        }
+                   
                     </Col>
                   </Row>
                 </div>

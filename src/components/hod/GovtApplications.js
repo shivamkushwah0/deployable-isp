@@ -84,13 +84,13 @@ export default function GovtApplications (props) {
             <hr />
             <Row>
             <Col md={4}>
-                <button className="pic_btn" onClick={showapplicants}>Added Government Applicants</button>
+                <button className={ showApp ? "pic_btn_active" : "pic_btn"} onClick={showapplicants}>Added Government Applicants</button>
             </Col>
             <Col md={4}>
-            <button className="pic_btn" onClick={showforwarded}>Forwarded Government Applicants</button>
+            <button className={ showForwarded ? "pic_btn_active" : "pic_btn"} onClick={showforwarded}>Forwarded Government Applicants</button>
             </Col>
             <Col md={4}>
-            <button className="pic_btn" onClick={showaddapplicant}>Add Selected Government Applicant</button>
+            <button className={ showadd ? "pic_btn_active" : "pic_btn"} onClick={showaddapplicant}>Add Selected Government Applicant</button>
             </Col>
             </Row>
             <Row>
@@ -102,7 +102,7 @@ export default function GovtApplications (props) {
             </Row>
             <Row>
             <Col md={12} className="text-center margintop">
-            <button onClick={()=>{ShowDownApp(!(downApp))}} className="pic_btn text-center">
+            <button onClick={()=>{ShowDownApp(!(downApp))}} className={ downApp ? "pic_btn_active text-center" : "pic_btn text-center"}>
                 Download Applications
             </button>
             </Col>

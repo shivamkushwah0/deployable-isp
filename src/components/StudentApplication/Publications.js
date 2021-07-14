@@ -16,7 +16,7 @@ export const Publications = (props) => {
     const classes=useStyles();
     return (
         <div className="text-center">
-            <h1 className="py-5">Publications</h1>
+            <h1 className="py-5">Publications (Please enter the G-drive link of the pdf or the link where it is published):</h1>
             <form className={classes.root}>
                 {props.inputFields.map((inputField,index)=>(
                     <div key={index}>

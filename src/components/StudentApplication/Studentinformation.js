@@ -81,7 +81,8 @@ export default function Studentinformation(props) {
                 schoolCollege:`${data.academicQualification[i].schoolOrCollege}`,
                 universityBoard:`${data.academicQualification[i].boardOrUniversity}`,
                 year:`${data.academicQualification[i].year}`,
-                percentage:`${data.academicQualification[i].percentageOrCgpa}`}]
+                percentage:`${data.academicQualification[i].percentageOrCgpa}`, 
+                outof : `${data.academicQualification[i].outof}`}]
             }
             setAcademicQual(a);
             a=[];
@@ -181,7 +182,7 @@ export default function Studentinformation(props) {
    
     // functions and state to pass into the academics component
     const [academicQual,setAcademicQual]=useState([
-        {degreeSpecialization:'',schoolCollege:'',universityBoard:'',year:'',percentage:''},
+        {degreeSpecialization:'',schoolCollege:'',universityBoard:'',year:'',percentage:'', outof:''},
     ])
 
     const handleChangeInputAcademics=(index,event)=>{
@@ -192,7 +193,7 @@ export default function Studentinformation(props) {
         console.log(academicQual);
     }
     const handleAddFieldsAcads=()=>{
-        setAcademicQual([...academicQual,{degreeSpecialization:'',schoolCollege:'',universityBoard:'',year:'',percentage:''}])
+        setAcademicQual([...academicQual,{degreeSpecialization:'',schoolCollege:'',universityBoard:'',year:'',percentage:'', outof:''}])
     }
     const handleRemoveFieldsAcads=(index)=>{
         const values=[...academicQual];
@@ -295,7 +296,7 @@ export default function Studentinformation(props) {
         .then(res => {
             console.log(res)
             const setback = () => {
-                window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+props.match.params.id;
+                window.location.href="http://localhost:3000/stumyprofile/"+props.match.params.id;
                 alert("Your form has been submitted, Please keep logging to know the status of the form, Thankyou");
             }
 
@@ -392,7 +393,8 @@ export default function Studentinformation(props) {
                         schoolOrCollege : fields.schoolCollege,
                         boardOrUniversity : fields.universityBoard,
                         year : fields.year,
-                        percentageOrCgpa:fields.percentage
+                        percentageOrCgpa:fields.percentage,
+                        outOf: fields.outof
                     }
                     return obj;
                 }) ,
@@ -611,7 +613,9 @@ export default function Studentinformation(props) {
                 </div>
             </div>
             <div className="row text-center">
-                <h1 className = "text-center my-5">Statement of Purpose<span className="text-red">*</span></h1>
+                <h1 className = "text-center my-5">Statement of Purpose<br/>
+                (You can also add the link to the PDF for the same): 
+                <span className="text-red">*</span></h1>
                 <div className="col-md-12">
                 <TextField fullWidth
                         multiline

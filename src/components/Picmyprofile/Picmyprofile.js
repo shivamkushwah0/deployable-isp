@@ -169,19 +169,28 @@ export default function Picmyprofile(props) {
                     <Col md={3}>
                          {
                               home ? 
-                              <button onClick={funchome} type='btn' className="active tab_btn pic_btn">Home</button> : 
+                              <button onClick={funchome} type='btn' className="active tab_btn pic_btn_active">Home</button> : 
                               <button onClick={funchome} type='btn' className="pic_btn">Home</button>
                          }
                       
                     </Col>
                     <Col md={3}>
-                    <button onClick={funcpass} type='btn' className="pic_btn">reset password</button>
+                        {
+                            pass ? <button onClick={funcpass} type='btn' className="pic_btn_active">Reset Password</button> : 
+                            <button onClick={funcpass} type='btn' className="pic_btn">Reset Password</button>
+                        }
+                    
                     </Col>
                     <Col md={3}>
-                    <button onClick={funmghod} type='btn' className="pic_btn">Manage Hod</button>
+                        {
+                            managehod ? 
+                            <button onClick={funmghod} type='btn' className="pic_btn_active">Manage Hod</button>:
+                            <button onClick={funmghod} type='btn' className="pic_btn">Manage Hod</button>
+                        }
+                    
                     </Col>
                     <Col md={3}>
-                    <Link to="/login"><button onClick={funclog} type='btn' className="pic_btn">log out</button></Link>
+                    <Link to="/login"><button onClick={funclog} type='btn' className="pic_btn">Log Out</button></Link>
                     </Col>
                     
                   </Row>

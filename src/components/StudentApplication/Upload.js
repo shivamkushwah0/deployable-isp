@@ -11,6 +11,7 @@ export default function Upload(props) {
         console.log(e.target.name);
         console.log(file.size);
         console.log(file.extension);
+        if(file.extension )
         if((file.size)/1024 < 1024 )
         {
             props.onSuccess(file,e.target.name);
@@ -24,8 +25,8 @@ export default function Upload(props) {
             <div className="col-md-4 p-5">
             <div className="row">
                 <div className="form-group upload_form ">
-                    <label>Mark Sheets/certificates(from class X to Highest degree obtained/appeared)(both sides)</label>
-                    <input  name="marksheets" type="file" placeholder="Upload Drawing 1"   className="form-control " onChange={(e)=>handleChange(e)}/>
+                    <label>Mark Sheets/certificates(from class X to Highest degree obtained/appeared)(both sides) </label> 
+                    <span className="text-red">*</span> <input  name="marksheets" type="file" placeholder="Upload Drawing 1"   className="form-control " onChange={(e)=>handleChange(e)}/>
                 </div>
             </div>
             </div>

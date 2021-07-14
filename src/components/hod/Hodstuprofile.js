@@ -1,9 +1,11 @@
-import React ,{useEffect,useState} from 'react'
+import React ,{useEffect,useState,useRef} from 'react'
 import './Hod.css'
 import Container from '@material-ui/core/Container'
 import Label from '@material-ui/core/InputLabel'
 import Modal from 'react-modal'
 import {Link} from 'react-router-dom'
+import PDF from "../PdfGenerate/PDF"
+import {useReactToPrint} from "react-to-print";
 export default function StudentProfile(props) {
     const [modalIsOpen,setModalIsOpen] =useState(false)
     const [user , setUser] = useState({})
@@ -112,6 +114,10 @@ export default function StudentProfile(props) {
         console.log(err)
     })
    }
+   const componentRef = useRef();
+   const handlePrint =  useReactToPrint({
+           content : () => componentRef.current,
+   });
 
     return (
         <div>
@@ -119,12 +125,18 @@ export default function StudentProfile(props) {
                  <Link to={`/hodwindow/${props.match.params.hid}`}><button className="pic_btn">Home</button></Link>
                 
             </div>
+            <div className = "d-none">
+                { user.name ?  <PDF details = {user}  ref = {componentRef} /> : null} 
+            </div>
             { user.applicationStatus === "Forwarded" ? (
             <div className="row" style={{float:"right",marginTop:"20px",marginRight:"10px"}}>
                 
                 <button className="pic_btn" onClick={()=>setRejectModal(true)}>Reject</button>
                 <button className="pic_btn" onClick={()=>setModalIsOpen(true)}>Accept</button>
             </div>) : null}
+            <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
+            <button onClick={handlePrint} className="pic pic_btn">Download application <span className = "fa fa-download"></span></button>
+            </div>
             <Modal toggle={()=>{setModalIsOpen(false)}} isOpen={modalIsOpen} className="modal_stu">
             <p className="modal_para"><strong className="mt-5 modal_text">Upload Notesheet</strong></p>
             <input onChange={(e)=>{
@@ -282,7 +294,7 @@ export default function StudentProfile(props) {
                 <h1 className="text-center si_subhead">Tofel</h1>
                 <div className="row">
                             <div className="col-sm-6 text-center">
-                                <Label>REGISTERATION NO</Label>
+                                <Label>REGISTRATION NO</Label>
                                 <p className="textfield para_profile" name="registerno">{user.toeflScore.registrationNo}</p>
                             </div>
                             <div className="col-sm-6 text-center">
@@ -351,6 +363,8 @@ export default function StudentProfile(props) {
                                 <p className="para_profile">{quals.year}</p>
                                 <Label>Percentage/CGPA/CPI</Label>
                                 <p className="para_profile">{quals.percentageOrCgpa}</p><br/>
+                                <Label>Out Of</Label>
+                                <p className="para_profile">{quals.outOf}</p><br/>
                              </div>
                         </form>
                         <hr width="75%"/>

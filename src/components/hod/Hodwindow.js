@@ -63,20 +63,20 @@ export default function Picwindow(props) {
                     <Col md={3}>
                          {
                               isregistered ? 
-                              <button onClick={funcRegistered} type='btn' className="active tab_btn pic_btn">Registered Students</button> : 
+                              <button onClick={funcRegistered} type='btn' className="active tab_btn pic_btn_active">Registered Students</button> : 
                               <button onClick={funcRegistered} type='btn' className="pic_btn">Registered Students</button>
                          }
                       
                     </Col>
                     
                     <Col md={3}>
-                    <button onClick={funcCancelled} type='btn' className="pic_btn">Cancelled Students</button>
+                    <button onClick={funcCancelled} type='btn' className={ iscancelled ? "pic_btn_active" : "pic_btn"}>Cancelled Students</button>
                     </Col>
                     <Col md={3}>
-                    <button onClick={funcForwarded} type='btn' className="pic_btn">Forwarded Students</button>
+                    <button onClick={funcForwarded} type='btn' className={ isforwarded ? "pic_btn_active" : "pic_btn"}>Forwarded Students</button>
                     </Col>
                     <Col md={3}>
-                    <button onClick={funcGovtApplications} type="btn" className="pic_btn">Government Applications</button>
+                    <button onClick={funcGovtApplications} type="btn" className={ govtApplications ? "pic_btn_active" : "pic_btn"}>Government Applications</button>
                     </Col>
                   </Row>
                 </div>

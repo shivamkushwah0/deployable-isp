@@ -3,6 +3,7 @@ import {Container, Row, Col ,Button} from  'react-bootstrap';
 import Hodhome from './Hodhome';
 import {Link} from 'react-router-dom';
 import Resetprofilehod from './Resetprofilehod';
+import { PagesSharp } from '@material-ui/icons';
 export default function Picwindow(props) {
     const [home,sethome]=useState(true);
     const [pass,setpass]=useState(false);
@@ -33,13 +34,13 @@ export default function Picwindow(props) {
                     <Col md={4}>
                          {
                               home ? 
-                              <button onClick={funchome} type='btn' className="active tab_btn pic_btn">Home</button> : 
+                              <button onClick={funchome} type='btn' className="active tab_btn pic_btn_active">Home</button> : 
                               <button onClick={funchome} type='btn' className="pic_btn">Home</button>
                          }
                       
                     </Col>
                     <Col md={4}>
-                    <button onClick={funcpass} type='btn' className="pic_btn">Reset password</button>
+                    <button onClick={funcpass} type='btn' className={ pass ? "pic_btn_active" : "pic_btn"}>Reset password</button>
                     </Col>
                     <Col md={4}>
                     <Link to="/login"><button onClick={funclog} type='btn' className="pic_btn">log out</button></Link>
