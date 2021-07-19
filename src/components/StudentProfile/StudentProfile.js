@@ -48,7 +48,7 @@ export default function StudentProfile(props) {
         .then(data => {
              console.log(data)
              console.log("the application is forwarded");
-             window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
+             window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
         })
         .catch(err => console.log(err))
         
@@ -67,7 +67,7 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
+            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
@@ -85,7 +85,7 @@ export default function StudentProfile(props) {
         .then(res=>res.json())
         .then(data => {
             console.log(data)
-            window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
+            window.location.href="https://iitp-isa.netlify.app/picwindow/"+props.match.params.aid;
         })
         .catch (err => console.log(err))
     }
