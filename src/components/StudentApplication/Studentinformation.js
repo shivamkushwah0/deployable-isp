@@ -20,7 +20,7 @@ export default function Studentinformation(props) {
     const [checkbox , setCheckbox] = useState("off");
     const [user, setUser] = useState({});
     const [error , setError] = useState(false);
-    const [statement , setStatement] = useState('');
+    const [statement , setStatement] = useState({statement:'',link:''});
     const [publications , setPublications] = useState(['']); 
     const [details , setDetail] = useState({});
     useEffect(()=>{
@@ -91,7 +91,9 @@ export default function Studentinformation(props) {
             {
                 a = [...a , {organization:`${data.professionalExperience[i].organization}`,
                 positionHeld:`${data.professionalExperience[i].positionHeld}`,
-                period:`${data.professionalExperience[i].period}`,} ]
+                period:`${data.professionalExperience[i].period}`,
+                roles : data.professionalExperience[i].rolesAndResponsibilities
+            } ]
             }
             setProfessionalExp(a);
             a=[];
@@ -108,7 +110,7 @@ export default function Studentinformation(props) {
             }
             setRefreeFields(a);
             setPublications(data.publications);
-            setStatement(data.statementOfPurpose);
+            setStatement({statement: data.statementOfPurpose, link : data.statementOfPuprposeLink });
         })
         .catch(err => console.log(err))
 
@@ -204,7 +206,7 @@ export default function Studentinformation(props) {
 
     //professional component functions props starts
     const [professionalExp,setProfessionalExp]=useState([
-        {organization:'',positionHeld:'',period:'',},
+        {organization:'',positionHeld:'',period:'',roles:''},
         
     ])
 
@@ -216,7 +218,7 @@ export default function Studentinformation(props) {
         console.log(professionalExp)
     }
     const handleAddFieldsProfessional=()=>{
-        setProfessionalExp([...professionalExp,{organization:'',positionHeld:'',period:'',}])
+        setProfessionalExp([...professionalExp,{organization:'',positionHeld:'',period:'',roles:''}])
     }
     const handleRemoveFieldsProfessional=(index)=>{
         const values=[...professionalExp];
@@ -263,10 +265,12 @@ export default function Studentinformation(props) {
     }
     // handling of the file upload system
     const [files,setFiles] = useState(
-        {marksheets : null , GreAndToefl:null,fellowshipCertificate:null,profExpCertificate:null,passportImage:null}
+        {marksheets : null , GreAndToefl:null,fellowshipCertificate:null,profExpCertificate:null,passportImage:null,image:null}
     )
     const onSuccess =(file,name)=> {
-        console.log(name);
+        console.log(file);
+        if(name=="image")
+        setFiles({...files,image:file});
         if(name=="marksheets")
         setFiles({...files,marksheets:file});
         if(name=="GreAndToefl")
@@ -332,9 +336,14 @@ export default function Studentinformation(props) {
                 alert("Please fill the required information before continuing")
                 return ;
             }
-        else if(statement.length===0)
+        else if(statement.statement.length===0)
         {
             alert("[ Statement of purpose ] section cannot be empty");
+            return ;
+        }
+        else if(files.image == null)
+        {
+            alert("Image is compulsory to add")
             return ;
         }
         else if(files.marksheets === null)
@@ -347,18 +356,18 @@ export default function Studentinformation(props) {
             alert("Tick the checkbox first")
             return ;
         }
-        var a = false;
-        Object.values(files).forEach(val => {
-            console.log(val);
-            if(val!=null && val.type !=="application/x-zip-compressed" && val.type!=="application/zip")
-            {
-                alert("Please Upload files in ZIP format");
-                a = true;
-                return ;
-            }
-        })
-        if(a)
-        return ;
+        // var a = false;
+        // Object.values(files).forEach(val => {
+        //     console.log(val);
+        //     if(val!=null && val.type !=="application/x-zip-compressed" && val.type!=="application/zip")
+        //     {
+        //         alert("Please Upload files in ZIP format");
+        //         a = true;
+        //         return ;
+        //     }
+        // })
+        // if(a)
+        // return ;
         console.log(inputFields);
         console.log(contactDetails);
         console.log(toeflScores);
@@ -419,7 +428,8 @@ export default function Studentinformation(props) {
                 },
                 professionalExperience : professionalExp,
                 publications : publications,
-                statementOfPurpose : statement,
+                statementOfPurpose : statement.statement,
+                statementOfPuprposeLink : statement.link,
                 refereeDetails : refreeFields.map((field) => {
                     const obj = {
                         name : field.name,
@@ -483,8 +493,23 @@ export default function Studentinformation(props) {
         })
         .catch(err => console.log(err))
 
-        
-
+        const imgAddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/pic/"+props.match.params.id;
+        const form = new FormData();
+        form.append('image',files.image);
+        fetch(imgAddress , {
+            method : 'post',
+            body : form
+        }).then ((res)=> {
+            if(res.ok)
+            return res.json();
+            else return new Error("Please check your internet connection");
+        })
+        .then((data)=>{
+            console.log(data);
+        })
+        .catch(err=> {
+            alert("There was a problem uploading the image, please try again");
+        })
         // console.log("success saving details and files");
     }
     //form validation
@@ -563,7 +588,7 @@ export default function Studentinformation(props) {
                                     </MenuItem>
                                 </TextField>
                             </div>
-                            <div className="col-sm-6 text-center">
+                            <div className="col-sm-6 text-center mt-5">
                             <Label>Department<span className="text-red">*</span></Label>
                                 <TextField defaultValue={inputField.department} className="textfield" select name="department" value={inputField.department} variant="filled" onChange={event=>handleChangeInput(index,event)}>
                                 {
@@ -613,8 +638,7 @@ export default function Studentinformation(props) {
                 </div>
             </div>
             <div className="row text-center">
-                <h1 className = "text-center my-5">Statement of Purpose<br/>
-                (You can also add the link to the PDF for the same): 
+                <h1 className = "text-center my-5">Statement of Purpose
                 <span className="text-red">*</span></h1>
                 <div className="col-md-12">
                 <TextField fullWidth
@@ -622,7 +646,16 @@ export default function Studentinformation(props) {
                         rows={4}
                         name="statement"
                         label="Statement of Purpose"
-                        value={statement}
+                        value={statement.statement}
+                        variant="filled"
+                        onChange={(e)=>{setStatement(e.target.value)}}
+                        >
+                </TextField> <br /><br />
+                <TextField fullWidth
+                        multiline
+                        name="link"
+                        label="G-Drive Link to the PDF"
+                        value={statement.link}
                         variant="filled"
                         onChange={(e)=>{setStatement(e.target.value)}}
                         >

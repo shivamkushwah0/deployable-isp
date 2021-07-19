@@ -19,7 +19,7 @@ export default function Professional(props) {
     
     return (
         <Container>
-            <h1 className="my-5">Professional Experience</h1>
+            <h1 className="mt-5">Professional Experience</h1>
             <form className={classes.root}>
                 {props.inputFields.map((inputField,index)=>(
                     <div key={index}>
@@ -47,12 +47,25 @@ export default function Professional(props) {
                         onChange={event=>props.handleChangeInput(index,event)}>
 
                         </TextField>
+                        <div style={{width:53+'%', margin:'auto'}}>
+                            <TextField fullWidth
+                            multiline
+                            rows={2}
+                            name="roles"
+                            label="Roles/Responsibilities"
+                            value={inputField.roles}
+                            variant="filled"
+                            onChange={event=>props.handleChangeInput(index,event)}>
+
+                            </TextField>
+                        </div>
+                        
                         <br/>
                         { (index >0) &&
                         <IconButton onClick={()=>props.handleRemoveFields(index)}>
                             <RemoveIcon/>
                         </IconButton>
-}
+                        }
                         <IconButton onClick={()=>props.handleAddFields()}>
                             <AddIcon/>
                         </IconButton>

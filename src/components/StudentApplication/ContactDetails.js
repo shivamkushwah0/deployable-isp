@@ -24,7 +24,7 @@ export default function ContactDetails(props) {
              {props.inputFields.map((inputField,index)=>(
             <div className="p-5 si_div" key={index}>
                 <h1 className="text-center si_subhead">Contact Details</h1>
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <Label>Present address<span className="text-red">*</span></Label>
                                 <TextField className="textfield" name="presentadress" value={inputField.presentadress} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
@@ -35,7 +35,7 @@ export default function ContactDetails(props) {
                             </div>
                             
                         </div>
-                        <div className="row">
+                        <div className="row mt-5">
                         <div className="col-sm-6 text-center">
                             <Label>Phone number<span className="text-red">*</span></Label>
                                 <TextField onBlur={()=>{setBlurNum(true); props.setError(!isNum(inputField.phonenum))}} className="textfield" name="phonenum" value={inputField.phonenum} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>

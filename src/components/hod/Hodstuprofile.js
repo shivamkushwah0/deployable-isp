@@ -121,6 +121,7 @@ export default function StudentProfile(props) {
 
     return (
         <div>
+             <div style={{position:'relative'}}>
              <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
                  <Link to={`/hodwindow/${props.match.params.hid}`}><button className="pic_btn">Home</button></Link>
                 
@@ -137,6 +138,10 @@ export default function StudentProfile(props) {
             <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
             <button onClick={handlePrint} className="pic pic_btn">Download application <span className = "fa fa-download"></span></button>
             </div>
+            <div style={{position:'absolute' , right : 40+'px', top:30+'px',height:200+'px',width:200+'px' ,border:'solid '+2+'px'}} >
+                <img className="img img-fluid" src={user.image} alt='Applicant Image' height="200px" width="200px" />
+            </div>
+             </div>
             <Modal toggle={()=>{setModalIsOpen(false)}} isOpen={modalIsOpen} className="modal_stu">
             <p className="modal_para"><strong className="mt-5 modal_text">Upload Notesheet</strong></p>
             <input onChange={(e)=>{
@@ -170,8 +175,8 @@ export default function StudentProfile(props) {
                
                
                    <div className="p-5 si_div">
-                       <h1 className="text-center si_subhead">Student Information</h1>
-                       <div className="row">
+                       <h1 className="text-center si_subhead mt-5">Student Information</h1>
+                       <div className="row mt-5">
                            <div className="col-sm-6 text-center">
                                <Label>Name of the Applicant:</Label>
                                <p className="textfield para_profile" name="name"  >{user.name}</p>
@@ -202,7 +207,7 @@ export default function StudentProfile(props) {
                            <Label>Category:(Self spons./Govt. Fellowship)</Label>
                                <p className="textfield para_profile" name="category"   >{user.category}</p>
                            </div>
-                           <div className="col-sm-6 text-center">
+                           <div className="col-sm-6 text-center mt-5">
                            <Label>Department</Label>
                                <p className="textfield para_profile" name="category"   >{user.department}</p>
                            </div>
@@ -218,7 +223,7 @@ export default function StudentProfile(props) {
           
        { user.contactDetails!=undefined ?  (<div className="p-5 si_div">
                 <h1 className="text-center si_subhead">Contact Details</h1>
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <Label>Present address</Label>
                                 <p className="textfield para_profile" name="presentadress">{user.contactDetails.presentAddress}</p>
@@ -228,7 +233,7 @@ export default function StudentProfile(props) {
                                 <p className="textfield para_profile" name="permanentAdress" >{user.contactDetails.permanentAddress}</p>
                             </div>
                         </div>
-                        <div className="row">
+                        <div className="row mt-5">
                         <div className="col-sm-6 text-center">
                             <Label>Phone number</Label>
                                 <p className="textfield para_profile" name="phonenum" >{user.contactDetails.mobileNumber}</p>
@@ -255,7 +260,7 @@ export default function StudentProfile(props) {
             (<div className="p-5 si_div">
                 <h1 className="text-center si_subhead">Gre</h1>
                 
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <Label>Registeration No.</Label>
                                 <p className="textfield para_profile" name="registerno">{user.greScore.registrationNo}</p>
@@ -266,7 +271,7 @@ export default function StudentProfile(props) {
                             </div>
                             
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                 <div className="col-sm-6 text-center">
                                 <Label>Name of Institute</Label>
                                 <p className="textfield para_profile" name="nameofinst">{user.greScore.institute}</p>
@@ -292,7 +297,7 @@ export default function StudentProfile(props) {
          {user.toeflScore != undefined ? (
             <div className="p-5 si_div">
                 <h1 className="text-center si_subhead">Tofel</h1>
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <Label>REGISTRATION NO</Label>
                                 <p className="textfield para_profile" name="registerno">{user.toeflScore.registrationNo}</p>
@@ -303,7 +308,7 @@ export default function StudentProfile(props) {
                             </div>
                             
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                 <div className="col-sm-6 text-center">
                             <Label>NAME OF INSTITUTE</Label>
                                 <p className="textfield para_profile" name="nameofinst">{user.toeflScore.institute}</p>
@@ -313,7 +318,7 @@ export default function StudentProfile(props) {
                                 <p className="textfield para_profile" name="ls" >{user.toeflScore.listeningScore}</p>
                             </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                             
                             <div className="col-sm-6 text-center">
                             <Label>READING SCORE</Label>
@@ -324,7 +329,7 @@ export default function StudentProfile(props) {
                                 <p className="textfield para_profile" name="ss" >{user.toeflScore.speakingScore}</p>
                             </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                             <Label>Writing Score</Label>
                                 <p className="textfield para_profile" name="ws" >{user.toeflScore.writingScore}</p>
@@ -389,6 +394,8 @@ export default function StudentProfile(props) {
                              <Label>Position Held</Label><p className="para_profile" name="positionHeld">{experience.positionHeld}</p>
                              <Label>Period (From/to)</Label>
                              <p className="para_profile" name="period" >{experience.period}</p>
+                             <Label>Roles/Responsibilities</Label>
+                             <p className="para_profile" name="period" >{experience.rolesAndResponsibilities}</p>
                             <br/>
                             
                         </div>
@@ -427,11 +434,13 @@ export default function StudentProfile(props) {
             (user.statementOfPurpose!=undefined) ?
             (
                 <Container>
-                    <h1 className="my-5">Statement of Purpose</h1>
+                    <h1 className=" mt-5">Statement of Purpose</h1>
                     <form>
                 
                     <div>
                         <p className="para_profile" name="statement">{user.statementOfPurpose}</p>
+                        <Label>G-Drive Link for further read</Label>
+                        <p className="para_profile" name="statement">{user.statementOfPurposeLink}</p>
                         <br/>
                     </div>
                 </form>
@@ -442,7 +451,7 @@ export default function StudentProfile(props) {
             (user.publications!=undefined) ?
             (
                 <Container>
-                    <h1 className="my-5">Publications</h1>
+                    <h1 className=" mt-5">Publications</h1>
                     
                     {user.publications.map((publication)=>(<form>
                 

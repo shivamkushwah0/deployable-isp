@@ -18,7 +18,7 @@ export default function Gre(props) {
             <div className="p-5 si_div">
                 <h1 className="text-center si_subhead">GRE (Graduate Record Examination)</h1>
                 
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <Label>Registeration No.</Label>
                                 <TextField className="textfield" name="registerno" value={inputField.registerno} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
@@ -33,7 +33,7 @@ export default function Gre(props) {
                             </div>
                             
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                 <div className="col-sm-6 text-center">
                                 <Label>Name of Institute</Label>
                                 <TextField className="textfield" name="nameofinst" value={inputField.nameofinst} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>

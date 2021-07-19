@@ -17,7 +17,7 @@ export default function Tofel(props) {
              {props.inputFields.map((inputField,index)=>(
             <div className="p-5 si_div">
                 <h1 className="text-center si_subhead">TOEFL (Test of English as a Foreign Language)</h1>
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                                 <Label>REGISTERATION NO</Label>
                                 <TextField  className="textfield" name="registerno" value={inputField.registerno} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
@@ -32,7 +32,7 @@ export default function Tofel(props) {
                             </div>
                             
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                 <div className="col-sm-6 text-center">
                             <Label>NAME OF INSTITUTE</Label>
                                 <TextField className="textfield" name="nameofinst" value={inputField.nameofinst} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
@@ -46,7 +46,7 @@ export default function Tofel(props) {
                                 }
                             </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                             
                             <div className="col-sm-6 text-center">
                             <Label>READING SCORE</Label>
@@ -65,7 +65,7 @@ export default function Tofel(props) {
                                 }
                             </div>
                 </div>
-                <div className="row">
+                <div className="row mt-5">
                             <div className="col-sm-6 text-center">
                             <Label>Writing Score</Label>
                                 <TextField onBlur={()=>{setBlurScore({...blurScore , wsScore:true }); props.setError(!isScore(inputField.ws))}} className="textfield" name="ws" value={inputField.ws} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
