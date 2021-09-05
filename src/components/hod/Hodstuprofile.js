@@ -12,6 +12,7 @@ export default function StudentProfile(props) {
     const[notesheet , setNotesheet] = useState(null);
     const [rejectModal , setRejectModal] = useState(false);
     const [message , setMessage] = useState('');
+    const [loading , setLoading] = useState(false);
     useEffect(() => {
         
         const id = props.match.params.id;
@@ -35,6 +36,8 @@ export default function StudentProfile(props) {
     },[])
 
    const handleReject = () => {
+       setRejectModal(false);
+       setLoading(true);
     const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/rejectApplication/'+props.match.params.hid;
     fetch(address, {
         headers : {
@@ -46,6 +49,7 @@ export default function StudentProfile(props) {
         })
     })
     .then(res => {
+        setLoading(false);
         if(res.ok)
         return res.json()
         else throw new Error("Something went wrong, please try again later")
@@ -53,20 +57,39 @@ export default function StudentProfile(props) {
     .then(data => {
         console.log(data)
         if(data.status==="Application rejected")
-        alert("The Application is rejected");
+        {
+            alert("The Application is rejected");
+            window.location.href = "http://localhost:3000/hodwindow/"+props.match.params.hid;
+        }
+        
     })
     .catch(err=>{
         console.log(err)
     })
    }
    const handleAccept = () => {
+      
+       
        console.log(notesheet);
+       if(notesheet === null)
+       {
+           alert("Please upload the notesheet first in pdf format");
+           return ;
+       }
+        if(notesheet.type!="application/pdf")
+        {
+            alert("Notesheet should be in PDF format");
+            return ;
+        }
+        setModalIsOpen(false);
+       setLoading(true);
        const formdata = new FormData();
        formdata.append(
         "noteSheet",
         notesheet,
         "notesheet+"+user._id+".pdf"
       );
+      
     const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/noteSheetsUpload/'+user._id;
     fetch(address, {
         method:'PATCH',
@@ -75,7 +98,8 @@ export default function StudentProfile(props) {
     .then(res => {
         if(res.ok)
         return res.json();
-        else throw new Error("Something went wrong")
+        setLoading(false);
+        throw new Error("Something went wrong")
     })
     .then(data => {
         console.log(data)
@@ -95,12 +119,13 @@ export default function StudentProfile(props) {
             // console.log(res.json().body)
             if(res.ok)
             return res.json()
-            else 
+            setLoading(false);
             throw new Error("Something went Wrong")
         })
         .then(data => {
             console.log(data)
             setModalIsOpen(false)
+            setLoading(false);
             if(data.message === "NoteSheet Uploaded and Mailed to Pic and Acad Section")
             alert("The application was accepted successfully")
             else alert("Something went wrong, please try again")
@@ -124,13 +149,13 @@ export default function StudentProfile(props) {
              <div style={{position:'relative'}}>
              <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
                  <Link to={`/hodwindow/${props.match.params.hid}`}><button className="pic_btn">Home</button></Link>
-                
+                {loading ? <span className = "fa fa-spin fa-spinner fa-3x"></span> : null}
             </div>
             <div className = "d-none">
                 { user.name ?  <PDF details = {user}  ref = {componentRef} /> : null} 
             </div>
             { user.applicationStatus === "Forwarded" ? (
-            <div className="row" style={{float:"right",marginTop:"20px",marginRight:"10px"}}>
+            <div className="row" style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
                 
                 <button className="pic_btn" onClick={()=>setRejectModal(true)}>Reject</button>
                 <button className="pic_btn" onClick={()=>setModalIsOpen(true)}>Accept</button>
@@ -145,14 +170,17 @@ export default function StudentProfile(props) {
             <Modal toggle={()=>{setModalIsOpen(false)}} isOpen={modalIsOpen} className="modal_stu">
             <p className="modal_para"><strong className="mt-5 modal_text">Upload Notesheet</strong></p>
             <input onChange={(e)=>{
-                setNotesheet(e.target.files[0])
+                setNotesheet(e.target.files[0]); console.log(e.target.files[0]);
             }} type="file" className="modal_textarea" placeholder="Upload Notesheet" />
-            <div className="row text-center py-5 button_div">
-            
-                 <button onClick={handleAccept}  className="pic_btn">Submit</button>
-            
-            
-                <Link> <button  className="pic_btn" onClick={()=>setModalIsOpen(false)}>No</button></Link>
+            <div className="row text-center">
+                <div className = "col-6">
+                <button onClick={handleAccept}  className="pic_btn">Accept Applicant</button>
+                </div>
+                <div className = "col-6">
+                <Link> <button  className="pic_btn" onClick={()=>setModalIsOpen(false)}>Close</button></Link>
+                </div>
+                
+               
             
             </div>
             </Modal> 
@@ -162,12 +190,12 @@ export default function StudentProfile(props) {
                 setMessage(e.target.value)
             }} type="textarea" className="modal_textarea" placeholder="Rejection Message" />
             <div className="row text-center py-5 button_div">
-            
-                <Link to="/"> <button onClick={handleReject}  className="pic_btn">Reject</button></Link>
-            
-            
-                <Link> <button  className="pic_btn" onClick={()=>setRejectModal(false)}>No</button></Link>
-            
+            <div className = "col-6">
+                <Link to="/"> <button onClick={handleReject}  className="pic_btn">Reject Applicant</button></Link>
+            </div>
+            <div className = "col-6">
+                 <Link> <button  className="pic_btn" onClick={()=>setRejectModal(false)}>Close</button></Link>
+            </div>
             </div>
             </Modal>
 

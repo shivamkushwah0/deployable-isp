@@ -11,6 +11,7 @@ html ,body{
     margin-top: 30px;
     padding: 30px 10px;
     box-shadow: 0px 0px 10px 2px rgb(163, 161, 161);
+    background-color: white !important;
 }
 .profile{
     height: 8%;

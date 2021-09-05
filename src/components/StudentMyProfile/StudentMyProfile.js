@@ -63,7 +63,7 @@ fetch(address , {
     <div className="container margintop">
         <div className="mb-5 tab_btn_section">
                   <Row>
-                    <Col md={4}>
+                    <Col md={4} className="text-center">
                          {
                               home ? 
                               <button onClick={funchome} type='btn' className="active tab_btn pic_btn_active">Home</button> : 
@@ -71,10 +71,10 @@ fetch(address , {
                          }
                       
                     </Col>
-                    <Col md={4}>
+                    <Col md={4} className="text-center" >
                     <button onClick={funcpass} type='btn' className={pass ? "pic_btn_active" : "pic_btn" }>Reset Password</button>
                     </Col>
-                    <Col md={4}>
+                    <Col md={4} className="text-center">
                    <Link to="/login"> <button onClick={funclog} type='btn' className="pic_btn">Logout</button></Link>
                     </Col>
                   </Row>

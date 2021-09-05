@@ -6,6 +6,7 @@ export default function GovtApplicants (props) {
     const [notesheet , setNotesheet] = useState([]);
     const [isModalOpen , setModal] = useState(false);
     const [note , setNote] = useState(0);
+    const [loading , setLoading] = useState(false);
     useEffect(()=>{
         const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applicants/'+props.hid;
         console.log(address);
@@ -29,10 +30,10 @@ export default function GovtApplicants (props) {
 
     const handleForward = (aid,index) => {
         console.log(notesheet[index]);
+        setLoading(true);
         if(notesheet[index] === undefined || notesheet[index].type !== "application/pdf")
         {
             alert("Please upload the notesheet and in pdf format");
-            setNotesheet(null);
             return ;
         }
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/uploadNotesheet/"+aid;
@@ -45,7 +46,8 @@ export default function GovtApplicants (props) {
         .then(res => {
             if(res.ok)
             return res.json();
-            else throw new Error("Something went wrong, please try again later");
+            setLoading(false);
+            throw new Error("Something went wrong, please try again later");
         })
         .then(data => {
             console.log(data);
@@ -56,6 +58,7 @@ export default function GovtApplicants (props) {
                     method : "PATCH"
                 })
                 .then(res=>{
+                    setLoading(false);
                     if(res.ok)
                     return res.json();
                     else {
@@ -124,6 +127,14 @@ export default function GovtApplicants (props) {
                     <NothingHere />
                     }
         </div>
+
+        {
+            loading ? ( <div className = "text-center margintop">
+            Please wait while the Acceptance is being confirmed
+            <br/>
+            <span className="fa fa-spin fa-spinner fa-4x"></span>
+            </div> ) : null
+        }
         <Modal isOpen={isModalOpen} className="modal_stu container">                
                     <br />
                     <div className="row">

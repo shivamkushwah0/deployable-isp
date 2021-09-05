@@ -11,6 +11,7 @@ export default function AddApplicant (props) {
     const [file ,setFile] = useState(null);
     const [adminVar , setAdminVar] = useState({});
     const [blurEmail , setBlurEmail] = useState(false)
+    const [loading , setLoading] = useState(false);
 
     const validEmailRegex = RegExp(
         /^(([^<>()\[\]\.,;:\s@\"]+(\.[^<>()\[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i
@@ -36,6 +37,7 @@ export default function AddApplicant (props) {
             })
     },[])
     const handleAdd = () => {
+       
         console.log(file);
         if(file === null || ( file.type !=="application/x-zip-compressed" && file.type !=="application/zip"))
         {
@@ -48,6 +50,7 @@ export default function AddApplicant (props) {
             alert("Please fill out all the fields marked with asterisk");
             return ;
         }
+        setLoading(true);
         const formdata = new FormData();
         formdata.append("application" , file);
         formdata.append("department",dept);
@@ -60,6 +63,7 @@ export default function AddApplicant (props) {
             body : formdata
         })
         .then((res)=>{
+            setLoading(false);
             if(res.ok)
             return res.json();
             else throw new Error("Something went wrong, please try again later");
@@ -145,6 +149,7 @@ export default function AddApplicant (props) {
             </Row>
             <div className="text-center">
                 <button onClick={handleAdd} className="pic_btn">ADD </button>
+                {loading ? <span className = "fa fa-spin fa-spinner fa-3x"></span> : null }
             </div>
         </Container>
     )

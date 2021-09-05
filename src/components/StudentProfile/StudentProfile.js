@@ -12,6 +12,8 @@ export default function StudentProfile(props) {
     const [returnModal , setReturnModal] = useState(false);
     const [returnMess , setReturnMess] = useState('');
     const [rejectMess , setRejectMess] = useState('');
+    const [loading , setLoading] = useState(false);
+
     useEffect(() => {
         setModalIsOpen(false);
         
@@ -34,6 +36,7 @@ export default function StudentProfile(props) {
 
     },[])
     const handleForward =() => {
+        setLoading(true);
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/forwardApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
@@ -46,6 +49,7 @@ export default function StudentProfile(props) {
         })
         .then(res=>res.json())
         .then(data => {
+            setLoading(false);
              console.log(data)
              console.log("the application is forwarded");
              window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
@@ -54,6 +58,8 @@ export default function StudentProfile(props) {
         
     }
     const handleReturn =() => {
+        setReturnModal(false);
+        setLoading(true);
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/returnApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
@@ -66,6 +72,7 @@ export default function StudentProfile(props) {
         })
         .then(res=>res.json())
         .then(data => {
+            setLoading(false);
             console.log(data)
             window.location.href="http://localhost:3000/picwindow/"+props.match.params.aid;
         })
@@ -98,7 +105,7 @@ export default function StudentProfile(props) {
             <div style={{position:'relative'}}>
             <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}} >
                 <Link to={`/picwindow/${props.match.params.aid}`}><button className="pic_btn"> Back</button></Link>
-                
+                {loading ? <span className="fa fa-spin fa-spinner fa-3x"></span> : null}
             </div>
             <div className = "d-none">
                 { user.name ?  <PDF details = {user}  ref = {componentRef} /> : null} 
@@ -106,7 +113,9 @@ export default function StudentProfile(props) {
            {user.applicationStatus != undefined && user.applicationStatus =="Submitted" ? ( <div className="row" style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
                 <button onClick={handleForward} className="pic_btn">Forward</button>
                 <button onClick={()=>setReturnModal(true)} className="pic_btn">Return</button>
+                
             </div>):null}
+            
             <div style={{float:"left",marginTop:"20px",marginLeft:"35px"}}>
             <button onClick={handlePrint} className="pic pic_btn">Download application <span className = "fa fa-download"></span></button>
             </div>
@@ -133,8 +142,8 @@ export default function StudentProfile(props) {
             <textarea value={returnMess} className="modal_textarea" placeholder="justify why you want to return" onChange={(e)=>{setReturnMess(e.target.value); console.log(returnMess) }} />
             <div className="row text-center py-5 button_div">
             
-                 <button onClick={handleReturn}  className="pic_btn">Return</button>
-                <button  className="pic_btn" onClick={()=>setReturnModal(false)}>no</button>
+                 <button onClick={handleReturn}  className="pic_btn">Return Applicant</button>
+                <button  className="pic_btn" onClick={()=>setReturnModal(false)}>Close</button>
             
             </div>
             </Modal> 

@@ -8,6 +8,7 @@ const LoginAsAcadSec = () => {
  
     const [emailID, setEmailID] = React.useState('')
     const [password, setPassword] = React.useState('')
+    const [isLoading , setIsLoading] = React.useState(false);
     function emailIDChange(e){
         setEmailID(e.target.value)
         console.log(emailID)
@@ -27,7 +28,7 @@ const LoginAsAcadSec = () => {
 
     function OnSubmit(){ 
         console.log(emailID,password)
-
+        setIsLoading(true);
         fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/login', {
             method: "post",
             headers: {
@@ -41,7 +42,8 @@ const LoginAsAcadSec = () => {
         }).then(res => res.json())
             .then(data => {
                 console.log(data)
-                if (data.message === "Invalid Credentials") {
+                setIsLoading(false);
+                if (data.message!=undefined) {
                     alert('Invalid Credentials, please try again')
                     setPassword('');
                 } else {
@@ -100,6 +102,7 @@ const LoginAsAcadSec = () => {
                         Login
                         
                     </Form.Field>
+                    { isLoading ? <span className = "fa fa-spinner fa-spin fa-2x" ></span> : null}
                     {/* <Link style={{fontSize:'12px'}} className="newuser" to='/signup'>New User ? SignUp</Link> */}
                 </div>
                 
