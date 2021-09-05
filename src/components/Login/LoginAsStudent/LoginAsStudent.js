@@ -8,7 +8,7 @@ import '../Login.css';
 const LoginAsStudent = () => {
     const [emailID, setEmailID] = React.useState('')
     const [password, setPassword] = React.useState('')
-
+    const [isLoading , setIsLoading] = React.useState(false);
 
     function handleSubmit(){
         global.header = true;
@@ -27,7 +27,7 @@ const LoginAsStudent = () => {
     };
     function OnSubmit(){ 
         // console.log(emailID,password)
-
+        setIsLoading(true);
         fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/login', {
             method: "post",
             headers: {
@@ -45,8 +45,9 @@ const LoginAsStudent = () => {
          })
             .then(data => {
                 console.log(data);
+                setIsLoading(false);
                 if(data._id!=undefined)
-                window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+data._id;
+                window.location.href="http://localhost:3000/stumyprofile/"+data._id;
                 else {alert("Invalid Credentials, please try again")
                 setPassword('');
                 }
@@ -101,6 +102,8 @@ const LoginAsStudent = () => {
                 >
                 Login
                 </Form.Field>
+                { isLoading ? <span className = "fa fa-spinner fa-spin fa-2x" ></span> : null}
+                <br/>
                 <Link style={{fontSize:'12px'}} className="newuser" to='/signup'>New User ? SignUp</Link>
             </div>
           

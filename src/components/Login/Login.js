@@ -114,7 +114,7 @@ class Signup extends Component{
                         <div className="col-md-4 p-0 padding_0">
                             <div className="text-center loginsignup">
                                 <img src={logo} alt="image" className="center logo_form"></img>
-                                <p> Guidelines Section, maybe</p>
+                                <p> Guidelines Section here</p>
                                 
                             </div>
                         </div>

@@ -5,7 +5,14 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(136,220,225,0.3197477533576194) 1%, rgba(0,212,255,0.9124443825711025) 21%, rgba(104,188,205,0.9124443825711025) 51%, rgba(104,188,205,0.9124443825711025) 66%) !important;
+  background-attachment: fixed !important;
+  /* backgroun */
 }
+/* 
+#root{
+  background-image: linear-gradient(to right, #13e1ab, #00e4ba, #00e7c9, #00e9d6, #12ebe2);
+} */
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',

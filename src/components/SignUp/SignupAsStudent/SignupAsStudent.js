@@ -21,6 +21,8 @@ const SignupAsStudent = (props) => {
     const [check , setCheck] = React.useState(false);
     const [stumessage, setStuMessage] = React.useState('');
     const [signupStuSuccess, setSignupStuSuccess] = React.useState(false)
+    const [loading , setLoading] = React.useState(false);
+
     function firstNameChange(e){
         setFirstName(e.target.value)
         console.log(firstName)
@@ -58,6 +60,7 @@ const SignupAsStudent = (props) => {
             alert("Please tick the checkbox");
             return ;
         }
+        setLoading(true);
         fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/registration', {
             method: "post",
             headers: {
@@ -71,15 +74,17 @@ const SignupAsStudent = (props) => {
                 mobileNo:phone 
             })
         }).then(res => res.json())
-        .then(data => { console.log(data) 
+        .then(data => { 
+            console.log(data)
+            setLoading(false);
             if(data.message)
             {
                 alert(data.message);
-                window.location.href="https://iitp-isa.netlify.app/login" 
+                window.location.href="http://localhost:3000/login" 
                 return ;
             }
             alert("A confirmation mail has been sent to your registered email\n Please activate your account before proceeding to next steps");
-            window.location.href="https://iitp-isa.netlify.app/login" })
+            window.location.href="http://localhost:3000/login" })
         .catch(error => {console.log(error); alert(error)})
     }
 
@@ -194,13 +199,10 @@ const SignupAsStudent = (props) => {
         </Form.Group>
         <Form.Checkbox onClick={()=>{setCheck(!check)}} required label='I agree to the Terms and Conditions' />
         <div>
-        <Form.Field as={Button}
-            
-            className="mb-5 button_loginsignup"
-            
-            
-        >Register
+        <Form.Field as={Button}   className="mb-5 button_loginsignup" >
+            Register
         </Form.Field>
+        {loading ? <span className="fa fa-spin fa-spinner fa-2x"></span> : null }
         </div>
         </div>
                                     

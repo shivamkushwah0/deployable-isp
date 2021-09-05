@@ -90,7 +90,7 @@ export default function Picwindow(props) {
        console.log(department);
        console.log(file);
        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/govtApplications/addApplications";
-       if(file == null || file.type !=="application/x-zip-compressed")
+       if(file === null || (file.type !=="application/x-zip-compressed" && file.type !== "application/zip") )
        {
            alert("Please insert a zip file to proceed");
            return ;

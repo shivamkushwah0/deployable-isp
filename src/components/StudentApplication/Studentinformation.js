@@ -23,6 +23,7 @@ export default function Studentinformation(props) {
     const [statement , setStatement] = useState({statement:'',link:''});
     const [publications , setPublications] = useState(['']); 
     const [details , setDetail] = useState({});
+    const [loading , setLoading] = useState(false);
     useEffect(()=>{
         const id = props.match.params.id;
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
@@ -292,12 +293,14 @@ export default function Studentinformation(props) {
     const [responseMess , setResponseMess] = useState('');
     // function for applying for admission 
     const Apply = () => {
+        setLoading(true);
         const applyaddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/apply/'+props.match.params.id;
         fetch (applyaddress , {
             method : 'PATCH'
         }).
         then(res => res.json())
         .then(res => {
+            setLoading(false);
             console.log(res)
             const setback = () => {
                 window.location.href="https://iitp-isa.netlify.app/stumyprofile/"+props.match.params.id;
@@ -346,28 +349,18 @@ export default function Studentinformation(props) {
             alert("Image is compulsory to add")
             return ;
         }
+
         else if(files.marksheets === null)
-            {
-                alert("Marksheet is compulsory to add")
-                return ;
-            }
-        else if(checkbox==="off")
+        {
+            alert("Marksheet is compulsory to add")
+            return ;
+        }
+        else if(checkbox === "off")
         {
             alert("Tick the checkbox first")
             return ;
         }
-        // var a = false;
-        // Object.values(files).forEach(val => {
-        //     console.log(val);
-        //     if(val!=null && val.type !=="application/x-zip-compressed" && val.type!=="application/zip")
-        //     {
-        //         alert("Please Upload files in ZIP format");
-        //         a = true;
-        //         return ;
-        //     }
-        // })
-        // if(a)
-        // return ;
+
         console.log(inputFields);
         console.log(contactDetails);
         console.log(toeflScores);
@@ -376,6 +369,7 @@ export default function Studentinformation(props) {
         console.log(professionalExp);
         console.log(refreeFields);
         console.log(files);
+        setLoading(true);
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/saveDetails/"+props.match.params.id;
         fetch(address,{
             method:"post",
@@ -429,7 +423,7 @@ export default function Studentinformation(props) {
                 professionalExperience : professionalExp,
                 publications : publications,
                 statementOfPurpose : statement.statement,
-                statementOfPuprposeLink : statement.link,
+                statementOfPurposeLink : statement.link,
                 refereeDetails : refreeFields.map((field) => {
                     const obj = {
                         name : field.name,
@@ -505,9 +499,11 @@ export default function Studentinformation(props) {
             else return new Error("Please check your internet connection");
         })
         .then((data)=>{
+            setLoading(false);
             console.log(data);
         })
         .catch(err=> {
+            setLoading(false);
             alert("There was a problem uploading the image, please try again");
         })
         // console.log("success saving details and files");
@@ -648,7 +644,7 @@ export default function Studentinformation(props) {
                         label="Statement of Purpose"
                         value={statement.statement}
                         variant="filled"
-                        onChange={(e)=>{setStatement(e.target.value)}}
+                        onChange={(e)=>{setStatement({ ...statement ,statement:e.target.value})}}
                         >
                 </TextField> <br /><br />
                 <TextField fullWidth
@@ -657,7 +653,7 @@ export default function Studentinformation(props) {
                         label="G-Drive Link to the PDF"
                         value={statement.link}
                         variant="filled"
-                        onChange={(e)=>{setStatement(e.target.value)}}
+                        onChange={(e)=>{setStatement({ ...statement ,link:e.target.value})}}
                         >
                 </TextField>
 
@@ -687,6 +683,7 @@ export default function Studentinformation(props) {
                 <br/>
                 <button onClick={handleSubmit}>Save Details and Upload Documents</button>
                 {responseMess==="Details Saved" && (user.applicationStatus === "Not Submitted" || user.applicationStatus==="Returned") ? <button className="m-5" onClick={Apply}>Apply for Admission</button>  : null }
+                {loading ? <span className="fa fa-spin fa-spinner fa-3x m-5" ></span> : null }
             </div>
         </div>
     )

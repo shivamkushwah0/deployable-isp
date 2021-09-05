@@ -7,9 +7,9 @@ export default function Upload(props) {
         console.log(file);
         if(file == undefined )
         return ;
-        if(file.type != "image/jpeg")
+        if(file.type != "image/jpeg" &&  file.type != "image/jpg" && file.type != "image/png" )
         {
-            alert("Please upload a JPG or JPEG image");
+            alert("Please upload a JPG or JPEG or PNG image");
             return ;
         }
         if((file.size)/1024 < 300 )

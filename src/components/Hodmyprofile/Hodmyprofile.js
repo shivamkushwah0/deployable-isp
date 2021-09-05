@@ -43,7 +43,7 @@ export default function Picwindow(props) {
                     <button onClick={funcpass} type='btn' className={ pass ? "pic_btn_active" : "pic_btn"}>Reset password</button>
                     </Col>
                     <Col md={4}>
-                    <Link to="/login"><button onClick={funclog} type='btn' className="pic_btn">log out</button></Link>
+                    <Link to="/login"><button onClick={funclog} type='btn' className="pic_btn">Log Out</button></Link>
                     </Col>
                     
                   </Row>

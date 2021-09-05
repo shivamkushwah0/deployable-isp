@@ -4,6 +4,7 @@ import '../Picwindow/Picwindow.css'
 import AcadsecFinalized from './AcadsecFinalized';
 import AcadsecAccepted from './AcadsecAccepted';
 import Home from "./AcadSecHome";
+import {Link} from 'react-router-dom'
 export default class Forwarded extends Component {
 
     constructor(props){
@@ -42,7 +43,7 @@ export default class Forwarded extends Component {
     render() {
         return (
             <div>
-                 <div className="container margintop">
+                 <div className="container margintop text-center">
                     <Row>
                         <Col md={3}>
                         <button onClick={this.OpenHomeWindow} className={ this.state.HomeWindow ? "pic_btn_active" : "pic_btn"}>Home</button>
@@ -53,8 +54,8 @@ export default class Forwarded extends Component {
                         <Col md={3}>
                         <button onClick={this.OpenFinalizedWindow} className={ this.state.FinalizedStudentsWindow ? "pic_btn_active" : "pic_btn"}>Finalized Applicants</button>
                         </Col>
-                        <Col>
-                        <button onClick={()=>{window.location.href="https://iitp-isa.netlify.app/login"}} className="pic_btn">Logout</button>
+                        <Col md= {3}>
+                        <Link to="/login" > <button className="pic_btn">Logout</button></Link>
                         </Col>
                     </Row>
                     

@@ -38,8 +38,8 @@ class PDF extends Component {
                 <Details details = {details} />
                 {/* <ContactDetails details={student.contactDetails} /> */}
                 {student.contactDetails!=undefined ?  <ContactDetails details={student.contactDetails} /> : null }
-                {student.toeflScore.registrationNo!="" ? <Toefl details = {student.toeflScore} /> : null }
-                {student.greScore.registrationNo!="" ? <Gre details = {student.greScore} /> : null}
+                {student.toeflScore!=undefined ? <Toefl details = {student.toeflScore} /> : null }
+                {student.greScore!=undefined ? <Gre details = {student.greScore} /> : null}
                 {student.academicQualification.length!=0 ? <Academics details={student.academicQualification} /> : null}
                 {student.professionalExperience.length!=0 ? <Professional details={student.professionalExperience} /> : null }
                 {student.refereeDetails.length!=0 ? <Refree details={student.refereeDetails} /> : null}

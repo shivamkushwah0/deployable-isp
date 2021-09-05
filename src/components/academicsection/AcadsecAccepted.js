@@ -15,6 +15,7 @@ export default function AcadsecAccepted(props){
     const [govtIndex , setGovtIndex] = useState(0); 
     const [mode , setMode] = useState('online');
     const [isModalOpen , setModal ] = useState(false);
+    const [loading , setLoading] = useState(false);
     useEffect(()=>{
         const addresss = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/accepted"
         fetch(addresss , {
@@ -90,9 +91,21 @@ export default function AcadsecAccepted(props){
     const handleUpload = (id,index) => {
         if(byOnlineFile[index]===undefined || byOnlineOfferLetter[index]===undefined)
         {
-            alert("Please Select the documents");
+            alert("Please upload the documents");
             return ;
         }
+
+        if(( byOnlineFile[index].type !=="application/pdf"))
+        {
+            alert("Please select a valid PDF file");
+            return ;
+        }
+        if(( byOnlineOfferLetter[index].type !=="application/pdf"))
+        {
+            alert("Please select a valid PDF file");
+            return ;
+        }
+        setLoading(true);
         const formdata = new FormData();
         formdata.append(
             "SignedNoteSheet",
@@ -107,10 +120,12 @@ export default function AcadsecAccepted(props){
         .then(res => {
             if(res.ok)
             return res.json();
-            else throw new Error("Something went wrong, please try again later")
+            setLoading(false);
+            throw new Error("Something went wrong, please try again later")
 
         })
         .then(data => {
+            
             console.log(data)
             if(data.message === "Signed NoteSheet Uploaded")
             {
@@ -128,7 +143,8 @@ export default function AcadsecAccepted(props){
                 .then(res => {
                     if(res.ok)
                     return res.json();
-                    else throw new Error("Something went wrong, please try again later")
+                    setLoading(false);
+                    throw new Error("Something went wrong, please try again later")
                 })
                 .then(data => {
                     console.log(data)
@@ -141,9 +157,11 @@ export default function AcadsecAccepted(props){
                         .then(res => {
                             if(res.ok)
                             return res.json();
-                            else throw new Error("Something went wrong, please try again later")
+                            setLoading(false);
+                            throw new Error("Something went wrong, please try again later")
                         })
                         .then(data => {
+                            setLoading(false);
                             console.log(data)
                             if(data.message === "Process finished")
                             alert("The documents have been uploaded and the applicant has been finalized, please refresh the page to avoid confusions")
@@ -174,9 +192,21 @@ export default function AcadsecAccepted(props){
     const handleGovtUpload = (id,index) => {
         if(byGovtFile[index]===undefined || byGovtOfferLetter[index]===undefined )
         {
-            alert("Please Select the documents");
+            alert("Please upload the documents");
             return ;
         }
+
+        if(( byGovtFile[index].type !=="application/pdf"))
+        {
+            alert("Please select a valid PDF file");
+            return ;
+        }
+        if(( byGovtOfferLetter[index].type !=="application/pdf"))
+        {
+            alert("Please select a valid PDF file");
+            return ;
+        }
+        setLoading(true);
         const formdata = new FormData();
         formdata.append(
             "SignedNoteSheet",
@@ -191,7 +221,8 @@ export default function AcadsecAccepted(props){
         .then(res => {
             if(res.ok)
             return res.json();
-            else throw new Error("Something went wrong, please try again later")
+            setLoading(false);
+            throw new Error("Something went wrong, please try again later")
 
         })
         .then(data => {
@@ -212,7 +243,8 @@ export default function AcadsecAccepted(props){
                 .then(res => {
                     if(res.ok)
                     return res.json();
-                    else throw new Error("Something went wrong, please try again later")
+                    setLoading(false);
+                    throw new Error("Something went wrong, please try again later")
                 })
                 .then(data => {
                     console.log(data)
@@ -225,9 +257,12 @@ export default function AcadsecAccepted(props){
                         .then(res => {
                             if(res.ok)
                             return res.json();
-                            else throw new Error("Something went wrong, please try again later")
+                            setLoading(false);
+                            throw new Error("Something went wrong, please try again later")
                         })
                         .then(data => {
+
+                            setLoading(false);
                             console.log(data)
                             if(data.message === "Process finished")
                             alert("The documents have been uploaded and the applicant has been finalized, please refresh the page to avoid confusions")
@@ -316,6 +351,15 @@ export default function AcadsecAccepted(props){
             </tbody>
         </table> : <NothingHere /> }
         </div>
+        {
+            loading ? ( <div className = "text-center margintop">
+            Please wait while the Acceptance is being confirmed
+            <br/>
+            <span className="fa fa-spin fa-spinner fa-5x"></span>
+            </div> ) : null
+        }
+       
+       
         <Modal isOpen={isModalOpen} className="modal_stu container">                
                     <br />
                     <div className="row">
@@ -325,7 +369,7 @@ export default function AcadsecAccepted(props){
                         </div>
                     </div>
                     <br />
-                    <div className="row">
+                    <div className="row mt-5">
                         <div className="col-sm-8 offset-sm-4">
                         <Label>Upload OfferLetter</Label>
                         <input onChange={(e)=>{handleChangeOfferLetter(e,mode); }} type="file" placeholder="Please select a pdf file"></input>
