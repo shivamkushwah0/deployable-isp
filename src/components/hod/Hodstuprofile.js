@@ -59,7 +59,7 @@ export default function StudentProfile(props) {
         if(data.status==="Application rejected")
         {
             alert("The Application is rejected");
-            window.location.href = "http://localhost:3000/hodwindow/"+props.match.params.hid;
+            window.location.href = "https://iitp-isa.netlify.app/hodwindow/"+props.match.params.hid;
         }
         
     })

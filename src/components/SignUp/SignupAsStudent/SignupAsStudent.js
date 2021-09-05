@@ -80,11 +80,11 @@ const SignupAsStudent = (props) => {
             if(data.message)
             {
                 alert(data.message);
-                window.location.href="http://localhost:3000/login" 
+                window.location.href="https://iitp-isa.netlify.app/login" 
                 return ;
             }
             alert("A confirmation mail has been sent to your registered email\n Please activate your account before proceeding to next steps");
-            window.location.href="http://localhost:3000/login" })
+            window.location.href="https://iitp-isa.netlify.app/login" })
         .catch(error => {console.log(error); alert(error)})
     }
 

@@ -47,7 +47,7 @@ const LoginAsEmployer = () => {
                     alert('Invalid Credentials, please try again')
                     setPassword('');
                 } else {
-                    const picwindow = "http://localhost:3000/picwindow/"+data._id;
+                    const picwindow = "https://iitp-isa.netlify.app/picwindow/"+data._id;
                     window.location.href=picwindow;
                 }
             }).catch(err => {
