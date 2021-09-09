@@ -11,17 +11,22 @@ export default function Piceditprofile(props) {
     const [mobile, setMobile] = useState('');
     const [email, setEmail] = useState('');
     const handleSubmit = (e) => {
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/edit-profile";
+        const address = "http://localhost:5100/backend/admin/edit-profile";
         fetch(address , {
             headers : {
-                "Content-Type" : "application/json"
+                "Content-Type" : "application/json",
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
             },
             method : 'PATCH',
             body : JSON.stringify({
                 name : name,
                 email : email ,
                 mobileNo : mobile
-            })
+            }),
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)

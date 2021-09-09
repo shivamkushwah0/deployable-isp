@@ -13,9 +13,16 @@ export default function GovtApplications (props) {
     const [downApp , ShowDownApp] = useState(false);
 
     useEffect(()=>{
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applications/"+props.hid;
+        const address = "http://localhost:5100/backend/department/govtApplications/applications/"+props.hid;
         fetch(address , {
-            method : "get"
+            method : "get",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)
@@ -47,9 +54,16 @@ export default function GovtApplications (props) {
         setShowAdd(true);
     }
     const handleRemove = (id) => {
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/removeApplication/"+id;
+        const address = "http://localhost:5100/backend/department/govtApplications/removeApplication/"+id;
         fetch(address , {
-            method : "PATCH"
+            method : "PATCH",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)

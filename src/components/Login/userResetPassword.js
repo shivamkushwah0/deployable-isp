@@ -34,7 +34,7 @@ export default class userResetPassword extends React.Component {
         role:this.state.role,
       }
     }
-     await axios.post('https://iitp-isa-portal-backend.herokuapp.com/backend/forgotPassword',payload)
+     await axios.post('http://localhost:5100/backend/forgotPassword',payload)
     .then((s)=>
     {
       alert("Mail has been sent to your personal email");

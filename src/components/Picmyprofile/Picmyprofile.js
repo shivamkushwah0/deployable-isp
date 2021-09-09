@@ -20,9 +20,16 @@ export default function Picmyprofile(props) {
     const [department , setDepartment] = useState({department : '' , programme : ''});
     const [isOpen , setModal] = useState(false);
     useEffect(()=>{
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/profile'
+        const address = 'http://localhost:5100/backend/admin/profile'
         fetch(address , {
-            method:'get'
+            method:'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)
@@ -37,8 +44,17 @@ export default function Picmyprofile(props) {
             alert("Please check your internet connection and try again "+ err)
         })
 
-        const detailAddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails';
-        fetch(detailAddress , {method : 'get'})
+        const detailAddress = 'http://localhost:5100/backend/allDetails';
+        fetch(detailAddress , {
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
+        })
         .then(res => {
             if(res.ok)
             return res.json();
@@ -60,14 +76,19 @@ export default function Picmyprofile(props) {
             alert("No fields can be empty, make sure to add the required fields");
             return ;
         }
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programs";
+        const address = "http://localhost:5100/backend/admin/programs";
         console.log([...details.programs , programme]);
         fetch(address , {
             method : 'PATCH',
             headers: {                            
-                "Content-Type": "application/json"  
-              } ,
-            body : JSON.stringify({ programs : [...details.programs , programme] })
+                "Content-Type": "application/json",
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+              },
+            body : JSON.stringify({ programs : [...details.programs , programme] }),
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res=> {
             if(res.ok)
@@ -88,7 +109,7 @@ export default function Picmyprofile(props) {
             alert("No fields can be empty, make sure to add the required fields");
             return ;
         }
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programsAndDepartments";
+        const address = "http://localhost:5100/backend/admin/programsAndDepartments";
          const b = details.programAndDepartments;
          var flag = false;
          var newProgramme = b.map((element) => {
@@ -118,12 +139,16 @@ export default function Picmyprofile(props) {
         fetch(address , {
             method : "PATCH",
             headers: {                             
-                "Content-Type": "application/json" 
-              } ,
-              
+                "Content-Type": "application/json" ,
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+              },
             body : JSON.stringify({
                 programsAndDepartments : newProgramme
-            })
+            }),
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => { if(res.ok)
             return res.json();
@@ -235,7 +260,7 @@ export default function Picmyprofile(props) {
             <Modal isOpen={isOpen} className="modal_stu container">
                 {
                     mode==='programme' ?  
-                    (<div className="text-center" style={{width:"100%"}}>
+                    (<div className="text-center row" style={{width:"100%"}}>
                     <TextField
                         fullWidth
                         name="programme"
@@ -244,12 +269,19 @@ export default function Picmyprofile(props) {
                         variant="filled"
                         onChange={e=>{setProgramme(e.target.value)}} > </TextField>
                         <br/>
-                        <button type='btn' className="active tab_btn pic_btn mt-4" onClick={()=>{addProgramme()}}>Add Programme</button>
                         <br/>
+                        <br/>
+                        <div className="col-6 text-center">
+                        <button type='btn' className="active tab_btn pic_btn mt-4" onClick={()=>{addProgramme()}}>Add Programme</button>
+                        </div>
+                        <div className="col-6 text-center">
+                        <button onClick={()=>{setModal(false)}} type='btn' className="active tab_btn pic_btn float-right">Close</button>
+                        </div>
+                        
                         </div>
                         ) :
                     (
-                        <div className="text-center" style={{width:"100%"}}>
+                        <div className="text-center row" style={{width:"100%"}}>
                         <TextField
                         fullWidth
                         select
@@ -290,12 +322,18 @@ export default function Picmyprofile(props) {
                             }
                         </TextField>
                         <br/>
+                        <br/>
+                        <br/>
+                        <div className = "col-6 text-center">
                         <button type='btn' className="active tab_btn pic_btn mt-4" onClick={addDepartment}>Add Department</button>
+                        </div>
+                        <div className = "col-6 text-center">
+                        <button onClick={()=>{setModal(false)}} type='btn' className="active tab_btn pic_btn float-right">Close</button>
+                        </div>
                         </div>
                     ) 
                 }
                 <br />
-                <button onClick={()=>{setModal(false)}} type='btn' className="active tab_btn pic_btn float-right">Close</button>
             </Modal>
             </div>
            

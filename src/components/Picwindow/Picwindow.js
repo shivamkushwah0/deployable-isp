@@ -34,10 +34,17 @@ export default function Picwindow(props) {
     }
 
     useEffect(()=>{
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
+        const address = "http://localhost:5100/backend/allDetails";
         fetch(address,
             {
-                method:"get"
+                method:"get",
+                headers : {
+                    'x-auth-token': localStorage.getItem('refreshToken'),
+                    'x-refresh-token': localStorage.getItem('refreshToken'),
+                },
+                payload : {
+                    role : localStorage.getItem('role'),
+                }
             })
             .then(res => {
                 if(res.ok)
@@ -89,7 +96,7 @@ export default function Picwindow(props) {
        console.log(role);
        console.log(department);
        console.log(file);
-       const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/govtApplications/addApplications";
+       const address = "http://localhost:5100/backend/admin/govtApplications/addApplications";
        if(file === null || (file.type !=="application/x-zip-compressed" && file.type !== "application/zip") )
        {
            alert("Please insert a zip file to proceed");
@@ -108,6 +115,13 @@ export default function Picwindow(props) {
        fetch (address , {
            method : "post",
            body:filedata,  
+           headers : {
+            'x-auth-token': localStorage.getItem('refreshToken'),
+            'x-refresh-token': localStorage.getItem('refreshToken'),
+        },
+        payload : {
+            role : localStorage.getItem('role'),
+        }
        })
        .then(res=>{
            if(res.ok)
@@ -133,18 +147,23 @@ export default function Picwindow(props) {
            alert("Please fill the required field");
            return ;
        }
-       const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/platForms";
+       const address = "http://localhost:5100/backend/admin/platForms";
 
        adminVar.platForms.push(newRole);
 
        fetch (address , {
            method : "PATCH",
            headers: {
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            'x-auth-token': localStorage.getItem('refreshToken'),
+            'x-refresh-token': localStorage.getItem('refreshToken'),
             },
            body : JSON.stringify({
             platForms : adminVar.platForms
-           })
+           }),
+           payload : {
+               role : localStorage.getItem('role'),
+           }
        })
        .then(res => {
            if(res.ok)
@@ -167,18 +186,23 @@ export default function Picwindow(props) {
         alert("Please fill the required field");
         return ;
     }
-    const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/platForms";
+    const address = "http://localhost:5100/backend/admin/platForms";
 
     const platforms = adminVar.platForms.filter((platform)=>platform!==newRole)
     console.log(platforms);
     fetch (address , {
         method : "PATCH",
         headers: {
-         "Content-Type":"application/json"
+         "Content-Type":"application/json",
+         'x-auth-token': localStorage.getItem('refreshToken'),
+        'x-refresh-token': localStorage.getItem('refreshToken'),
          },
         body : JSON.stringify({
          platForms : platforms
-        })
+        }),
+        payload : {
+            role : localStorage.getItem('role'),
+        }
     })
     .then(res => {
         if(res.ok)

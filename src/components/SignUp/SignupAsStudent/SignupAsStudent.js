@@ -61,7 +61,7 @@ const SignupAsStudent = (props) => {
             return ;
         }
         setLoading(true);
-        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/registration', {
+        fetch('http://localhost:5100/backend/applicant/registration', {
             method: "post",
             headers: {
                 "Accept" : "application/json",
@@ -97,7 +97,7 @@ const SignupAsStudent = (props) => {
                                <div className="col-md-4 p-0 padding_0" >
                                 <div className="text-center .d-none loginsignup">
                                     <img src={logo} alt="image" className="center logo_form"></img>
-                                    <p>"Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "</p>
+                                    <p>"Instructions for the candidate here"</p>
                                 </div>
                                </div>
                                <div className="col-md-8 back_form signup_form">

@@ -3,10 +3,17 @@ import React,{useEffect , useState} from 'react';
 export default function GovtApplicants (props) {
     const [applicants, setApplicants] = useState([]); 
     useEffect(()=>{
-        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/govtApplications/applicants';
+        const  address = 'http://localhost:5100/backend/admin/govtApplications/applicants';
         console.log(address);
         fetch(address , {
-            method : 'get'
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)

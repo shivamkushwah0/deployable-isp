@@ -53,7 +53,7 @@ export default class ResetPassword extends React.Component {
     if(this.state.match===1 && errors.password=='')
     {
       let payload={token:this.state.token,newPassword:this.state.password1}
-      axios.patch("https://iitp-isa-portal-backend.herokuapp.com/backend/resetPassword",payload)
+      axios.patch("http://localhost:5100/backend/resetPassword",payload)
       .then((s)=>{
         this.setState({redirect:"/"})
       })

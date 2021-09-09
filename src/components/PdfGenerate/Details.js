@@ -25,7 +25,7 @@ export default function Details (props) {
     </div>
         </div>
         <div className="col-3">
-            <img src={props.details.img} alt={props.details.name} height={100} width={100} />
+            <img src={props.details.image} alt={props.details.name} height={100} width={100} />
         </div>
     </div>
     </div>

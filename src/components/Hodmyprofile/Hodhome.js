@@ -6,9 +6,16 @@ import {Link} from 'react-router-dom'
 export default function Hodhome(props) {
     const [user, setUser] = useState({});
     useEffect(()=>{
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
+        const address = 'http://localhost:5100/backend/admin/departments/';
         fetch(address , {
-            method : 'get'
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)
@@ -27,7 +34,7 @@ export default function Hodhome(props) {
     const id = props.match?props.match.params.id : props.id; 
     const link = "/edithodprofile/"+id;
     return (
-        <div className="container">
+        <div className="container margintop">
             <div className="home">
                 <div className="profile">
                     <div className="profile_inner">

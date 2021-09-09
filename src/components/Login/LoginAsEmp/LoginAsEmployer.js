@@ -29,7 +29,7 @@ const LoginAsEmployer = () => {
     function OnSubmit(){ 
         console.log(emailID,password)
         setIsLoading(true);
-        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/admin/login', {
+        fetch('http://localhost:5100/backend/admin/login', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -39,7 +39,11 @@ const LoginAsEmployer = () => {
                 password:password
             })
 
-        }).then(res => res.json())
+        }).then(res => {
+            localStorage.setItem('authToken',res.headers.get("x-auth-token"));
+            localStorage.setItem('refreshToken',res.headers.get("x-refresh-token"));
+            localStorage.setItem('role',"Admin");
+            return res.json()})
             .then(data => {
                 console.log(data)
                 setIsLoading(false);

@@ -49,14 +49,14 @@ export default class ConfirmEmail extends React.Component {
     // console.log(errors);
     
     // let payload={token:this.state.token}
-    // axios.patch("https://iitp-isa-portal-backend.herokuapp.com/backend/confirmEmail",payload)
+    // axios.patch("http://localhost:5100/backend/confirmEmail",payload)
     // .then((s)=>{
     //   this.setState({redirect:"/"})
     // })
     // .catch((e)=>{
     //   alert("Could not confirm Email.\n Consult Admin");
     // });
-    fetch("https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/confirmEmail",{
+    fetch("http://localhost:5100/backend/applicant/confirmEmail",{
       method : "post",
       headers : {
         "Content-Type": "application/json"

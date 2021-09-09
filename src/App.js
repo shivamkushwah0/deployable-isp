@@ -31,7 +31,7 @@ const App =() => {
         <div>
         
         <Switch>
-          <Route exact path="/" component={Landing}/>
+          <Route exact path="/" component={LogIn}/>
            <Route exact path="/login" component={LogIn}/>
            <Route exact path="/picwindow/:id" component={Picwindow}/>
             <Route exact path="/signup" component={SignupAsStudent} />

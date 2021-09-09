@@ -8,10 +8,17 @@ export default function GovtApplicants (props) {
     const [note , setNote] = useState(0);
     const [loading , setLoading] = useState(false);
     useEffect(()=>{
-        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applicants/'+props.hid;
+        const  address = 'http://localhost:5100/backend/department/govtApplications/applicants/'+props.hid;
         console.log(address);
         fetch(address , {
-            method : 'get'
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)
@@ -36,12 +43,19 @@ export default function GovtApplicants (props) {
             alert("Please upload the notesheet and in pdf format");
             return ;
         }
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/uploadNotesheet/"+aid;
+        const address = "http://localhost:5100/backend/department/govtApplications/uploadNotesheet/"+aid;
         const file = new FormData();
         file.append("noteSheet",notesheet[index]);
         fetch(address , {
             method : "PATCH",
-            body:file
+            body:file,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)
@@ -53,9 +67,16 @@ export default function GovtApplicants (props) {
             console.log(data);
             if(data.message)
             {
-                const acceptAddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/acceptApplicant/"+aid;
+                const acceptAddress = "http://localhost:5100/backend/department/govtApplications/acceptApplicant/"+aid;
                 fetch(acceptAddress , {
-                    method : "PATCH"
+                    method : "PATCH",
+                    headers : {
+                        'x-auth-token': localStorage.getItem('refreshToken'),
+                        'x-refresh-token': localStorage.getItem('refreshToken'),
+                    },
+                    payload : {
+                        role : localStorage.getItem('role'),
+                    }
                 })
                 .then(res=>{
                     setLoading(false);

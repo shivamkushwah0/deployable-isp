@@ -11,9 +11,16 @@ export default class Forwarded extends Component {
         }
     }
     componentDidMount() {
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/forwarded';
+        const address = 'http://localhost:5100/backend/admin/forwarded';
             fetch(address,{
-                method:'get'
+                method:'get',
+                headers : {
+                    'x-auth-token': localStorage.getItem('refreshToken'),
+                    'x-refresh-token': localStorage.getItem('refreshToken'),
+                },
+                payload: {
+                    role : "Admin"
+                }
             })
             .then(res=>res.json())
             .then(data =>{ console.log(data)

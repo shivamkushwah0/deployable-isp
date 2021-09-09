@@ -3,10 +3,17 @@ import NothingHere from '../extras/nothingHere'
 export default function GovtForwarded (props) {
     const [applicants, setApplicants] = useState([]);     
     useEffect(()=>{
-        const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/forwardedApplicants/'+props.hid;
+        const  address = 'http://localhost:5100/backend/department/govtApplications/forwardedApplicants/'+props.hid;
         console.log(address);
         fetch(address , {
-            method : 'get'
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             if(res.ok)

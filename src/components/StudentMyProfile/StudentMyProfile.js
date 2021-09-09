@@ -19,10 +19,17 @@ export default function StudentMyProfile(props) {
 setaid(props.match.params.id);
 console.log(aid);
 const id = props.match.params.id;
-const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/applicant/"+id;
+const address = "http://localhost:5100/backend/applicant/profile/"+id;
 console.log(address);
 fetch(address , {
-    method : 'get'
+    method : 'get',
+    headers : {
+        'x-auth-token': localStorage.getItem('refreshToken'),
+        'x-refresh-token': localStorage.getItem('refreshToken'),
+    },
+    payload : {
+        role : localStorage.getItem('role'),
+    }
 }).then((res) => {
     if(res.ok)
         return res.json();

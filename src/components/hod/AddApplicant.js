@@ -21,10 +21,17 @@ export default function AddApplicant (props) {
           return (validEmailRegex.test(email))    
       }
     useEffect(()=>{
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
+        const address = "http://localhost:5100/backend/allDetails";
         fetch(address,
             {
-                method:"get"
+                method:"get",
+                headers : {
+                    'x-auth-token': localStorage.getItem('refreshToken'),
+                    'x-refresh-token': localStorage.getItem('refreshToken'),
+                },
+                payload : {
+                    role : localStorage.getItem('role'),
+                }
             })
             .then(res => {
                 if(res.ok)
@@ -57,10 +64,17 @@ export default function AddApplicant (props) {
         formdata.append("name",name);
         formdata.append("email",email);
         formdata.append("platform",platform);
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/addApplicant";
+        const address = "http://localhost:5100/backend/department/govtApplications/addApplicant";
         fetch(address , {
             method : "post",
-            body : formdata
+            body : formdata,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then((res)=>{
             setLoading(false);

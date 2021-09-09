@@ -3,9 +3,16 @@ import logo from "../Login/logo.png";
 export default function AcadsecHome() {
     const [user,setUser] = useState({});
     useEffect(()=>{
-        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/profile"
+        const address = "http://localhost:5100/backend/acadSec/profile"
         fetch(address,{
-            method : "get"
+            method : "get",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            payload : {
+                role : localStorage.getItem('role'),
+            }
         })
         .then(res => {
             return res.json();
