@@ -61,7 +61,7 @@ const SignupAsStudent = (props) => {
             return ;
         }
         setLoading(true);
-        fetch('http://localhost:5100/backend/applicant/registration', {
+        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/registration', {
             method: "post",
             headers: {
                 "Accept" : "application/json",

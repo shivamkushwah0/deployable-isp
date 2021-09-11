@@ -12,7 +12,7 @@ export default function Edithodprofile(props) {
     const [user, setUser] = useState({});
 
     const handleSubmit =() => {
-        const address = "http://localhost:5100/backend/admin/updateDeptHead/"+props.match.params.id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/updateDeptHead/"+props.match.params.id;
         fetch(address , {
             method:'PATCH',
             headers : {
@@ -27,9 +27,7 @@ export default function Edithodprofile(props) {
                 mobileNo : mobile ,
                 departmentName : user.departmentName
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -49,16 +47,14 @@ export default function Edithodprofile(props) {
     }
 
     useEffect(()=>{
-        const address = 'http://localhost:5100/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)

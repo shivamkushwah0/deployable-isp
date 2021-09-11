@@ -28,7 +28,7 @@ const LoginAsStudent = () => {
     function OnSubmit(){ 
         // console.log(emailID,password)
         setIsLoading(true);
-        fetch('http://localhost:5100/backend/applicant/login', {
+        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/login', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,6 @@ const LoginAsStudent = () => {
             // console.log(res.headers.get('x-auth-token'));
                 localStorage.setItem('authToken',res.headers.get("x-auth-token"));
                 localStorage.setItem('refreshToken',res.headers.get("x-refresh-token"));
-                localStorage.setItem('role',"Applicant");
                 return res.json()
          })
             .then(data => {

@@ -34,7 +34,7 @@ export default function Picwindow(props) {
     }
 
     useEffect(()=>{
-        const address = "http://localhost:5100/backend/allDetails";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
         fetch(address,
             {
                 method:"get",
@@ -96,7 +96,7 @@ export default function Picwindow(props) {
        console.log(role);
        console.log(department);
        console.log(file);
-       const address = "http://localhost:5100/backend/admin/govtApplications/addApplications";
+       const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/govtApplications/addApplications";
        if(file === null || (file.type !=="application/x-zip-compressed" && file.type !== "application/zip") )
        {
            alert("Please insert a zip file to proceed");
@@ -147,7 +147,7 @@ export default function Picwindow(props) {
            alert("Please fill the required field");
            return ;
        }
-       const address = "http://localhost:5100/backend/admin/platForms";
+       const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/platForms";
 
        adminVar.platForms.push(newRole);
 
@@ -186,7 +186,7 @@ export default function Picwindow(props) {
         alert("Please fill the required field");
         return ;
     }
-    const address = "http://localhost:5100/backend/admin/platForms";
+    const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/platForms";
 
     const platforms = adminVar.platForms.filter((platform)=>platform!==newRole)
     console.log(platforms);

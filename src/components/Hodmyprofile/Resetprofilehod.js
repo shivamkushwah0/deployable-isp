@@ -8,16 +8,14 @@ export default function ChangePassword(props) {
     const [CnfPass , setCnfPass] = useState('');
     const [user , setUser] = useState({}); 
     useEffect(()=>{
-        const address = 'http://localhost:5100/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -39,7 +37,7 @@ export default function ChangePassword(props) {
             console.log("New Password and confirm password are not matching");    
             return ;
         }
-        const address = "http://localhost:5100/backend/department/reset-password/"+user._id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/reset-password/"+user._id;
         fetch(address,{
             headers: {
                 'Accept': 'application/json',
@@ -51,10 +49,7 @@ export default function ChangePassword(props) {
               body : JSON.stringify({
                   oldPassword : OldPass ,
                   newPassword : newPass
-              }),
-              payload : {
-                  role : localStorage.getItem('role'),
-              }               
+              })               
         }).then(res => {
             if(res.ok)
             return res.json();

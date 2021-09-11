@@ -20,16 +20,14 @@ export default function Picmyprofile(props) {
     const [department , setDepartment] = useState({department : '' , programme : ''});
     const [isOpen , setModal] = useState(false);
     useEffect(()=>{
-        const address = 'http://localhost:5100/backend/admin/profile'
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/profile'
         fetch(address , {
             method:'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -44,16 +42,14 @@ export default function Picmyprofile(props) {
             alert("Please check your internet connection and try again "+ err)
         })
 
-        const detailAddress = 'http://localhost:5100/backend/allDetails';
+        const detailAddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails';
         fetch(detailAddress , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -76,7 +72,7 @@ export default function Picmyprofile(props) {
             alert("No fields can be empty, make sure to add the required fields");
             return ;
         }
-        const address = "http://localhost:5100/backend/admin/programs";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programs";
         console.log([...details.programs , programme]);
         fetch(address , {
             method : 'PATCH',
@@ -86,9 +82,7 @@ export default function Picmyprofile(props) {
                 'x-refresh-token': localStorage.getItem('refreshToken'),
               },
             body : JSON.stringify({ programs : [...details.programs , programme] }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res=> {
             if(res.ok)
@@ -109,7 +103,7 @@ export default function Picmyprofile(props) {
             alert("No fields can be empty, make sure to add the required fields");
             return ;
         }
-        const address = "http://localhost:5100/backend/admin/programsAndDepartments";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/programsAndDepartments";
          const b = details.programAndDepartments;
          var flag = false;
          var newProgramme = b.map((element) => {
@@ -146,9 +140,7 @@ export default function Picmyprofile(props) {
             body : JSON.stringify({
                 programsAndDepartments : newProgramme
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => { if(res.ok)
             return res.json();
@@ -215,7 +207,7 @@ export default function Picmyprofile(props) {
                     
                     </Col>
                     <Col md={3}>
-                    <Link to="/login"><button onClick={funclog} type='btn' className="pic_btn">Log Out</button></Link>
+                    <Link to="/login" > <button onClick = {() => {localStorage.removeItem('refreshToken'); localStorage.removeItem('authToken')  }} className="pic_btn">Logout</button></Link>                 
                     </Col>
                     
                   </Row>

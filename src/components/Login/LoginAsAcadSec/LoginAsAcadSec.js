@@ -29,7 +29,7 @@ const LoginAsAcadSec = () => {
     function OnSubmit(){ 
         console.log(emailID,password)
         setIsLoading(true);
-        fetch('http://localhost:5100/backend/acadsec/login', {
+        fetch('https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/login', {
             method: "post",
             headers: {
                 "Content-Type": "application/json",
@@ -42,7 +42,6 @@ const LoginAsAcadSec = () => {
         }).then(res => {
             localStorage.setItem('authToken',res.headers.get("x-auth-token"));
             localStorage.setItem('refreshToken',res.headers.get("x-refresh-token"));
-            localStorage.setItem('role',"AcadSec");
             return res.json()})
             .then(data => {
                 console.log(data)

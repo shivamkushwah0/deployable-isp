@@ -26,7 +26,7 @@ export default function Addprofilehod(props) {
             return ;
         }
         setLoading(true);
-        const address = "http://localhost:5100/backend/admin/assignDeptHead";
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/assignDeptHead";
         fetch(address ,{
             headers : {
                 "Content-Type":"application/json",
@@ -42,9 +42,7 @@ export default function Addprofilehod(props) {
                 departmentName,
                 departmentId
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then((res)=>{
             setLoading(false);

@@ -13,16 +13,14 @@ export default function Picwindow(props) {
     const [isforwarded,setisforwarded]=useState(false);
     const [user, setUser] = useState({});
     useEffect(()=>{
-        const address = 'http://localhost:5100/backend/admin/departments/';
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments/';
         fetch(address , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)

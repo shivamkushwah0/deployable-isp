@@ -18,16 +18,14 @@ export default function StudentProfile(props) {
         setModalIsOpen(false);
         
         const id = props.match.params.id;
-        const address = 'http://localhost:5100/backend/admin/profile/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/profile/'+id;
         fetch(address , {
             method : "get",
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -45,7 +43,7 @@ export default function StudentProfile(props) {
     },[])
     const handleForward =() => {
         setLoading(true);
-        const address = 'http://localhost:5100/backend/admin/forwardApplication/'+props.match.params.id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/forwardApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
             headers : {
@@ -56,9 +54,7 @@ export default function StudentProfile(props) {
             body : JSON.stringify({
                 departmentId : user.department
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res=>res.json())
         .then(data => {
@@ -73,7 +69,7 @@ export default function StudentProfile(props) {
     const handleReturn =() => {
         setReturnModal(false);
         setLoading(true);
-        const address = 'http://localhost:5100/backend/admin/returnApplication/'+props.match.params.id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/returnApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
             headers : {
@@ -84,9 +80,7 @@ export default function StudentProfile(props) {
             body : JSON.stringify({
                 message : returnMess
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res=>res.json())
         .then(data => {
@@ -97,7 +91,7 @@ export default function StudentProfile(props) {
         .catch (err => console.log(err))
     }
     const handleReject = () => {
-        const address = 'http://localhost:5100/backend/admin/cancelApplication/'+props.match.params.id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/cancelApplication/'+props.match.params.id;
         fetch(address , {
             method : 'PATCH',
             headers : {
@@ -108,9 +102,7 @@ export default function StudentProfile(props) {
             body : JSON.stringify({
                 message : rejectMess
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res=>res.json())
         .then(data => {

@@ -1,2 +1,2 @@
-/backend/*  http://localhost:5100/backend/:splat  200
+/backend/*  https://iitp-isa-portal-backend.herokuapp.com/backend/:splat  200
 /files/* https://iitp-isa-portal-file-storage.s3.ap-south-1.amazonaws.com/:splat  200

@@ -11,16 +11,14 @@ export default class Picmanagehod extends Component {
         this.clicking=this.clicking.bind(this)
     }
     componentDidMount = () => {
-        const address = "http://localhost:5100/backend/admin/departments"
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/admin/departments"
         fetch(address , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)

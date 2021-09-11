@@ -16,16 +16,14 @@ export default function StudentProfile(props) {
     useEffect(() => {
         
         const id = props.match.params.id;
-        const address = 'http://localhost:5100/backend/applicant/profile/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
         fetch(address , {
             method : "get",
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -45,7 +43,7 @@ export default function StudentProfile(props) {
    const handleReject = () => {
        setRejectModal(false);
        setLoading(true);
-    const address = 'http://localhost:5100/backend/department/rejectApplication/'+props.match.params.hid;
+    const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/rejectApplication/'+props.match.params.hid;
     fetch(address, {
         headers : {
             "Content-Type":"application/json" ,
@@ -102,7 +100,7 @@ export default function StudentProfile(props) {
         "notesheet+"+user._id+".pdf"
       );
       
-    const address = 'http://localhost:5100/backend/department/noteSheetsUpload/'+user._id;
+    const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/noteSheetsUpload/'+user._id;
     fetch(address, {
         method:'PATCH',
         body : formdata,
@@ -123,7 +121,7 @@ export default function StudentProfile(props) {
     .then(data => {
         console.log(data)
         // if(data.message==="Notesheet Uploaded")
-        const address = "http://localhost:5100/backend/department/acceptApplication/"+props.match.params.hid;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/acceptApplication/"+props.match.params.hid;
         console.log(user._id);
         fetch(address,{
             headers : {
@@ -135,9 +133,7 @@ export default function StudentProfile(props) {
             body : JSON.stringify({
                 applicantId : user._id
             }),
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             // console.log(res.json().body)

@@ -6,16 +6,14 @@ export default function AcadsecAccepted(props){
     const [accepted , setAccepted] =  useState([]);
     const [govtApplicants , setGovtApplicants] = useState([]);
     useEffect(()=>{
-        const addresss = "http://localhost:5100/backend/acadsec/finalized"
+        const addresss = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/finalized"
         fetch(addresss , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res=>{
             if(res.ok)
@@ -30,16 +28,14 @@ export default function AcadsecAccepted(props){
             console.log(err)
         })
 
-        const gApplicants = "http://localhost:5100/backend/acadSec/govtApplications/finalizedApplicants";
+        const gApplicants = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/govtApplications/finalizedApplicants";
         fetch(gApplicants , {
             method : "get",
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res=>{
             if(res.ok)

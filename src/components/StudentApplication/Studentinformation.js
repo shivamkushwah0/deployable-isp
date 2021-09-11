@@ -26,16 +26,14 @@ export default function Studentinformation(props) {
     const [loading , setLoading] = useState(false);
     useEffect(()=>{
         const id = props.match.params.id;
-        const address = 'http://localhost:5100/backend/applicant/profile/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
         fetch(address , {
             method : "get",
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -122,16 +120,14 @@ export default function Studentinformation(props) {
         })
         .catch(err => console.log(err))
 
-        const detailAddress = 'http://localhost:5100/backend/allDetails';
+        const detailAddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails';
         fetch(detailAddress , {
             method : 'get',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         })
         .then(res => {
             if(res.ok)
@@ -310,16 +306,14 @@ export default function Studentinformation(props) {
     // function for applying for admission 
     const Apply = () => {
         setLoading(true);
-        const applyaddress = 'http://localhost:5100/backend/applicant/apply/'+props.match.params.id;
+        const applyaddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/apply/'+props.match.params.id;
         fetch (applyaddress , {
             method : 'PATCH',
             headers : {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         }).
         then(res => res.json())
         .then(res => {
@@ -393,17 +387,15 @@ export default function Studentinformation(props) {
         console.log(refreeFields);
         console.log(files);
         setLoading(true);
-        const address = "http://localhost:5100/backend/applicant/saveDetails/"+props.match.params.id;
+        const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/saveDetails/"+props.match.params.id;
         fetch(address,{
             method:"post",
             headers:{
                 "Content-Type" : "application/json",
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
-            },
-            payload : {
-                role : localStorage.getItem('role'),
-            },
+            }
+            ,
             body:JSON.stringify({
                 name:inputFields[0].name,
                 dob : inputFields[0].dob,
@@ -471,7 +463,7 @@ export default function Studentinformation(props) {
             console.log(res)
             setResponseMess(res.message);
             console.log(responseMess)
-            const uploadaddress = "http://localhost:5100/backend/applicant/documentsUpload/"+props.match.params.id;
+            const uploadaddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/documentsUpload/"+props.match.params.id;
         const formdata = new FormData();
         formdata.append(
             "documentFiles",
@@ -510,9 +502,7 @@ export default function Studentinformation(props) {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
         }).then((res)=>{return res.json()})
         .then(data=>{
             console.log(data)
@@ -522,7 +512,7 @@ export default function Studentinformation(props) {
         })
         .catch(err => console.log(err))
 
-        const imgAddress = "http://localhost:5100/backend/applicant/profile/pic/"+props.match.params.id;
+        const imgAddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/pic/"+props.match.params.id;
         const form = new FormData();
         form.append('image',files.image);
         fetch(imgAddress , {
@@ -532,9 +522,7 @@ export default function Studentinformation(props) {
                 'x-auth-token': localStorage.getItem('refreshToken'),
                 'x-refresh-token': localStorage.getItem('refreshToken'),
             },
-            payload : {
-                role : localStorage.getItem('role'),
-            }
+            
 
         }).then ((res)=> {
             if(res.ok)
