@@ -22,7 +22,8 @@ class PDF extends Component {
             nationality : student.nationality,
             program : student.program,
             department : student.department,
-            email:student.userName
+            email:student.userName,
+            image : student.image
         }
         return (
             <div className = "container" style ={{margin : 20}}>

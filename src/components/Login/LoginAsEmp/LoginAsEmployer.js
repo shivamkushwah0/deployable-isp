@@ -39,7 +39,10 @@ const LoginAsEmployer = () => {
                 password:password
             })
 
-        }).then(res => res.json())
+        }).then(res => {
+            localStorage.setItem('authToken',res.headers.get("x-auth-token"));
+            localStorage.setItem('refreshToken',res.headers.get("x-refresh-token"));
+            return res.json()})
             .then(data => {
                 console.log(data)
                 setIsLoading(false);

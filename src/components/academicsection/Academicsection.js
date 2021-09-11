@@ -55,7 +55,7 @@ export default class Forwarded extends Component {
                         <button onClick={this.OpenFinalizedWindow} className={ this.state.FinalizedStudentsWindow ? "pic_btn_active" : "pic_btn"}>Finalized Applicants</button>
                         </Col>
                         <Col md= {3}>
-                        <Link to="/login" > <button className="pic_btn">Logout</button></Link>
+                        <Link to="/login" > <button onClick = {() => {localStorage.removeItem('refreshToken'); localStorage.removeItem('authToken')  }} className="pic_btn">Logout</button></Link>
                         </Col>
                     </Row>
                     

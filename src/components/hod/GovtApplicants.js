@@ -11,7 +11,12 @@ export default function GovtApplicants (props) {
         const  address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/applicants/'+props.hid;
         console.log(address);
         fetch(address , {
-            method : 'get'
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -41,7 +46,12 @@ export default function GovtApplicants (props) {
         file.append("noteSheet",notesheet[index]);
         fetch(address , {
             method : "PATCH",
-            body:file
+            body:file,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -55,7 +65,14 @@ export default function GovtApplicants (props) {
             {
                 const acceptAddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/acceptApplicant/"+aid;
                 fetch(acceptAddress , {
-                    method : "PATCH"
+                    method : "PATCH",
+                    headers : {
+                        'x-auth-token': localStorage.getItem('refreshToken'),
+                        'x-refresh-token': localStorage.getItem('refreshToken'),
+                    },
+                    payload : {
+                        role : localStorage.getItem('role'),
+                    }
                 })
                 .then(res=>{
                     setLoading(false);

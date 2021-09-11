@@ -28,7 +28,12 @@ export default function Studentinformation(props) {
         const id = props.match.params.id;
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
         fetch(address , {
-            method : "get"
+            method : "get",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -116,7 +121,14 @@ export default function Studentinformation(props) {
         .catch(err => console.log(err))
 
         const detailAddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails';
-        fetch(detailAddress , {method : 'get'})
+        fetch(detailAddress , {
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
+        })
         .then(res => {
             if(res.ok)
             return res.json();
@@ -296,7 +308,12 @@ export default function Studentinformation(props) {
         setLoading(true);
         const applyaddress = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/apply/'+props.match.params.id;
         fetch (applyaddress , {
-            method : 'PATCH'
+            method : 'PATCH',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         }).
         then(res => res.json())
         .then(res => {
@@ -374,8 +391,11 @@ export default function Studentinformation(props) {
         fetch(address,{
             method:"post",
             headers:{
-                "Content-Type" : "application/json"
-            },
+                "Content-Type" : "application/json",
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            }
+            ,
             body:JSON.stringify({
                 name:inputFields[0].name,
                 dob : inputFields[0].dob,
@@ -477,7 +497,12 @@ export default function Studentinformation(props) {
         console.log(files.marksheets)
         fetch(uploadaddress,{
             method : 'PATCH',
-            body : formdata
+            body : formdata,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         }).then((res)=>{return res.json()})
         .then(data=>{
             console.log(data)
@@ -492,7 +517,13 @@ export default function Studentinformation(props) {
         form.append('image',files.image);
         fetch(imgAddress , {
             method : 'post',
-            body : form
+            body : form,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
+
         }).then ((res)=> {
             if(res.ok)
             return res.json();

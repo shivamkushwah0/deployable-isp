@@ -18,9 +18,14 @@ export default function StudentProfile(props) {
         setModalIsOpen(false);
         
         const id = props.match.params.id;
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/profile/'+id;
         fetch(address , {
-            method : "get"
+            method : "get",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -30,6 +35,7 @@ export default function StudentProfile(props) {
         .then(data => {
             console.log(data.applicantDetails)
             setUser(data.applicantDetails);
+            // console.log(data.applicantDetails);
             console.log(user);
         })
         .catch(err => console.log(err))
@@ -41,11 +47,14 @@ export default function StudentProfile(props) {
         fetch(address , {
             method : 'PATCH',
             headers : {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                 'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
             },
             body : JSON.stringify({
                 departmentId : user.department
-            })
+            }),
+            
         })
         .then(res=>res.json())
         .then(data => {
@@ -64,11 +73,14 @@ export default function StudentProfile(props) {
         fetch(address , {
             method : 'PATCH',
             headers : {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
             },
             body : JSON.stringify({
                 message : returnMess
-            })
+            }),
+            
         })
         .then(res=>res.json())
         .then(data => {
@@ -83,11 +95,14 @@ export default function StudentProfile(props) {
         fetch(address , {
             method : 'PATCH',
             headers : {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
             },
             body : JSON.stringify({
                 message : rejectMess
-            })
+            }),
+            
         })
         .then(res=>res.json())
         .then(data => {

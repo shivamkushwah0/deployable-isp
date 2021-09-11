@@ -19,7 +19,11 @@ export default function AcadsecAccepted(props){
     useEffect(()=>{
         const addresss = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/accepted"
         fetch(addresss , {
-            method : 'get'
+            method : 'get',
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            }
         })
         .then(res=>{
             if(res.ok)
@@ -40,7 +44,12 @@ export default function AcadsecAccepted(props){
 
         const gApplicants = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/govtApplications/applicants";
         fetch(gApplicants , {
-            method : "get"
+            method : "get",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res=>{
             if(res.ok)
@@ -115,7 +124,12 @@ export default function AcadsecAccepted(props){
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/signedNoteSheetsUpload/'+id;
         fetch(address , {
             method:"PATCH",
-            body : formdata
+            body : formdata,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -138,7 +152,14 @@ export default function AcadsecAccepted(props){
                 const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/offerLetterUpload/"+id;
                 fetch(address , {
                     method:"PATCH",
-                    body : offerletter
+                    body : offerletter,
+                    headers : {
+                        'x-auth-token': localStorage.getItem('refreshToken'),
+                        'x-refresh-token': localStorage.getItem('refreshToken'),
+                    },
+                    payload : {
+                        role : localStorage.getItem('role'),
+                    }
                 })
                 .then(res => {
                     if(res.ok)
@@ -152,7 +173,14 @@ export default function AcadsecAccepted(props){
                     {
                         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/confirmAcceptance/"+id
                         fetch(address, {
-                            method : 'PATCH'
+                            method : 'PATCH',
+                            headers : {
+                                'x-auth-token': localStorage.getItem('refreshToken'),
+                                'x-refresh-token': localStorage.getItem('refreshToken'),
+                            },
+                            payload : {
+                                role : localStorage.getItem('role'),
+                            }
                         }) 
                         .then(res => {
                             if(res.ok)
@@ -216,7 +244,12 @@ export default function AcadsecAccepted(props){
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/signedNoteSheetsUpload/'+id;
         fetch(address , {
             method:"PATCH",
-            body : formdata
+            body : formdata,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -238,7 +271,14 @@ export default function AcadsecAccepted(props){
                 const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/offerLetterUpload/"+id;
                 fetch(address , {
                     method:"PATCH",
-                    body : offerletter
+                    body : offerletter,
+                    headers : {
+                        'x-auth-token': localStorage.getItem('refreshToken'),
+                        'x-refresh-token': localStorage.getItem('refreshToken'),
+                    },
+                    payload : {
+                        role : localStorage.getItem('role'),
+                    }
                 })
                 .then(res => {
                     if(res.ok)
@@ -252,7 +292,14 @@ export default function AcadsecAccepted(props){
                     {
                         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadsec/govtApplications/confirmAcceptance/"+id
                         fetch(address, {
-                            method : 'PATCH'
+                            method : 'PATCH',
+                            headers : {
+                                'x-auth-token': localStorage.getItem('refreshToken'),
+                                'x-refresh-token': localStorage.getItem('refreshToken'),
+                            },
+                            payload : {
+                                role : localStorage.getItem('role'),
+                            }
                         }) 
                         .then(res => {
                             if(res.ok)

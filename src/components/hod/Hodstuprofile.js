@@ -18,7 +18,12 @@ export default function StudentProfile(props) {
         const id = props.match.params.id;
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/'+id;
         fetch(address , {
-            method : "get"
+            method : "get",
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then(res => {
             if(res.ok)
@@ -41,12 +46,17 @@ export default function StudentProfile(props) {
     const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/rejectApplication/'+props.match.params.hid;
     fetch(address, {
         headers : {
-            "Content-Type":"application/json"
+            "Content-Type":"application/json" ,
+            'x-auth-token': localStorage.getItem('refreshToken'),
+            'x-refresh-token': localStorage.getItem('refreshToken'),
         },
         method:'PATCH',
         body : JSON.stringify({
             applicantId : user._id
-        })
+        }),
+        payload : {
+            role : localStorage.getItem('role'),
+        }
     })
     .then(res => {
         setLoading(false);
@@ -93,7 +103,14 @@ export default function StudentProfile(props) {
     const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/department/noteSheetsUpload/'+user._id;
     fetch(address, {
         method:'PATCH',
-        body : formdata
+        body : formdata,
+        headers : {
+            'x-auth-token': localStorage.getItem('refreshToken'),
+            'x-refresh-token': localStorage.getItem('refreshToken'),
+        },
+        payload : {
+            role : localStorage.getItem('role'),
+        }
     })
     .then(res => {
         if(res.ok)
@@ -108,12 +125,15 @@ export default function StudentProfile(props) {
         console.log(user._id);
         fetch(address,{
             headers : {
-                "Content-Type":"application/json"
+                "Content-Type":"application/json",
+                 'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
             },
             method : 'PATCH',
             body : JSON.stringify({
                 applicantId : user._id
-            })
+            }),
+            
         })
         .then(res => {
             // console.log(res.json().body)

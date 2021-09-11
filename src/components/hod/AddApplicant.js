@@ -24,7 +24,14 @@ export default function AddApplicant (props) {
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
         fetch(address,
             {
-                method:"get"
+                method:"get",
+                headers : {
+                    'x-auth-token': localStorage.getItem('refreshToken'),
+                    'x-refresh-token': localStorage.getItem('refreshToken'),
+                },
+                payload : {
+                    role : localStorage.getItem('role'),
+                }
             })
             .then(res => {
                 if(res.ok)
@@ -60,7 +67,12 @@ export default function AddApplicant (props) {
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/govtApplications/addApplicant";
         fetch(address , {
             method : "post",
-            body : formdata
+            body : formdata,
+            headers : {
+                'x-auth-token': localStorage.getItem('refreshToken'),
+                'x-refresh-token': localStorage.getItem('refreshToken'),
+            },
+            
         })
         .then((res)=>{
             setLoading(false);

@@ -37,7 +37,14 @@ export default function Picwindow(props) {
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/allDetails";
         fetch(address,
             {
-                method:"get"
+                method:"get",
+                headers : {
+                    'x-auth-token': localStorage.getItem('refreshToken'),
+                    'x-refresh-token': localStorage.getItem('refreshToken'),
+                },
+                payload : {
+                    role : localStorage.getItem('role'),
+                }
             })
             .then(res => {
                 if(res.ok)
@@ -108,6 +115,13 @@ export default function Picwindow(props) {
        fetch (address , {
            method : "post",
            body:filedata,  
+           headers : {
+            'x-auth-token': localStorage.getItem('refreshToken'),
+            'x-refresh-token': localStorage.getItem('refreshToken'),
+        },
+        payload : {
+            role : localStorage.getItem('role'),
+        }
        })
        .then(res=>{
            if(res.ok)
@@ -140,11 +154,16 @@ export default function Picwindow(props) {
        fetch (address , {
            method : "PATCH",
            headers: {
-            "Content-Type":"application/json"
+            "Content-Type":"application/json",
+            'x-auth-token': localStorage.getItem('refreshToken'),
+            'x-refresh-token': localStorage.getItem('refreshToken'),
             },
            body : JSON.stringify({
             platForms : adminVar.platForms
-           })
+           }),
+           payload : {
+               role : localStorage.getItem('role'),
+           }
        })
        .then(res => {
            if(res.ok)
@@ -174,11 +193,16 @@ export default function Picwindow(props) {
     fetch (address , {
         method : "PATCH",
         headers: {
-         "Content-Type":"application/json"
+         "Content-Type":"application/json",
+         'x-auth-token': localStorage.getItem('refreshToken'),
+        'x-refresh-token': localStorage.getItem('refreshToken'),
          },
         body : JSON.stringify({
          platForms : platforms
-        })
+        }),
+        payload : {
+            role : localStorage.getItem('role'),
+        }
     })
     .then(res => {
         if(res.ok)
