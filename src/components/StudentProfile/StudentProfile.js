@@ -18,7 +18,7 @@ export default function StudentProfile(props) {
         setModalIsOpen(false);
         
         const id = props.match.params.id;
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/profile/'+id;
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/applicant/'+id;
         fetch(address , {
             method : "get",
             headers : {
