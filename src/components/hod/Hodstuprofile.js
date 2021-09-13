@@ -53,10 +53,7 @@ export default function StudentProfile(props) {
         method:'PATCH',
         body : JSON.stringify({
             applicantId : user._id
-        }),
-        payload : {
-            role : localStorage.getItem('role'),
-        }
+        })
     })
     .then(res => {
         setLoading(false);
@@ -107,9 +104,6 @@ export default function StudentProfile(props) {
         headers : {
             'x-auth-token': localStorage.getItem('refreshToken'),
             'x-refresh-token': localStorage.getItem('refreshToken'),
-        },
-        payload : {
-            role : localStorage.getItem('role'),
         }
     })
     .then(res => {

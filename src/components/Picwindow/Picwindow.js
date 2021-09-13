@@ -41,9 +41,6 @@ export default function Picwindow(props) {
                 headers : {
                     'x-auth-token': localStorage.getItem('refreshToken'),
                     'x-refresh-token': localStorage.getItem('refreshToken'),
-                },
-                payload : {
-                    role : localStorage.getItem('role'),
                 }
             })
             .then(res => {
@@ -118,9 +115,6 @@ export default function Picwindow(props) {
            headers : {
             'x-auth-token': localStorage.getItem('refreshToken'),
             'x-refresh-token': localStorage.getItem('refreshToken'),
-        },
-        payload : {
-            role : localStorage.getItem('role'),
         }
        })
        .then(res=>{
@@ -160,10 +154,7 @@ export default function Picwindow(props) {
             },
            body : JSON.stringify({
             platForms : adminVar.platForms
-           }),
-           payload : {
-               role : localStorage.getItem('role'),
-           }
+           })
        })
        .then(res => {
            if(res.ok)
@@ -199,10 +190,7 @@ export default function Picwindow(props) {
          },
         body : JSON.stringify({
          platForms : platforms
-        }),
-        payload : {
-            role : localStorage.getItem('role'),
-        }
+        })
     })
     .then(res => {
         if(res.ok)

@@ -17,9 +17,6 @@ export default class Forwarded extends Component {
                 headers : {
                     'x-auth-token': localStorage.getItem('refreshToken'),
                     'x-refresh-token': localStorage.getItem('refreshToken'),
-                },
-                payload: {
-                    role : "Admin"
                 }
             })
             .then(res=>res.json())
