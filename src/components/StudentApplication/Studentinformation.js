@@ -712,7 +712,7 @@ export default function Studentinformation(props) {
                 </div>
             </div>
             <div className="declaration">
-                <h1 className="text-center">Decalaration:</h1>
+                <h1 className="text-center">Declaration:</h1>
                 <input type="checkbox" onChange = {(e)=>{setCheckbox(e.target.value); console.log(checkbox)}} className="checkbox" required />
                 
                 <span className="my-5">

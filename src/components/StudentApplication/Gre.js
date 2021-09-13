@@ -20,7 +20,7 @@ export default function Gre(props) {
                 
                 <div className="row mt-5">
                             <div className="col-sm-6 text-center">
-                                <Label>Registeration No.</Label>
+                                <Label>Registration No.</Label>
                                 <TextField className="textfield" name="registerno" value={inputField.registerno} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                             </div>
                             <div className="col-sm-6 text-center">
