@@ -91,7 +91,7 @@ export default function Edithodprofile(props) {
                                     <label htmlFor=""> Name <input value={name} onChange={(e)=>{setName(e.target.value); console.log(name)}} type="text" placeholder="Full Name"/></label>
                                     <label htmlFor=""> Mobile <input value={mobile} onChange={(e)=>{setMobile(e.target.value); console.log(mobile)}} type="text" placeholder="Mobile No"/></label>
                                     <label htmlFor=""> Email Address <input value={email} onChange={(e)=>{setEmail(e.target.value); console.log(email)}} type="email" placeholder="Email Address"/></label>
-                                    <label htmlFor=""> Name <input value={password} onChange={(e)=>{setPassword(e.target.value); console.log(password)}} type="password" placeholder="Password"/></label>
+                                    <label htmlFor=""> Password <input value={password} onChange={(e)=>{setPassword(e.target.value); console.log(password)}} type="password" placeholder="Password"/></label>
                                     
                                 </form>
                                 <br/>
