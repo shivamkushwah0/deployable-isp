@@ -51,7 +51,7 @@ export default function ChangePassword(props) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("refreshToken");
             alert("Please login again");
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = "https://iitp-isa.netlfy.app/login";
         }).catch(err=>{
             console.log(err)
             alert("Invalid Credentials");

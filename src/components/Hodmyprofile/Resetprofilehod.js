@@ -61,7 +61,10 @@ export default function ChangePassword(props) {
             if(data.message === "Password Reset")
             {
                 alert("the password was set successfully");
-                props.funchome();
+                alert("Please login again for security purposes");
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("refreshToken");
+                window.location.href("https://iitp-isa.netlify.app/login");
             }
             else {
                 alert(data.message)
