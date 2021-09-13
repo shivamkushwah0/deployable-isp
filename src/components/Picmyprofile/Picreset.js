@@ -43,7 +43,7 @@ export default function Picreset(props) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("refreshToken");
             alert("Please login again");
-            window.location.href = "https://iitp-isa.netlfy.app/login";;
+            window.location.href = "https://iitp-isa.netlify.app/login";;
 
         })
         .catch(err=>{
