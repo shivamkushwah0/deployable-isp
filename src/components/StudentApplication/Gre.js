@@ -25,7 +25,7 @@ export default function Gre(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                                 <Label>Year</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , year:true }); props.setError(!isScore(inputField.year))}} className="textfield" name="year" value={inputField.year} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , year:true }); props.setError(!isScore(inputField.year))}} className="textfield" name="year" value={(inputField.year == "null") ? (inputField.year = "") : inputField.year } variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.year) || !blurScore.year ? null : (<span className="text-red">Please enter a valid year</span>)
@@ -40,7 +40,7 @@ export default function Gre(props) {
                             </div>
                             <div className="col-sm-6 text-center">
                                 <Label>General Test Score </Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , gstScore:true }); props.setError(!isScore(inputField.gts))}} className="textfield" name="gts"  value={inputField.gts} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , gstScore:true }); props.setError(!isScore(inputField.gts))}} className="textfield" name="gts"  value={(inputField.gts == "null") ?(inputField.gts = ""): inputField.gts }  variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.gts) || !blurScore.gstScore ? null : (<span className="text-red">Please enter a valid score</span>)
@@ -52,7 +52,7 @@ export default function Gre(props) {
                             
                             <div className="col-sm-6 text-center">
                                 <Label>Subject Test Score</Label>
-                                <TextField onBlur={()=>{setBlurScore({...blurScore , stsScore:true }); props.setError(!isScore(inputField.sts))}} className="textfield" name="sts" value={inputField.sts} variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
+                                <TextField onBlur={()=>{setBlurScore({...blurScore , stsScore:true }); props.setError(!isScore(inputField.sts))}} className="textfield" name="sts" value={(inputField.sts == "null") ?(inputField.sts = ""): inputField.sts }  variant="filled" onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 <br />
                                 {
                                     isScore(inputField.sts) || !blurScore.stsScore ? null : (<span className="text-red">Please enter a valid score</span>)
