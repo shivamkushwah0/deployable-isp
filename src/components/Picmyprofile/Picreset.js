@@ -8,6 +8,11 @@ export default function Picreset(props) {
     const [newPassword , setNewPassword] = useState('');
     const [cnfNewPassword , setCnfNewPassword] = useState('');
     const handleSubmit = (e) => {
+        if(newPassword.length < 8)
+        {
+            alert("The password length cannot be less than 9 characters");
+            return ;
+        }
         if(newPassword === cnfNewPassword)
         {
         const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/reset-password';
@@ -26,10 +31,25 @@ export default function Picreset(props) {
         })
         .then(res=> {
             if(res.ok)
-            alert("Password Changed Successfully")
-            return res.json()})
-        .then(data => {console.log(data); props.toHome() })
-        .catch(err=>console.log(err))
+            {
+                console.log(res.ok);
+                return res.json();
+            }
+            else throw Error("Invalid Credentials, Please Try again");
+        })
+        .then(data => {
+            console.log(data);
+            alert("Password was resetted successfully");
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("refreshToken");
+            alert("Please login again");
+            window.location.href = "http://localhost:3000/login";;
+
+        })
+        .catch(err=>{
+            console.log(err)
+            alert("Invalid Credentials");
+        })
         }
         else alert("Confirm Password and New Password should match")
         e.preventDefault();

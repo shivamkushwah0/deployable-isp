@@ -61,7 +61,7 @@ export default function Academics(props) {
                         <TextField onBlur={()=>{setBlurNum({...blurNum , year:true }); props.setError(!isScore(inputField.year))}}
                         name="year"
                         label="year"
-                        value={inputField.year}
+                        value={(inputField.year == "null") ?(inputField.year = ""): inputField.year } 
                         variant="filled"
                         onChange={event=>props.handleChangeInput(index,event)}>                           
                         </TextField>
@@ -70,7 +70,7 @@ export default function Academics(props) {
                         <TextField onBlur={()=>{setBlurNum({...blurNum , cgpa:true }); props.setError(!isCGPA(inputField.percentage)) }}
                         name="percentage"
                         label="Percentage/CGPA/CPI"
-                        value={inputField.percentage}
+                        value={(inputField.percentage == "null") ? (inputField.percentage = ""): inputField.percentage } 
                         variant="filled"
                         onChange={event=>props.handleChangeInput(index,event)}>
                         </TextField>
@@ -78,7 +78,7 @@ export default function Academics(props) {
                         <TextField onBlur={()=>{setBlurNum({...blurNum , outof:true }); props.setError(!isCGPA(inputField.outof)) }}
                         name="outof"
                         label="Out Of"
-                        value={inputField.outof}
+                        value={(inputField.outof == "undefined" || inputField.outof == "null" ) ?(inputField.outof = ""): inputField.outof } 
                         variant="filled"
                         onChange={event=>props.handleChangeInput(index,event)}></TextField>
                                 {

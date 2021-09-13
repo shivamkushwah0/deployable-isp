@@ -457,7 +457,10 @@ export default function Studentinformation(props) {
                 // publications : publications
             })
         }).then(res=>{
-            return res.json() 
+            if(res.ok)
+            return res.json();
+            else 
+            throw Error("Please check the form and try again")
           })
         .then(res=> {
             console.log(res)
@@ -510,7 +513,11 @@ export default function Studentinformation(props) {
         })
         .catch((err)=>console.log(err))
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            alert("Something went wrong , please try again and make sure there are no errors in the form ")
+            console.log(err)
+            return ;
+        })
 
         const imgAddress = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/profile/pic/"+props.match.params.id;
         const form = new FormData();
@@ -705,7 +712,7 @@ export default function Studentinformation(props) {
                 </div>
             </div>
             <div className="declaration">
-                <h1 className="text-center">Decalaration:</h1>
+                <h1 className="text-center">Declaration:</h1>
                 <input type="checkbox" onChange = {(e)=>{setCheckbox(e.target.value); console.log(checkbox)}} className="checkbox" required />
                 
                 <span className="my-5">

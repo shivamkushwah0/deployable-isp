@@ -68,6 +68,7 @@ export default function ChangePassword(props) {
             }
         }).catch(err=>{
             console.log(err)
+            alert("Some error occured, Please try again");
         })
         
 

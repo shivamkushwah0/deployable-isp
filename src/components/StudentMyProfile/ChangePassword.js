@@ -7,11 +7,24 @@ export default function ChangePassword(props) {
     const [newPass, setNewPass] = useState('');
     const [CnfPass , setCnfPass] = useState('');
     const handleSubmit=()=>{
-        if(CnfPass!=newPass)
+
+        if (OldPass.length == 0 || newPass.length ==0 )
         {
-            console.log("New Password and confirm password are not matching");    
+            alert("Please fill in the required details");    
             return ;
         }
+
+        if(newPass.length <= 8)
+        {
+            alert("The password length cannot be less than 9 characters");
+            return ;
+        }
+        if(CnfPass!=newPass)
+        {
+            alert("New Password and confirm password are not matching");    
+            return ;
+        }
+
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/applicant/reset-password/"+props.data._id
         fetch(address,{
             headers: {
@@ -26,14 +39,22 @@ export default function ChangePassword(props) {
               })               
         }).then(res => {
             if(res.ok)
-            return res.json();
+            {
+                console.log(res.ok);
+                return res.json();
+            }
+            else throw Error("Invalid Credentials, Please Try again");
+            
         }).then(data => {
             console.log(data);
-            console.log("Password is reset")
             alert("Password was resetted successfully");
-            props.toHome();
+            localStorage.removeItem("authToken");
+            localStorage.removeItem("refreshToken");
+            alert("Please login again");
+            window.location.href = "http://localhost:3000/login";
         }).catch(err=>{
             console.log(err)
+            alert("Invalid Credentials");
         })
         
 

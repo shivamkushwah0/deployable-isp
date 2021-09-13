@@ -28,7 +28,7 @@ export default function Refree(props) {
     
     return (
         <Container>
-            <h1 className="my-5">Refree Details</h1>
+            <h1 className="my-5">Referee Details</h1>
             <form className={classes.root}>
                 {props.inputFields.map((inputField,index)=>(
                     <div key={index}>
