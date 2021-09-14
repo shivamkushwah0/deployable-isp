@@ -64,7 +64,7 @@ export default function ChangePassword(props) {
                 alert("Please login again for security purposes");
                 localStorage.removeItem("authToken");
                 localStorage.removeItem("refreshToken");
-                window.location.href("http://localhost:3000/login");
+                window.location.href("https://iitp-isa.netlify.app/login");
             }
             else {
                 alert(data.message)

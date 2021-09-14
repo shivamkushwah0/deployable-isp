@@ -37,7 +37,7 @@ export default function AcadSecEditProfile(props) {
             if(data.message==="Profile Updated")
             {
                 alert("profile Updated");
-            window.location.href="http://localhost:3000/aswindow/";
+            window.location.href="https://iitp-isa.netlify.app/aswindow/";
             }
             else alert("Something Went Wrong");
         })

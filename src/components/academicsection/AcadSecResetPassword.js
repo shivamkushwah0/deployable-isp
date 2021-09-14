@@ -53,7 +53,7 @@ export default function AcadSecReset(props) {
             localStorage.removeItem("authToken");
             localStorage.removeItem("refreshToken");
             alert("Please login again");
-            window.location.href = "http://localhost:3000/login";
+            window.location.href = "https://iitp-isa.netlify.app/login";
 
         })
         .catch(err=>{

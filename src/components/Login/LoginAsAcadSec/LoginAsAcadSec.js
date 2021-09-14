@@ -50,7 +50,7 @@ const LoginAsAcadSec = () => {
                     alert('Invalid Credentials, please try again')
                     setPassword('');
                 } else {
-                    const hodwindow = "http://localhost:3000/aswindow/";
+                    const hodwindow = "https://iitp-isa.netlify.app/aswindow/";
                     window.location.href=hodwindow;
                 }
             }).catch(err => {
