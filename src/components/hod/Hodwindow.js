@@ -62,8 +62,8 @@ export default function Picwindow(props) {
    }
     return (
         <div>
-    <div className="container margintop">
-        <div className="mb-5 tab_btn_section">
+    <div className="container margintop text-center">
+        <div className="mb-5 tab_btn_section text-center">
                   <Row>
                     <Col md={3}>
                          {

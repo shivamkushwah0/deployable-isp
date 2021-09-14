@@ -52,14 +52,21 @@ export default function StudentProfile(props) {
         },
         method:'PATCH',
         body : JSON.stringify({
-            applicantId : user._id
+            applicantId : user._id , 
+            message : message
         })
     })
     .then(res => {
-        setLoading(false);
-        if(res.ok)
-        return res.json()
-        else throw new Error("Something went wrong, please try again later")
+         if(res.ok)
+        {
+            setLoading(false);
+            return res.json()
+        }
+        
+        else{
+            setLoading(false);
+            throw new Error("Something went wrong, please try again later")
+        }
     })
     .then(data => {
         console.log(data)
@@ -150,6 +157,7 @@ export default function StudentProfile(props) {
 
     })
     .catch(err=>{
+        alert("Something went wrong , please try again")
         console.log(err)
     })
    }

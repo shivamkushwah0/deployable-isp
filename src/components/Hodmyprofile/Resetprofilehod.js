@@ -32,9 +32,21 @@ export default function ChangePassword(props) {
         .catch(err=>console.log(err))
     },[])
     const handleSubmit=()=>{
+
         if(CnfPass!=newPass)
         {
-            console.log("New Password and confirm password are not matching");    
+            alert("New Password and confirm password are not matching");    
+            return ;
+        }
+
+        if(oldPass.length == 0)
+        {
+            alert("Please fill the old password section");
+            return ;
+        }
+        if(newPass.length < 8)
+        {
+            alert("Please choose a password of length more than equals to 8");
             return ;
         }
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/department/reset-password/"+user._id;
@@ -71,7 +83,7 @@ export default function ChangePassword(props) {
             }
         }).catch(err=>{
             console.log(err)
-            alert("Some error occured, Please try again");
+            alert("Some error occured, Please try again. Make sure you are entering correct credentials");
         })
         
 

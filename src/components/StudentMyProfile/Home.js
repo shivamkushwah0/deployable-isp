@@ -34,7 +34,7 @@ export default function Home(props) {
                         <div className="status_details">
                             <div className="det">
                                 <h4 style={{padding:"20px"}}>{!props.data?null:props.data.applicationStatus}</h4>
-                                { props.data && props.data.applicationStatus==="Returned"  ? <h4 style={{padding:"20px"}}>{props.data.statusComment}</h4> : null }
+                                { props.data && ( props.data.applicationStatus==="Returned" || props.data.applicationStatus==="Rejected" ) ? <h4 style={{padding:"20px"}}>{props.data.statusComment}</h4> : null }
                             </div>
                             <div>
                                 
