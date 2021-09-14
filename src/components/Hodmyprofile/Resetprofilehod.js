@@ -39,7 +39,7 @@ export default function ChangePassword(props) {
             return ;
         }
 
-        if(oldPass.length == 0)
+        if(OldPass.length== 0)
         {
             alert("Please fill the old password section");
             return ;
