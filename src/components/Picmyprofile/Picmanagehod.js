@@ -23,6 +23,10 @@ export default class Picmanagehod extends Component {
         .then(res => {
             if(res.ok)
             return res.json();
+            else {
+                alert("Please check your internet connection and try again");
+                throw Error("Please check your internet connection and try again")
+            }
         })
         .then(data => {
             console.log(data)
