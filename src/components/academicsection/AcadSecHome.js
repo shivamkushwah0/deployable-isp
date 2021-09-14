@@ -1,6 +1,9 @@
 import React , {useState , useEffect} from "react";
+import { propTypes } from "react-bootstrap/esm/Image";
 import logo from "../Login/logo.png";
+import {Link} from 'react-router-dom'
 export default function AcadsecHome() {
+    const aseditlink = "/as-reset-profile/";
     const [user,setUser] = useState({});
     useEffect(()=>{
         const address = "https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/profile"
@@ -32,7 +35,7 @@ export default function AcadsecHome() {
                         <div className="name">
                             <h1>WELCOME, {user.name}</h1>
                             <h3>Academic Section Portal</h3>
-                            
+                            <h4>Edit Your Profile <Link to={aseditlink}><i className="fa fa-edit"></i></Link></h4>
                         </div>
                     </div>
                 </div>

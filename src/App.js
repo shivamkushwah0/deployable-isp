@@ -22,6 +22,8 @@ import Hodhome from './components/Hodmyprofile/Hodhome';
 import userResetPassword from './components/Login/userResetPassword'
 import resetPassword from './components/Login/resetPassword'
 import ConfirmEmail from './components/SignUp/SignupAsStudent/ConfirmEmail'
+import AcadSecEditProfile from './components/academicsection/acadsecResetProfile';
+
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 const App =() => {
@@ -42,13 +44,14 @@ const App =() => {
             <Route exact path="/hodstuprofile/:hid/:id" component={Hodstuprofile}/>
             <Route exact path="/hodwindow/:id" component={Hodwindow}/>
             <Route exact path="/stumyprofile/:id" component={StudentMyProfile}/>
-            <Route exact path="/aswindow/:id" component={Academicsection}/>
+            <Route exact path="/aswindow/" component={Academicsection}/>
             <Route exact path="/hodmyprofile/:id" component={Hodmyprofile}/>
             <Route exact path="/edithodprofile/:id" component={Edithodprofile}/>
             <Route exact path="/picmyprofile/:id" component={Picmyprofile}/>
             <Route exact path="/piceditprofile/:id" component={Piceditprofile}/>
             <Route exact path="/addprofilehod/:id" component={Addprofilehod}/>
             <Route exact path="/seehodprofile/:id" component={Hodhome}/>
+            <Route exact path="/as-reset-profile/" component={AcadSecEditProfile}/>
             <Route path="/user-reset-password" component = {userResetPassword} />
             <Route path="/resetPassword/:token" component = {resetPassword} />
             <Route path="/emailConfirm/:token" component = {ConfirmEmail} />

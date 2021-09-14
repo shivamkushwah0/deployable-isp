@@ -2,20 +2,25 @@ import React , {useState} from 'react'
 import logo from '../Login/logo.png'
 import '../StudentMyProfile/StudentMyProfile.css';
 import {Link} from 'react-router-dom'
-export default function Picreset(props) {
+
+export default function AcadSecReset(props) {
 
     const [oldPassword , setOldPassword] = useState('');
     const [newPassword , setNewPassword] = useState('');
     const [cnfNewPassword , setCnfNewPassword] = useState('');
+    const [loading , setLoading] = useState(false);
+
     const handleSubmit = (e) => {
+
         if(newPassword.length < 8)
         {
-            alert("The password length cannot be less than 9 characters");
+            alert("The password length cannot be less than 8 characters");
             return ;
         }
         if(newPassword === cnfNewPassword)
         {
-        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/admin/reset-password';
+        setLoading(true);
+        const address = 'https://iitp-isa-portal-backend.herokuapp.com/backend/acadSec/reset-password/';
         fetch (address,{
             headers : {
                 "Content-Type" : "application/json",
@@ -35,15 +40,20 @@ export default function Picreset(props) {
                 console.log(res.ok);
                 return res.json();
             }
-            else throw Error("Invalid Credentials, Please Try again");
+            else 
+            {
+                setLoading(false);
+                throw Error("Invalid Credentials, Please Try again");
+            }
         })
         .then(data => {
+            setLoading(false);
             console.log(data);
             alert("Password was resetted successfully");
             localStorage.removeItem("authToken");
             localStorage.removeItem("refreshToken");
             alert("Please login again");
-            window.location.href = "http://localhost:3000/login";;
+            window.location.href = "http://localhost:3000/login";
 
         })
         .catch(err=>{
@@ -64,8 +74,8 @@ export default function Picreset(props) {
                             <img src={logo} alt=""/>
                         </div>
                         <div className="name">
-                            <h1>Welcome , {props.user.name}</h1>
-                            <h3>Admin Portal</h3>
+                            <h1>Welcome</h1>
+                            <h3>Academic Section Portal</h3>
                         </div>
                     </div>
                 </div>
@@ -79,6 +89,7 @@ export default function Picreset(props) {
                                         <label htmlFor=""> New Password <input value={newPassword} onChange={(e)=>{setNewPassword(e.target.value); console.log(newPassword)}} type="Password" placeholder="Password"/></label>
                                         <label htmlFor=""> Confirm New Password <input value={cnfNewPassword} onChange={(e)=>{setCnfNewPassword(e.target.value); console.log(cnfNewPassword)}} type="Password" placeholder="Password"/></label>
                                         <button className = "pic_btn" onClick={(e)=>{handleSubmit(e)}} type="submit">Submit</button>
+                                        {loading ? <span className = "fa fa-spin fa-spinner fa-3x"></span> : null }
                                     </form>
                                 </div>
                             </div>

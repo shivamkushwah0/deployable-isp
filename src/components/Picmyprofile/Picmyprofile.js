@@ -242,7 +242,7 @@ export default function Picmyprofile(props) {
             }
             <div className="row text-center margintop">
                  <button className="pic_btn" onClick={()=>{setModal(true); setMode('programme')}}>Add Programme</button>
-                 <button className="pic_btn" onClick={()=>{setModal(true); setMode('department')}}>Add Department in programme</button>
+                 <button className="pic_btn" onClick={()=>{setModal(true); setMode('department')}}>Add Department</button>
             </div>
             <div className="margintop text-center">
             <Link to={`/picwindow/${props.match.params.id}`}><button type='btn' className="active tab_btn pic_btn">Admin Window</button></Link>

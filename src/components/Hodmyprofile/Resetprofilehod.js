@@ -61,7 +61,10 @@ export default function ChangePassword(props) {
             if(data.message === "Password Reset")
             {
                 alert("the password was set successfully");
-                props.funchome();
+                alert("Please login again for security purposes");
+                localStorage.removeItem("authToken");
+                localStorage.removeItem("refreshToken");
+                window.location.href("http://localhost:3000/login");
             }
             else {
                 alert(data.message)
@@ -96,7 +99,7 @@ export default function ChangePassword(props) {
                                     <label htmlFor=""> Current Password <input type="Password" placeholder="Password" onChange = {(e)=>{setOldPass(e.target.value); console.log(OldPass)}}/></label>
                                     <label htmlFor=""> New Password <input type="Password" placeholder="Password" onChange={(e)=>{setNewPass(e.target.value); console.log(newPass)}}/></label>
                                     <label htmlFor=""> Confirm New Password <input type="Password" placeholder="Password" onChange = {(e)=>{setCnfPass(e.target.value); console.log(CnfPass)}}/></label>
-                                    <Button role="submit" onClick={handleSubmit}>Submit</Button> 
+                                    <Button className="pic_btn" role="submit" onClick={handleSubmit}>Submit</Button> 
                                 </form>
                             </div>
                         </div>
