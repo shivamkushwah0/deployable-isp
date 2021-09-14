@@ -48,7 +48,12 @@ export default function Addprofilehod(props) {
             setLoading(false);
             if(res.ok)
             return res.json();
-            else return new Error("Something Went wrong, please try again")
+            else
+            {
+                setLoading(false);
+                alert("Something Went wrong, please try again");
+                throw Error("Something Went wrong, please try again")
+            }
         })
         .then(data => {
             console.log(data);
